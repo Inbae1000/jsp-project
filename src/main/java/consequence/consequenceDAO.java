@@ -1,5 +1,5 @@
 package consequence;
 
-public class consequenceDAO {
+public class ConsequenceDAO {
 
 }

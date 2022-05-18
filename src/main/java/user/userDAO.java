@@ -1,5 +1,5 @@
 package user;
 
-public class userDAO {
+public class UserDAO {
 
 }

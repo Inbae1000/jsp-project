@@ -1,5 +1,5 @@
 package company;
 
-public class companyDAO {
+public class CompanyDAO {
 
 }

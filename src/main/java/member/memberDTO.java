@@ -1,9 +1,10 @@
 package member;
 
-public class memberDTO {
+public class MemberDTO {
 	private int m_id;
 	private String m_name;
 	private String m_birth;
+	private String m_number;
 	private String m_area;
 	private int m_age1;
 	private int m_age2;
@@ -32,6 +33,13 @@ public class memberDTO {
 	}
 	public void setM_birth(String m_birth) {
 		this.m_birth = m_birth;
+	}
+	
+	public String getM_number() {
+		return m_number;
+	}
+	public void setM_number(String m_number) {
+		this.m_number = m_number;
 	}
 	public String getM_area() {
 		return m_area;

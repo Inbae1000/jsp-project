@@ -1,0 +1,352 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import ="java.io.PrintWriter" %>
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="UTF-8">
+<meta name='viewport' content="width=device-width",initial-scale="1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		String userID = null;
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
+	%>
+	<nav class="navbar navbar-default">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+             aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="main.jsp">수강인원 관리</a>
+		</div>
+		<div class = "collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="main.jsp">메인</a></li>
+				<li class="active"><a href="list.jsp">인원현황</a></li>
+			</ul>
+			<%
+				if(userID ==null){
+				
+			%>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">접속하기<span class ="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="login.jsp">로그인</a></li>
+						<li><a href="join.jsp">회원가입</a></li>
+					</ul>
+				</li>
+			</ul>
+			<%
+				}else{
+				
+			%>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">내정보<span class ="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+					</ul>
+				</li>
+			</ul>			
+			<%
+				}
+			%>
+	
+		</div>	
+	</nav>
+	<div class = "container">
+		<div class = "row">
+			<form method = "post" action="insertAction.jsp">
+			
+<!-- 수강인원 기본정보 테이블  -->
+
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+						</tr>
+					</thead>
+					</tbody>
+						<tr>
+							<th><input type = "text" class="form-control"placeholder="이름" name="m_name" maxlength="10"></th>
+							<th><label for="cars">생년월일</label><input type = "date" id = "birthId" class="form-control"name="m_brith" value = "1900-01-01" min="0000-00-00" max="3000-12-31" maxlength="20" onchange = addage();></th>
+							<th><input type = "text" class="form-control"placeholder="전화번호" name="m_number" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="지역" name="m_area" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="나이" name="m_age" maxlength="20" readonly></th>
+							<th><input type = "text" class="form-control"placeholder="성별" name="m_sex" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="유형" name="m_option1" maxlength="20"></th>
+							<th>
+								<label for="cars">구분</label>
+								<select name ="m_option2" id = "" oninput = Attendance4(),Attendance5();>
+									<option value = ""> </option>
+									<option value = "40세이상">40세이상</option>
+									<option value = "취성패1">취성패1</option>
+									<option value = "취성패2">취성패2</option>
+								</select>
+							</th>
+							<th><input type = "text" class="form-control"placeholder="대상구분" name="m_option3" maxlength="20"></th>
+							
+						</tr>
+					</tbody>					
+				</table
+				>
+<!-- 수강인원 결과 관리 테이블  -->
+
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+						</tr>
+					</thead>
+					</tbody>
+						<tr>
+							<th><input type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10"></th>
+							<th><input type = "text" class="form-control"placeholder="출석률" id = "co_attendId" name="co_attend" maxlength="20" oninput= Attendance1(),Attendance3(),Attendance5()></th>
+							<th><input type = "text" class="form-control"placeholder="수료" id = "co_compleId" name="co_comple" maxlength="20" oninput= Attendance3(); readonly></th>
+							<th>
+								<label for="cars">취업</label>
+								<select name ="co_employ" id = "item1Id" oninput= Attendance1(),Attendance3(),Attendance5()>
+									<option value = ""> </option>
+									<option value = "O">O</option>
+									<option value = "X">X</option>
+									<option value = "예정">예정</option>
+									<option value = "가능">가능</option>
+								</select>
+							</th>
+							<th>
+								<label for="cars">동일</label>
+								<select name ="co_same" id = "item2Id">
+									<option value = ""> </option>
+									<option value = "O">O</option>
+									<option value = "X">X</option>
+									<option value = "예정">예정</option>
+								</select>
+							
+							</th>
+							<th>
+								<label for="cars">고용보험</label>
+								<select name ="co_insurance" id= "item3Id" onchange= Attendance2(),Attendance5();>
+									<option value = ""> </option>
+									<option value = "O">O</option>
+									<option value = "X">X</option>
+									<option value = "창업">창업</option>
+									<option value = "예정">예정</option>
+								</select>
+							</th>
+							<th><input type = "text" class="form-control"placeholder="취업가중치" id = "co_option1Id" name="co_option1" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="직종가중치" id = "co_option2Id" name="co_option2" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="취업가중치" id = "co_option3Id" name="co_option3" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="직종가중치" id = "co_option4Id" name="co_option4" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="취업가중치" id = "co_option5Id" name="co_option5" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="직종가중치" id = "co_option6Id" name="co_option6" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="평가기준" name=co_asse" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="직종기준" name="co_prof" maxlength="20"></th>
+							<th>
+								<label for="cars">자격증</label>
+								<select name ="co_certificate">
+									<option value = ""> </option>
+									<option value = "O">O</option>
+									<option value = "X">X</option>
+									<option value = "예정">예정</option>
+								</select>
+								
+							
+							</th>
+						</tr>
+					</tbody>					
+				</table>
+<!-- 수강인원 업체 현황  -->				
+					
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+						</tr>
+					</thead>
+					</tbody>
+						<tr>
+							<th><input type = "text" class="form-control"placeholder="입사일" name="c_start" maxlength="10"></th>
+							<th><input type = "text" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="퇴사여부" name="c_end" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="업체명" name="c_name" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="주소" name="c_adress" maxlength="20"></th>
+							<th><input type = "text" class="form-control"placeholder="전화번호" name="c_number" maxlength="20"></th>
+							<th><label for="cars">취업전담제</label>
+									<select id="cars" name="c_manager"> <!-- 값 수정 다해야함 -->
+										<option value="volvo"selected>팀장</option>
+										<option value="saab">교수</option> 
+										<option value="fiat">과장</option>
+										<option value="audi">정T</option>
+									</select></th>
+							<!-- <th><input type = "text" class="form-control"placeholder="산정제외" name="c_" maxlength="20"></th> -->
+							<th><input type = "text" class="form-control"placeholder="비고" name="c_note" maxlength="20"></th>
+						</tr>
+					</tbody>					
+				</table>
+				
+<!-- 훈련생 정보?  -->
+
+					<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="4" style="backgroud-color:#eeeeee; text-align:center;">수강생 유형?</th>		
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="2">훈련생 유형</td>							
+							<td colspan="2">대상구분</td>						
+						</tr>
+						<tr>						
+							<td><input type ="radio" name ="memeber1" value="실업자일반">실업자일반</td>
+							<td><input type ="radio" name ="memeber1" value="근로자개인">근로자개인</td>													
+							<td><input type ="radio" name ="memeber2" value="실업자">실업자</td>
+							<td><input type ="radio" name ="memeber2" value="재직자">재직자</td>													
+						</tr>		
+					</tbody>					
+				</table>				
+				<input type="submit" class="btn btn-primary pull-right" value="등록"/> <!-- 수강인원추가버튼부분 -->								
+			</form>			
+		</div>
+	</div>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     
+<!-- <script>
+
+
+	function addage(){
+		
+		
+		birth = document.getElementById("birthId").value;
+		var now = new Date();
+		var age = birth.substring(0,4);
+		var year = now.getFullYear();
+		
+		insert.m_age.value = (year-age)+1;
+	}
+	
+	function Attendance1(){
+		birth = document.getElementById("birthId").value;
+		att = document.getElementById("co_attendId").value;
+		item1 = document.getElementById("item1Id").value;
+
+		
+		if(birth != ""){
+			if(att == "" && item1 == ""){
+				insert.co_resultId.value = "훈련중";
+			} else if(att < 80 && item1 == "" ){
+				insert.co_resultId.value = "중도탈락";
+			} else if(att < 70 && item1 == "O"){
+				insert.co_resultId.value = "조기취업";
+			} else if(att >= 80 && item1 == "O"){
+				insert.co_resultId.value = "수료취업";
+			} else if(att >= 70 && att < 80 && item1 == "O"){
+				insert.co_resultId.value = "이수취업";
+			} else if(att >=80 && item1 == ""){
+				insert.co_resultId.value = "수료미취업";
+			}
+		};
+		
+		result = document.getElementById("co_resultId").value;
+		
+		if(att >= 80){
+			insert.co_comple.value = "O";
+		} else if(result == "중도탈락"){
+			insert.co_comple.value = "1";
+		} else if(att >= 70 && att <= 79){
+			insert.co_comple.value = "이수";
+		} else {
+			insert.co_comple.value = "";
+		}
+		
+	}
+	function Attendance2(){
+		item3 = document.getElementById("item3Id").value;
+		
+		if(item3 == ""){
+			insert.co_option1.value = "";
+			insert.co_option2.value = "";
+		} else if (item3 == "O" || item3 == "창업" || item3 == "예정"){
+			insert.co_option1.value = 1;
+			insert.co_option2.value = 1;
+		} else if (item3 == "X"){
+			insert.co_option1.value = 0.5;
+			insert.co_option2.value = 1;
+		} else {
+			insert.co_option1.value = 0;
+			insert.co_option2.value = 0;
+		}
+	}
+	
+	function Attendance3(){
+		completion = document.getElementById("completionId").value;
+		item1 = document.getElementById("item1Id").value;
+		
+		if(item1 == ""){
+			insert.co_option3.value = "";
+			insert.co_option4.value = "";
+		} else if(completion == "O" || completion == "이수"){
+			insert.co_option3.value = 1;
+			insert.co_option4.value = 1;
+		} else {
+			insert.co_option3.value = 0;
+			insert.co_option4.value = 0;
+		}
+	}
+	
+	function Attendance4(){
+		type2 = document.getElementById("m_option2").value;
+		
+		if(type2 == "취성패1"){
+			insert.co_option5.value = 1.5;
+			insert.co_option6.value = 1.5;
+		} else if (type2 == "40세이상"){
+			insert.co_option5.value = 1.3;
+			insert.co_option6.value = 1.5;
+		} else {
+			insert.co_option5.value = 1;
+			insert.co_option6.value = 1;
+		}
+	}
+	
+	function Attendance5(){
+		item1 = document.getElementById("item1Id").value;
+		co_option1 = document.getElementById("co_option1Id").value;
+		co_option2 = document.getElementById("co_option2Id").value;
+		co_option3 = document.getElementById("co_option3Id").value;
+		co_option4 = document.getElementById("co_option4Id").value;
+		co_option5 = document.getElementById("co_option5Id").value;
+		co_option6 = document.getElementById("co_option6Id").value;
+		
+		var a1 = co_option1*co_option2*co_option3;
+		var a2 = co_option4*co_option5*co_option6;
+		
+		if(item1 == "O"){
+			insert.co_asse.value = a1;
+			insert.co_prof.value = a2;
+		} else {
+			insert.co_asse.value = "";
+			insert.co_prof.value = "";
+		}
+		
+	}
+	
+</script> -->
+     
+     
+</body>
+</html>
