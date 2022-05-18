@@ -1,6 +1,6 @@
 package consequence;
 
-public class consequenceDTO {
+public class ConsequenceDTO {
 	private String co_result;
 	private String co_attend;
 	private String co_comple;

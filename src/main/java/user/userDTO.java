@@ -1,10 +1,11 @@
 package user;
 
-public class userDTO {
+public class UserDTO {
 	
 	private String u_email;
 	private String u_pass;
 	private String u_name;
+	
 	public String getU_email() {
 		return u_email;
 	}

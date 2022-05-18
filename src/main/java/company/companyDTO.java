@@ -1,6 +1,6 @@
 package company;
 
-public class companyDTO {
+public class CompanyDTO {
 	private String c_start;
 	private String c_maintain;
 	private String c_end;
