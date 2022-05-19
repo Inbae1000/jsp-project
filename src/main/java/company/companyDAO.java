@@ -82,7 +82,7 @@ public class CompanyDAO {
 			pstmt.setString(5, dto.getC_address());
 			pstmt.setString(6, dto.getC_number());
 			pstmt.setString(7, dto.getC_manager());
-			pstmt.setString(8, dto.getC_excep());
+			pstmt.setString(8, dto.getC_except());
 			pstmt.setInt(9, dto.getM_id());
 			
 			return pstmt.executeUpdate();
@@ -93,6 +93,85 @@ public class CompanyDAO {
 			close(conn, pstmt, null);
 		}
 		return -1;
+	}
+	
+	public CompanyDTO cSelectOne(int m_id) {
+		String sql = "select * from company where m_id = ?";
+		
+		try {
+			conn =ConnectionDB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, m_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				CompanyDTO tmp = new CompanyDTO();
+				tmp.setC_start(rs.getString(1));
+				tmp.setC_maintain(rs.getString(2));
+				tmp.setC_end(rs.getString(3));
+				tmp.setC_name(rs.getString(4));
+				tmp.setC_address(rs.getString(5));
+				tmp.setC_number(rs.getString(6));
+				tmp.setC_manager(rs.getString(7));
+				tmp.setC_except(rs.getString(8));
+				tmp.setM_id(rs.getInt(9));
+				
+				return tmp;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, rs);
+		}
+		return null;
+	}
+	
+	public int cUpdate (CompanyDTO dto) {
+		
+		
+		conn =ConnectionDB.getConnection();
+		StringBuffer query = new StringBuffer();
+		query.append("update company set ");
+		query.append("c_start = ?, c_maintain = ?, c_end = ?, c_name = ?, c_address = ?, c_number = ?, c_manager = ?, c_except = ? ");
+		query.append("where m_id = ?");
+		
+		try {
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, dto.getC_start());
+			pstmt.setString(2, dto.getC_maintain());
+			pstmt.setString(3, dto.getC_end());
+			pstmt.setString(4, dto.getC_name());
+			pstmt.setString(5, dto.getC_address());
+			pstmt.setString(6, dto.getC_number());
+			pstmt.setString(7, dto.getC_manager());
+			pstmt.setString(8, dto.getC_except());
+			
+			pstmt.setInt(9, dto.getM_id());
+			return pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn, pstmt, null);
+		}
+		
+		return -1;
+	}
+	
+	public int delete(int m_id) {
+		String sql = "delete from company where m_id = ?";
+		
+		try {
+			conn = ConnectionDB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, m_id);
+			result = pstmt.executeUpdate();
+
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			close(conn, pstmt, null);
+		}
+		return result;
 	}
 	
 	

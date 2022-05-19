@@ -8,7 +8,7 @@ public class CompanyDTO {
 	private String c_address ;
 	private String c_number;
 	private String c_manager;
-	private String c_excep;
+	private String c_except;
 	private int m_id;
 	
 	
@@ -54,11 +54,11 @@ public class CompanyDTO {
 	public void setC_manager(String c_manager) {
 		this.c_manager = c_manager;
 	}
-	public String getC_excep() {
-		return c_excep;
+	public String getC_except() {
+		return c_except;
 	}
-	public void setC_excep(String c_excep) {
-		this.c_excep = c_excep;
+	public void setC_except(String c_except) {
+		this.c_except = c_except;
 	}
 	public int getM_id() {
 		return m_id;
