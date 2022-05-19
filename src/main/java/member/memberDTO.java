@@ -1,17 +1,18 @@
 package member;
 
-public class memberDTO {
-	private int m_id;
-	private String m_name;
-	private String m_birth;
-	private String m_area;
-	private int m_age1;
-	private int m_age2;
-	private String m_sex;
-	private String m_option1;
-	private String m_option2;
-	private String m_option3;
-	private String m_note;
+public class MemberDTO {
+	private int m_id;			//인원번호
+	private String m_name;		//성명
+	private String m_birth;		//생년월일
+	private String m_number;	//전화번호
+	private String m_area;		//지역
+	private int m_age1;			//나이
+	private int m_age2;			//만나이
+	private String m_sex;		//성별
+	private String m_option1;	//유형
+	private String m_option2;	//훈련생유형
+	private String m_option3;	//대상구분
+	private String m_note;		//결과
 	
 	
 	
@@ -24,6 +25,7 @@ public class memberDTO {
 	public String getM_name() {
 		return m_name;
 	}
+	
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
@@ -32,6 +34,12 @@ public class memberDTO {
 	}
 	public void setM_birth(String m_birth) {
 		this.m_birth = m_birth;
+	}
+	public String getM_number() {
+		return m_number;
+	}
+	public void setM_number(String m_number) {
+		this.m_number = m_number;
 	}
 	public String getM_area() {
 		return m_area;
