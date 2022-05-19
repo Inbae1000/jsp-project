@@ -54,13 +54,13 @@ public class MemberDAO {
 	public int nextval() {
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
-		query.append("SELECT MAX(id) ").append("FROM member");
+		query.append("SELECT MAX(m_id) ").append("FROM member");
 		
 		try {
 			pstmt = conn.prepareStatement(query.toString());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				result = rs.getInt("MAX(id)");
+				result = rs.getInt("MAX(m_id)");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,8 +82,8 @@ public class MemberDAO {
 			 pstmt = conn.prepareStatement(query.toString());
 			 pstmt.setInt(1, dto.getM_id());
 			 pstmt.setString(2, dto.getM_name());
-			 pstmt.setString(3, dto.getM_number());
-			 pstmt.setString(4, dto.getM_area());
+			 pstmt.setString(3, dto.getM_birth());
+			 pstmt.setString(4, dto.getM_number());
 			 pstmt.setString(5, dto.getM_area());
 			 pstmt.setInt(6, dto.getM_age1());
 			 pstmt.setInt(7, dto.getM_age2());
@@ -95,6 +95,8 @@ public class MemberDAO {
 			 
 
 			 return pstmt.executeUpdate();
+			 
+			 
 			 
 		 } catch(SQLException e) {
 			 e.printStackTrace();
