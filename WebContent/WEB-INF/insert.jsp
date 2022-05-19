@@ -69,7 +69,7 @@
 	</nav>
 	<div class = "container">
 		<div class = "row">
-			<form method = "post" name ="insert" action="insertAction.jsp">
+			<form method = "post" name ="insert" action="insert2.do">
 			
 			
 <!-- 수강인원 기본정보 테이블  -->
@@ -82,24 +82,51 @@
 					</thead>
 					</tbody>
 						<tr>
-							<th><input type = "text" class="form-control"placeholder="이름" name="m_name" maxlength="10"></th>
-							<th><label for="cars">생년월일</label><input type = "date" id = "birthId" class="form-control"name="m_birth" value = "1900-01-01" min="0000-00-00" max="3000-12-31" maxlength="20" onchange = addage(); ></th>
-							<th><input type = "text" class="form-control"placeholder="전화번호" name="m_number" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="지역" name="m_area" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="나이" name="m_age1" maxlength="20" readonly></th>
-							<th><input type = "text" class="form-control"placeholder="성별" name="m_sex" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="유형" name="m_option1" maxlength="20"></th>
-							<th>
+							<th style = "text-align:center">
+								<label for="cars" >이름</label>
+								<input type = "text" class="form-control"placeholder="이름" name="m_name" maxlength="10">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">생년월일</label>
+								<input type = "date" id = "birthId" class="form-control"name="m_birth" value = "1900-01-01" min="0000-00-00" max="3000-12-31" maxlength="20" onchange = addage(); >
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">전화번호</label>
+								<input type = "text" class="form-control"placeholder="전화번호" name="m_number" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">지역</label>
+								<input type = "text" class="form-control"placeholder="지역" name="m_area" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">나이</label>
+								<input type = "text" class="form-control"placeholder="나이" name="m_age1" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">성별</label>
+								<input type = "text" class="form-control"placeholder="성별" name="m_sex" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">유형</label>
+								<input type = "text" class="form-control"placeholder="유형" name="m_option1" maxlength="20">
+							</th>
+							<th style = "text-align:center">
 								<label for="cars">구분</label>
-								<select name ="m_option2" id = "" oninput = Attendance4(),Attendance5();>
+								<select name ="m_option2" id = "m_option2Id" oninput = Attendance4(),Attendance5();>
 									<option value = ""> </option>
 									<option value = "40세이상">40세이상</option>
 									<option value = "취성패1">취성패1</option>
 									<option value = "취성패2">취성패2</option>
 								</select>
 							</th>
-							<th><input type = "text" class="form-control"placeholder="대상구분" name="m_option3" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="비고" name="m_note" maxlength="20"></th>
+							<th style = "text-align:center">
+								<label for="cars">대상구분</label>
+								<input type = "text" class="form-control"placeholder="대상구분" name="m_option3" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">비고</label>
+								<input type = "text" class="form-control"placeholder="비고" name="m_note" maxlength="20">
+							</th>
 							
 						</tr>
 					</tbody>					
@@ -115,10 +142,19 @@
 					</thead>
 					</tbody>
 						<tr>
-							<th><input type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10"></th>
-							<th><input type = "text" class="form-control"placeholder="출석률" id = "co_attendId" name="co_attend" maxlength="20" oninput= Attendance1(),Attendance3(),Attendance5()></th>
-							<th><input type = "text" class="form-control"placeholder="수료" id = "co_compleId" name="co_comple" maxlength="20" oninput= Attendance3(); readonly></th>
-							<th>
+							<th style = "text-align:center">
+								<label for="cars">결과</label>
+								<input type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">출석률</label>
+								<input type = "text" class="form-control"placeholder="출석률" id = "co_attendId" name="co_attend" maxlength="20" oninput= Attendance1(),Attendance3(),Attendance5()>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">수료</label>
+								<input type = "text" class="form-control"placeholder="수료" id = "co_compleId" name="co_comple" maxlength="20" oninput= Attendance3(); readonly>
+							</th>
+							<th style = "text-align:center">
 								<label for="cars">취업</label>
 								<select name ="co_employ" id = "item1Id" oninput= Attendance1(),Attendance3(),Attendance5()>
 									<option value = ""> </option>
@@ -128,7 +164,7 @@
 									<option value = "가능">가능</option>
 								</select>
 							</th>
-							<th>
+							<th style = "text-align:center">
 								<label for="cars">동일</label>
 								<select name ="co_same" id = "item2Id">
 									<option value = ""> </option>
@@ -138,7 +174,7 @@
 								</select>
 							
 							</th>
-							<th>
+							<th style = "text-align:center">
 								<label for="cars">고용보험</label>
 								<select name ="co_insurance" id= "item3Id" onchange= Attendance2(),Attendance5();>
 									<option value = ""> </option>
@@ -148,15 +184,39 @@
 									<option value = "예정">예정</option>
 								</select>
 							</th>
-							<th><input type = "text" class="form-control"placeholder="취업가중치" id = "co_option1Id" name="co_option1" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="직종가중치" id = "co_option2Id" name="co_option2" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="취업가중치" id = "co_option3Id" name="co_option3" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="직종가중치" id = "co_option4Id" name="co_option4" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="취업가중치" id = "co_option5Id" name="co_option5" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="직종가중치" id = "co_option6Id" name="co_option6" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="평가기준" name= "co_asse" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="직종기준" name= "co_porf" maxlength="20"></th>
-							<th>
+							<th style = "text-align:center">
+								<label for="cars">취업가중치</label>
+								<input type = "text" class="form-control" id = "co_option1Id" name="co_option1" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">직종가종치</label>
+								<input type = "text" class="form-control" id = "co_option2Id" name="co_option2" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">취업가중치</label>
+								<input type = "text" class="form-control" id = "co_option3Id" name="co_option3" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">직종가중치</label>
+								<input type = "text" class="form-control" id = "co_option4Id" name="co_option4" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">취업가중치</label>
+								<input type = "text" class="form-control" value ="1" id = "co_option5Id" name="co_option5" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">직종가중치</label>
+								<input type = "text" class="form-control" value ="1" id = "co_option6Id" name="co_option6" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">평가기준</label>
+								<input type = "text" class="form-control"placeholder="평가기준" name= "co_asse" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">직종기준</label>
+								<input type = "text" class="form-control"placeholder="직종기준" name= "co_porf" maxlength="20" readonly>
+							</th>
+							<th style = "text-align:center">
 								<label for="cars">자격증</label>
 								<select name ="co_certificate">
 									<option value = ""> </option>
@@ -180,13 +240,32 @@
 					</thead>
 					</tbody>
 						<tr>
-							<th><input type = "date" class="form-control"placeholder="입사일" name="c_start" maxlength="10"></th>
-							<th><input type = "text" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="퇴사여부" name="c_end" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="업체명" name="c_name" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="주소" name="c_address" maxlength="20"></th>
-							<th><input type = "text" class="form-control"placeholder="전화번호" name="c_number" maxlength="20"></th>
-							<th><label for="cars">취업전담제</label>
+							<th style = "text-align:center">
+								<label for="cars">입사일</label>
+								<input type = "date" class="form-control"placeholder="입사일" name="c_start" maxlength="10" value = "1900-01-01" min="0000-00-00" max="3000-12-31">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">고용유지</label>
+								<input type = "date" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">퇴사여부</label>
+								<input type = "text" class="form-control"placeholder="퇴사여부" name="c_end" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">업체명</label>
+								<input type = "text" class="form-control"placeholder="업체명" name="c_name" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">주소</label>
+								<input type = "text" class="form-control"placeholder="주소" name="c_address" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">전화번호</label>
+								<input type = "text" class="form-control"placeholder="전화번호" name="c_number" maxlength="20">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars">취업전담제</label>
 								<select id="cars" name="c_manager"> <!-- 값 수정 다해야함 -->
 									<option value="volvo"selected>팀장</option>
 									<option value="saab">교수</option> 
@@ -194,7 +273,10 @@
 									<option value="audi">정T</option>
 								</select>
 							</th>
-							<th><input type = "text" class="form-control"placeholder="산정제외" name="c_excep" maxlength="20"></th>
+							<th style = "text-align:center">
+								<label for="cars">산정제외</label>
+								<input type = "text" class="form-control"placeholder="산정제외" name="c_excep" maxlength="20">
+							</th>
 						</tr>
 					</tbody>					
 				</table>
@@ -273,7 +355,7 @@
 	}
 	
 	function Attendance3(){
-		completion = document.getElementById("completionId").value;
+		completion = document.getElementById("co_compleId").value;
 		item1 = document.getElementById("item1Id").value;
 		
 		if(item1 == ""){
@@ -289,7 +371,7 @@
 	}
 	
 	function Attendance4(){
-		type2 = document.getElementById("m_option2").value;
+		type2 = document.getElementById("m_option2Id").value;
 		
 		if(type2 == "취성패1"){
 			insert.co_option5.value = 1.5;
@@ -306,21 +388,20 @@
 	function Attendance5(){
 		item1 = document.getElementById("item1Id").value;
 		co_option1 = document.getElementById("co_option1Id").value;
-		co_option2 = document.getElementById("co_option2Id").value;
 		co_option3 = document.getElementById("co_option3Id").value;
 		co_option4 = document.getElementById("co_option4Id").value;
 		co_option5 = document.getElementById("co_option5Id").value;
 		co_option6 = document.getElementById("co_option6Id").value;
 		
-		var a1 = co_option1*co_option2*co_option3;
-		var a2 = co_option4*co_option5*co_option6;
+		var a1 = co_option1*co_option3*co_option5;
+		var a2 = co_option1*co_option4*co_option6;
 		
 		if(item1 == "O"){
 			insert.co_asse.value = a1;
-			insert.co_prof.value = a2;
+			insert.co_porf.value = a2;
 		} else {
 			insert.co_asse.value = "";
-			insert.co_prof.value = "";
+			insert.co_porf.value = "";
 		}
 		
 	}

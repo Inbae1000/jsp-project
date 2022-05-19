@@ -106,7 +106,7 @@ public class MemberController extends HttpServlet {
 		dto.setM_note(notice);
 		
 		int mResult = memberDao.insert(dto);
-		System.out.println(mResult);			
+		System.out.println(mResult);
 			
 	}
 	
