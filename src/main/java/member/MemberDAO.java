@@ -19,6 +19,10 @@ public class MemberDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
+	private MemberDAO() {
+		super();
+	}
+	
 	public static MemberDAO getInstance() {
 		return mDao;
 	}
@@ -45,7 +49,7 @@ public class MemberDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+		} 
 	}
 	
 	public List<MemberDTO> selectList(){
@@ -66,13 +70,11 @@ public class MemberDAO {
 				tmp.setM_birth(rs.getString(3));
 				tmp.setM_number(rs.getString(4));
 				tmp.setM_area(rs.getString(5));
-				tmp.setM_age1(rs.getInt(6));
-				//tmp.setM_age2(rs.getInt(7));
-				tmp.setM_sex(rs.getString(7));
-				tmp.setM_option1(rs.getString(8));
-				//tmp.setM_option2(rs.getString(10));
-				//tmp.setM_option3(rs.getString(11));
-				tmp.setM_note(rs.getString(9));
+				tmp.setM_age1(rs.getInt(6));				
+				tmp.setM_sex(rs.getString(8));
+				tmp.setM_option1(rs.getString(9));				
+				tmp.setM_option3(rs.getString(11));
+				tmp.setM_note(rs.getString(12));
 				
 				list.add(tmp);
 				

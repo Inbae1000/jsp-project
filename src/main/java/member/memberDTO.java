@@ -12,7 +12,7 @@ public class MemberDTO {
 	private String m_option1;	//유형
 	private String m_option2;	//훈련생유형
 	private String m_option3;	//대상구분
-	private String m_note;		//결과
+	private String m_note;		//비고
 	
 	
 	
