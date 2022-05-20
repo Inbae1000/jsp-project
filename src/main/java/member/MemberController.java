@@ -72,7 +72,8 @@ public class MemberController extends HttpServlet {
 			requestInsert3(req,resp);
 		}
 		else if(command.equals("/select.do")) {
-			selectOne(req,resp);
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/list.jsp");
+			rd.forward(req, resp);	
 		}
 		else if(command.equals("/update.do")) {
 			selectOne(req,resp);
@@ -85,6 +86,27 @@ public class MemberController extends HttpServlet {
 		else if(command.equals("/delete.do")) {
 			delete(req, resp);
 			
+		}
+		else if(command.equals("/join.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/join.jsp");
+			rd.forward(req, resp);
+		}
+		else if(command.equals("/joinAction.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/joinAction.jsp");
+			rd.forward(req, resp);
+		}
+		else if(command.equals("/login.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/login.jsp");
+			rd.forward(req, resp);	
+		}
+		else if(command.equals("/loginAction.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/loginAction.jsp");
+			rd.forward(req, resp);	
+		}
+
+		else if(command.equals("/logout.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/logoutAction.jsp");
+			rd.forward(req, resp);	
 		}
     }
     

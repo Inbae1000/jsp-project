@@ -10,63 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		String userID = null;
-		if(session.getAttribute("userID") != null){
-			userID = (String) session.getAttribute("userID");
-		}
-	%>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-             aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.jsp">수강인원 관리</a>
-		</div>
-		<div class = "collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
-				<li class="active"><a href="list.jsp">인원현황</a></li>
-			</ul>
-			<%
-				if(userID ==null){
-				
-			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">접속하기<span class ="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">회원가입</a></li>
-					</ul>
-				</li>
-			</ul>
-			<%
-				}else{
-				
-			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">내정보<span class ="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="logoutAction.jsp">로그아웃</a></li>
-					</ul>
-				</li>
-			</ul>			
-			<%
-				}
-			%>
-	
-		</div>	
-	</nav>
+
+	<%@ include file = "menu2.jsp" %>
+
+
 	<div class = "container">
 		<div class = "row">
 			<form method = "post" name ="insert" action="update2.do">
@@ -114,11 +61,12 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">구분</label>
-								<select name ="m_option2" id = "m_option2Id" oninput = Attendance4(),Attendance5() value =${selectOne.m_option2}>
+								<select name ="m_option2" id = "m_option2Id" oninput = Attendance4(),Attendance5()>
 									<option value = ""> </option>
 									<option value = "40세이상">40세이상</option>
 									<option value = "취성패1">취성패1</option>
 									<option value = "취성패2">취성패2</option>
+									<option hidden value = ${selectOne.m_option2} selected>${selectOne.m_option2}</option>
 								</select>
 							</th>
 							<th style = "text-align:center">
@@ -164,6 +112,7 @@
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
 									<option value = "가능">가능</option>
+									<option hidden value = ${coSelectOne.co_employ} selected>${coSelectOne.co_employ}</option>
 								</select>
 							</th>
 							<th style = "text-align:center">
@@ -173,6 +122,7 @@
 									<option value = "O">O</option>
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
+									<option hidden value = ${coSelectOne.co_same} selected>${coSelectOne.co_same}</option>
 								</select>
 							
 							</th>
@@ -184,6 +134,7 @@
 									<option value = "X">X</option>
 									<option value = "창업">창업</option>
 									<option value = "예정">예정</option>
+									<option hidden value = ${coSelectOne.co_insurance} selected>${coSelectOne.co_insurance}</option>
 								</select>
 							</th>
 							<th style = "text-align:center">
@@ -225,6 +176,7 @@
 									<option value = "O">O</option>
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
+									<option hidden value = ${coSelectOne.co_certificate} selected>${coSelectOne.co_certificate}</option>
 								</select>
 								
 							
@@ -274,6 +226,7 @@
 									<option value="교수">교수</option> 
 									<option value="과장">과장</option>
 									<option value="정T">정T</option>
+									<option hidden value = ${cSelectOne.c_manager} selected>${cSelectOne.c_manager}</option>
 								</select>
 							</th>
 							<th style = "text-align:center">

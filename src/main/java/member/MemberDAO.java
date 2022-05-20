@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.*;
 import member.MemberDTO;
@@ -69,6 +71,44 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	
+	public List<MemberDTO> selectList(){
+
+		List<MemberDTO> list = new ArrayList<>();
+		
+		try {
+			conn = ConnectionDB.getConnection();
+			String sql = "Select * from member";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			
+			while (rs.next()) {
+				MemberDTO tmp = new MemberDTO();
+				tmp.setM_id(rs.getInt(1));
+				tmp.setM_name(rs.getString(2));
+				tmp.setM_birth(rs.getString(3));
+				tmp.setM_number(rs.getString(4));
+				tmp.setM_area(rs.getString(5));
+				tmp.setM_age1(rs.getInt(6));				
+				tmp.setM_sex(rs.getString(8));
+				tmp.setM_option1(rs.getString(9));				
+				tmp.setM_option2(rs.getString(10));
+				tmp.setM_note(rs.getString(12));
+				
+				list.add(tmp);
+				
+			}
+
+		} catch(SQLException e){
+			e.printStackTrace();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	
 	
 	
 	public int insert(MemberDTO dto) {

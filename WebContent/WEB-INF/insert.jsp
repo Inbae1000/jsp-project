@@ -10,63 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-		String userID = null;
-		if(session.getAttribute("userID") != null){
-			userID = (String) session.getAttribute("userID");
-		}
-	%>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-             data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-             aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="main.jsp">수강인원 관리</a>
-		</div>
-		<div class = "collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="main.jsp">메인</a></li>
-				<li class="active"><a href="list.jsp">인원현황</a></li>
-			</ul>
-			<%
-				if(userID ==null){
-				
-			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">접속하기<span class ="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">회원가입</a></li>
-					</ul>
-				</li>
-			</ul>
-			<%
-				}else{
-				
-			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">내정보<span class ="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="logoutAction.jsp">로그아웃</a></li>
-					</ul>
-				</li>
-			</ul>			
-			<%
-				}
-			%>
-	
-		</div>	
-	</nav>
+	<%@ include file = "menu2.jsp" %>
 	<div class = "container">
 		<div class = "row">
 			<form method = "post" name ="insert" action="insert2.do">
@@ -276,7 +220,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">산정제외</label>
-								<input type = "text" class="form-control"placeholder="산정제외" name="c_excep" maxlength="20">
+								<input type = "text" class="form-control"placeholder="산정제외" name="c_except" maxlength="20">
 							</th>
 						</tr>
 					</tbody>					
