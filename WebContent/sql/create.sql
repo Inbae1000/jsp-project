@@ -47,6 +47,16 @@ create table consequence(
 	m_id int
 );
 
+create table subject(
+	s_id int,
+	s_name varchar(20),
+	s_start date,
+	s_end date,
+	s_manage date,
+	s_professor varchar(20)
+	);
+)
+
 create table user(
 	u_email varchar(50),
 	u_pass varchar(50),
