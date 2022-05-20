@@ -106,7 +106,7 @@ public class MemberController extends HttpServlet {
 
 		else if(command.equals("/logout.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/logoutAction.jsp");
-			rd.forward(req, resp);	
+			rd.forward(req, resp);
 		}
     }
     
@@ -217,6 +217,7 @@ public class MemberController extends HttpServlet {
 		
 		int conResult = coDao.coInsert(coDto);
 		System.out.println(conResult);
+		resp.sendRedirect("select.do");
 		
 	}
 	
@@ -355,7 +356,7 @@ public class MemberController extends HttpServlet {
 		coDto.setM_id(id);
 		
 		int conReuslt = coDao.update(coDto);
-	
+		resp.sendRedirect("select.do");
 	}
 	
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -368,6 +369,8 @@ public class MemberController extends HttpServlet {
 		
 		CompanyDAO cDao = CompanyDAO.getInstance();
 		cDao.delete(id);
+		
+		resp.sendRedirect("select.do");
 	}
 
 }

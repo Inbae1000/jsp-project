@@ -26,17 +26,6 @@
 </style>
 </head>
 <body>
-
-	<%
-	MemberDAO memberDao = MemberDAO.getInstance();
-	List<MemberDTO> list = memberDao.selectList();
-	
-	ConsequenceDAO consequenceDao = ConsequenceDAO.getInstance();
-	List<ConsequenceDTO> list2 = consequenceDao.selectList();
-	
-	CompanyDAO companyDao = CompanyDAO.getInstance();
-	List<CompanyDTO> list3 = companyDao.selectList(); 
-	%>
 	
 	<%@ include file = "menu2.jsp" %>
 <!-- 과목정보 -->
@@ -125,7 +114,7 @@
 		</div>	
 	</div>
 <!-- 인원리스트  -->
-	<div style="width:auto" class = "container">   
+	<div style="width:2500px" class = "container">   
 		<div class = "row" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
@@ -141,6 +130,7 @@
 						<th style="background-color:#eeeeee; text-align:center;">유형</th>
 						<th style="background-color:#eeeeee; text-align:center;">구분</th>
 						<th style="background-color:#eeeeee; text-align:center;">비고</th>
+
 						<!-- 수강인원결과  -->
 						<th style="background-color:#eeeeee; text-align:center;">결과</th>
 						<th style="background-color:#eeeeee; text-align:center;">출석률</th>
@@ -170,12 +160,17 @@
 						
 					</tr>
  				</thead>
+ 					<% 
+					MemberDAO memberDao = MemberDAO.getInstance();
+					List<MemberJoin> list = memberDao.selectList();
+					int a = 0;
+						for(MemberJoin b : list){
+							a =a+1;
+					%>
 				<tbody>
 					<tr> 
-					<% 
-						for(MemberDTO b : list){
-					%>
-						<td><%=b.getM_id() %></td> 
+
+						<td><%=a %></td> 
 						<td><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
 						<td><%=b.getM_birth()%></td>
 						<td><%=b.getM_number()%></td>
@@ -185,46 +180,39 @@
 						<td><%=b.getM_option1()%></td>
 						<td><%=b.getM_option2()%></td>				
 						<td><%=b.getM_note()%></td>
-					<%
-						}
-					%>
-					<%
-						for(ConsequenceDTO c: list2){
-					%>
-						<td><%=c.getCo_result()%></td>
-						<td><%=c.getCo_attend()%></td>
-						<td><%=c.getCo_comple()%></td>
-						<td><%=c.getCo_employ()%></td>
-						<td><%=c.getCo_same()%></td>
-						<td><%=c.getCo_insurance()%></td>
-						<td><%=c.getCo_option1()%></td>
-						<td><%=c.getCo_option2()%></td>
-						<td><%=c.getCo_option3()%></td>
-						<td><%=c.getCo_option4()%></td>
-						<td><%=c.getCo_option5()%></td>
-						<td><%=c.getCo_option6()%></td>						
-						<td><%=c.getCo_asse()%></td>
-						<td><%=c.getCo_porf()%></td>
-						<td><%=c.getCo_certificate()%></td>
-					<%
-						}
-					%>
-					<%
-						for(CompanyDTO d:list3){
-					%>
-						<td><%=d.getC_start()%></td>
-						<td><%=d.getC_maintain()%></td>
-						<td><%=d.getC_end()%></td>
-						<td><%=d.getC_name()%></td>
-						<td><%=d.getC_address()%></td>
-						<td><%=d.getC_number()%></td>
-						<td><%=d.getC_manager()%></td>
-						<td><%=d.getC_except()%></td>
-					<%
-						}
-					%>
+						
+						<td><%=b.getCo_result()%></td>
+						<td><%=b.getCo_attend()%></td>
+						<td><%=b.getCo_comple()%></td>
+						<td><%=b.getCo_employ()%></td>
+						<td><%=b.getCo_same()%></td>
+						<td><%=b.getCo_insurance()%></td>
+						<td><%=b.getCo_option1()%></td>
+						<td><%=b.getCo_option2()%></td>
+						<td><%=b.getCo_option3()%></td>
+						<td><%=b.getCo_option4()%></td>
+						<td><%=b.getCo_option5()%></td>
+						<td><%=b.getCo_option6()%></td>						
+						<td><%=b.getCo_asse()%></td>
+						<td><%=b.getCo_porf()%></td>
+						<td><%=b.getCo_certificate()%></td>
+
+						<td><%=b.getC_start()%></td>
+						<td><%=b.getC_maintain()%></td>
+						<td><%=b.getC_end()%></td>
+						<td><%=b.getC_name()%></td>
+						<td><%=b.getC_address()%></td>
+						<td><%=b.getC_number()%></td>
+						<td><%=b.getC_manager()%></td>
+						<td><%=b.getC_except()%></td>
+						
+
 					</tr>									
-			</tbody>				
+			</tbody>	
+
+			<%
+					}
+			%>			
 			</table>
 			<%-- <%
 				if(pageNumber != 1){
@@ -238,7 +226,5 @@
 			<a href ="insert.do" class="btn btn-primary pull-right">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
 		</div>
 	</div>
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-     <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

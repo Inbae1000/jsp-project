@@ -13,7 +13,7 @@
 	<%@ include file = "menu2.jsp" %>
 	<div class = "container">
 		<div class = "row">
-			<form method = "post" name ="insert" action="insert2.do">
+			<form method = "post" name ="insert" action="insert2.do" onkeydown="return enterkeydown(event)">
 			
 			
 <!-- 수강인원 기본정보 테이블  -->
@@ -229,8 +229,6 @@
 			</form>			
 		</div>
 	</div>
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-     <script src="js/bootstrap.min.js"></script>
      
 <script>
 
@@ -350,6 +348,12 @@
 		}
 		
 	}
+	
+	function enterkeydown(e){
+		if(e.keyCode == 13)
+			return false;
+	}
+
 	
 </script>
      

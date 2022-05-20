@@ -72,29 +72,55 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public List<MemberDTO> selectList(){
+	public List<MemberJoin> selectList(){
 
-		List<MemberDTO> list = new ArrayList<>();
+		List<MemberJoin> list = new ArrayList<>();
 		
 		try {
 			conn = ConnectionDB.getConnection();
-			String sql = "Select * from member";
+			String sql = "select * from member join company on member.m_id = company.m_id join consequence on member.m_id = consequence.m_id";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			
 			while (rs.next()) {
-				MemberDTO tmp = new MemberDTO();
+				MemberJoin tmp = new MemberJoin();
 				tmp.setM_id(rs.getInt(1));
 				tmp.setM_name(rs.getString(2));
 				tmp.setM_birth(rs.getString(3));
 				tmp.setM_number(rs.getString(4));
 				tmp.setM_area(rs.getString(5));
-				tmp.setM_age1(rs.getInt(6));				
+				tmp.setM_age1(rs.getInt(6));
+				tmp.setM_age2(rs.getInt(7));
 				tmp.setM_sex(rs.getString(8));
 				tmp.setM_option1(rs.getString(9));				
 				tmp.setM_option2(rs.getString(10));
 				tmp.setM_note(rs.getString(12));
+			
+				tmp.setC_start(rs.getString(13));
+				tmp.setC_maintain(rs.getString(14));
+				tmp.setC_end(rs.getString(15));
+				tmp.setC_name(rs.getString(16));
+				tmp.setC_address(rs.getString(17));
+				tmp.setC_number(rs.getString(18));
+				tmp.setC_manager(rs.getString(19));
+				tmp.setC_except(rs.getString(20));
+				
+				tmp.setCo_result(rs.getString(22));
+				tmp.setCo_attend(rs.getString(23));
+				tmp.setCo_comple(rs.getString(24));
+				tmp.setCo_employ(rs.getString(25));
+				tmp.setCo_same(rs.getString(26));
+				tmp.setCo_insurance(rs.getString(27));
+				tmp.setCo_option1(rs.getString(28));
+				tmp.setCo_option2(rs.getString(29));
+				tmp.setCo_option3(rs.getString(30));
+				tmp.setCo_option4(rs.getString(31));
+				tmp.setCo_option5(rs.getString(32));
+				tmp.setCo_option6(rs.getString(33));
+				tmp.setCo_asse(rs.getString(34));
+				tmp.setCo_porf(rs.getString(35));
+				tmp.setCo_certificate(rs.getString(36));
 				
 				list.add(tmp);
 				
