@@ -9,3 +9,4 @@ public class SbujectDTO {
 	private String s_manage;		//훈련후관리 훈련종료 + 6개월
 	private String s_professor;		//과목교수
 }
+ 
