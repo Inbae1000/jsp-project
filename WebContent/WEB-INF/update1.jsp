@@ -24,7 +24,7 @@
 				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 수정</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
 						</tr>
 					</thead>
 					</tbody>
@@ -87,7 +87,7 @@
 				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 수정</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
 						</tr>
 					</thead>
 					</tbody>
@@ -189,7 +189,7 @@
 				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 수정</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
 						</tr>
 					</thead>
 					</tbody>
