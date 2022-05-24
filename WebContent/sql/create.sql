@@ -57,8 +57,8 @@ create table user(
 
 create table subject(
 	s_id int,
-	s_name varchar(20),
-	s_code varchar(20),
+	s_name varchar(50),
+	s_code varchar(50),
 	s_start date,
 	s_end date,
 	s_manage date,

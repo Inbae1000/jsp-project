@@ -24,6 +24,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="home.do">메인</a></li>
 				<li><a href="select.do">인원현황</a></li>
+				<li><a href="insert.so">과목입력</a></li>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">

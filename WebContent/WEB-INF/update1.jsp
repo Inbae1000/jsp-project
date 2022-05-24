@@ -16,7 +16,7 @@
 
 	<div class = "container">
 		<div class = "row">
-			<form method = "post" name ="insert" action="update2.do">
+			<form method = "post" name ="insert" action="update2.do" onkeydown="return enterkeydown(event)">
 			
 			
 <!-- 수강인원 기본정보 테이블  -->
@@ -29,7 +29,7 @@
 					</thead>
 					</tbody>
 						<tr>
-						<input type = "text" class="form-control" name="m_id" maxlength="10" value = ${selectOne.m_id}>
+						<input type = "hidden" class="form-control" name="m_id" maxlength="10" value = ${selectOne.m_id}>
 							<th style = "text-align:center">
 								<label for="cars" >이름</label>
 								<input type = "text" class="form-control" name="m_name" maxlength="10" value = ${selectOne.m_name}>
@@ -359,6 +359,11 @@
 			insert.co_porf.value = "";
 		}
 		
+	}
+	
+	function enterkeydown(e){
+		if(e.keyCode == 13)
+			return false;
 	}
 	
 </script>
