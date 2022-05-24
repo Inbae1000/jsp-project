@@ -24,6 +24,7 @@ create table member(
 	m_option2 varchar(20),
 	m_option3 varchar(20),
 	m_note varchar(200),
+	s_id int not null,
 	
 	primary key(m_id)
 );
@@ -66,3 +67,4 @@ create table subject(
 	
 	primary key(s_id)
 );
+

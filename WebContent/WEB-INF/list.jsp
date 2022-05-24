@@ -33,20 +33,18 @@
 		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 			<tr>
 				<th colspan='2'>1</th>
-				<th colspan='16' style="text-align:center;">컴퓨터응용기계설계가공(CAD/CAM)A(AIG20190000253037)</th>
+				<th colspan='16' style="text-align:center;">${suSelectOne.s_name} ${suSelectOne.s_code}</th>
 			</tr>
 			<tr>
 				<th colspan='20'>　</th>
 			</tr>
 			<tr>
 				<th rowspan='2'>훈련과정</th>
-				<th colspan='6' >컴퓨터응용기계설계가공(CAD/CAM)<br>(AIG20190000253037)</th>
-				<th>훈련기간</th>
-				<th>2020-07-24</th>
-				<th>~</th>
-				<th>관리: 2021-08-07</th>
-				<th>담당교수</th>
-				<th>장세동</th>
+				<th>:</th>
+				<th colspan='6' >${suSelectOne.s_name}<br>${suSelectOne.s_code}</th>
+				<th>훈련기간 : ${suSelectOne.s_start} ~ ${suSelectOne.s_end}</th>
+				<th>관리: ${suSelectOne.s_manage}</th>
+				<th>담당교수 : ${suSelectOne.s_professor}</th>
 			</tr>			
 		</table>
 	</div>

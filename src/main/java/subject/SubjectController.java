@@ -46,8 +46,10 @@ public class SubjectController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		
 		if(command.equals("/select.so")){
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/.jsp");
+			selectOne(req, resp);
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/list.jsp");
 			rd.forward(req, resp);	
+
 		}
 		else if(command.equals("/insert.so")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/subjectinsert.jsp");
@@ -104,8 +106,6 @@ public class SubjectController extends HttpServlet {
 		
 		req.setAttribute("suSelectOne", sDto);
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/subjectUpdate.jsp");
-		rd.forward(req, resp);
 	}
 	
 	public void requestUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
