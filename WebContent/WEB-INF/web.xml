@@ -19,5 +19,16 @@
 		<servlet-name>member</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-  
+	
+	
+	<servlet>
+		<servlet-name>subject</servlet-name>
+		<servlet-class>subject.SubjectController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>subject</servlet-name>
+		<url-pattern>*.so</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
