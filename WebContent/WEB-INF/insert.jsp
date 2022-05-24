@@ -26,8 +26,10 @@
 					</thead>
 					</tbody>
 						<tr>
+						<input type = "text" class="form-control" name ="s_id" value = ${suSelectOne.s_id}>
 							<th style = "text-align:center">
 								<label for="cars" >이름</label>
+								
 								<input type = "text" class="form-control"placeholder="이름" name="m_name" maxlength="10">
 							</th>
 							<th style = "text-align:center">
@@ -88,7 +90,7 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">결과</label>
-								<input type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10">
+								<input type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10" readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">출석률</label>
@@ -186,11 +188,11 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">입사일</label>
-								<input type = "date" class="form-control"placeholder="입사일" name="c_start" maxlength="10" value = "1900-01-01" min="0000-00-00" max="3000-12-31">
+								<input type = "date" class="form-control"placeholder="입사일" id= "dateId" name="c_start" maxlength="10" value = "1900-01-01" min="0000-00-00" max="3000-12-31" onchange = adddate()>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">고용유지</label>
-								<input type = "date" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31">
+								<input type = "text" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">퇴사여부</label>
@@ -243,6 +245,20 @@
 		
 		insert.m_age1.value = (year-age)+1;
 	}
+	
+	function adddate(){
+		month = document.getElementById("dateId").value;
+		const today = new Date(month);
+		const nextDate = new Date( today.getFullYear(), 
+									today.getMonth()+6 , 
+									today.getDate() -1 );
+		
+		const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
+				
+		/* const addMonth = new Date(nextDate) */
+		insert.c_maintain.value=formatted_date;
+	}
+	
 	
 	function Attendance1(){
 		birth = document.getElementById("birthId").value;

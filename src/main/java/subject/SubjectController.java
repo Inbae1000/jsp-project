@@ -49,6 +49,11 @@ public class SubjectController extends HttpServlet {
 			selectOne(req, resp);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/list.jsp");
 			rd.forward(req, resp);	
+		}
+		else if(command.equals("/add.so")) {
+			selectOne(req, resp);
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insert.jsp");
+			rd.forward(req, resp);	
 
 		}
 		else if(command.equals("/insert.so")) {
@@ -105,6 +110,7 @@ public class SubjectController extends HttpServlet {
 		sDto = sDao.selectOne(id);
 		
 		req.setAttribute("suSelectOne", sDto);
+		req.setAttribute("id", sDto.getS_id());
 		
 	}
 	

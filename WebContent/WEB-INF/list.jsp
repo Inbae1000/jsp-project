@@ -32,7 +32,7 @@
 	<div>
 		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 			<tr>
-				<th colspan='2'>1</th>
+				<th colspan='2'>${suSelectOne.s_id}</th>
 				<th colspan='16' style="text-align:center;">${suSelectOne.s_name} ${suSelectOne.s_code}</th>
 			</tr>
 			<tr>
@@ -158,9 +158,12 @@
 						
 					</tr>
  				</thead>
- 					<% 
+ 					
+ 					<%int sId = (int)request.getAttribute("id"); %>
+ 					
+ 					<%
 					MemberDAO memberDao = MemberDAO.getInstance();
-					List<MemberJoin> list = memberDao.selectList();
+					List<MemberJoin> list = memberDao.selectList(sId);
 					int a = 0;
 						for(MemberJoin b : list){
 							a =a+1;
@@ -212,16 +215,8 @@
 					}
 			%>			
 			</table>
-			<%-- <%
-				if(pageNumber != 1){
-			%>
-				<a href="list.jsp?pageNumber=<%=pageNumber -1 %>" class="btn btn-success btn-arraw-left">이전</a>
-			<%
-				}if(memberDAO.nextPage(pageNumber + 1)){
-			%>
-				<a href="list.jsp?pageNumber=<%=pageNumber +1 %>" class="btn btn-success btn-arraw-left">다음</a> --%>
 			
-			<a href ="insert.do" class="btn btn-primary pull-right">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
+			<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
 		</div>
 	</div>
 </body>

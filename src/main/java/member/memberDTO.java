@@ -13,7 +13,7 @@ public class MemberDTO {
 	private String m_option2;
 	private String m_option3;
 	private String m_note;
-	
+	private int s_id;
 	
 	
 	public int getM_id() {
@@ -88,6 +88,12 @@ public class MemberDTO {
 	}
 	public void setM_note(String m_note) {
 		this.m_note = m_note;
+	}
+	public int getS_id() {
+		return s_id;
+	}
+	public void setS_id(int s_id) {
+		this.s_id = s_id;
 	}
 	
 	

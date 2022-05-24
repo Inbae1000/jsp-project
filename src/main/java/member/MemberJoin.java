@@ -14,6 +14,7 @@ public class MemberJoin {
 	private String m_option2;
 	private String m_option3;
 	private String m_note;
+	private int s_id;
 	
 	private String co_result;
 	private String co_attend;
@@ -114,6 +115,13 @@ public class MemberJoin {
 	public void setM_note(String m_note) {
 		this.m_note = m_note;
 	}
+	public int getS_id() {
+		return s_id;
+	}
+	public void setS_id(int s_id) {
+		this.s_id = s_id;
+	}
+	
 	public String getCo_result() {
 		return co_result;
 	}
@@ -204,6 +212,7 @@ public class MemberJoin {
 	public void setCo_certificate(String co_certificate) {
 		this.co_certificate = co_certificate;
 	}
+	
 	public String getC_start() {
 		return c_start;
 	}

@@ -62,10 +62,6 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insert.jsp");
 			rd.forward(req, resp);	
 		}
-		else if(command.equals("/insertAction.do")) {
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertAction.jsp");
-			rd.forward(req, resp);	
-		}
 		else if(command.equals("/insert2.do")) {
 			requestInsert1(req,resp);
 			requestInsert2(req,resp);
@@ -124,6 +120,7 @@ public class MemberController extends HttpServlet {
 		String option2 = req.getParameter("m_option2");
 		String option3 = req.getParameter("m_option3");
 		String note = req.getParameter("m_note");
+		int sId = Integer.parseInt(req.getParameter("s_id"));
 		
 
 		MemberDAO memberDao = MemberDAO.getInstance();
@@ -141,6 +138,7 @@ public class MemberController extends HttpServlet {
 		dto.setM_option2(option2);
 		dto.setM_option3(option3);
 		dto.setM_note(note);
+		dto.setS_id(sId);
 		
 		int mResult = memberDao.insert(dto);
 		System.out.println(mResult);
@@ -356,7 +354,7 @@ public class MemberController extends HttpServlet {
 		coDto.setM_id(id);
 		
 		int conReuslt = coDao.update(coDto);
-		resp.sendRedirect("select.do");
+		resp.sendRedirect("select.so");
 	}
 	
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
