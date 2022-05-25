@@ -30,7 +30,7 @@
 					</tbody>
 						<tr>
 						<input type = "hidden" class="form-control" name="m_id" maxlength="10" value = ${selectOne.m_id}>
-						<input type = "text" class="form-control" name="s_id" maxlength="10" value = ${selectOne.s_id}>
+						<input type = "hidden" class="form-control" name="s_id" maxlength="10" value = ${selectOne.s_id}>
 							<th style = "text-align:center">
 								<label for="cars" >이름</label>
 								<input type = "text" class="form-control" name="m_name" maxlength="10" value = ${selectOne.m_name}>

@@ -69,7 +69,6 @@ public class MemberController extends HttpServlet {
 			rd.forward(req, resp);	
 		}
 		else if(command.equals("/insert2.do")) {
-			
 			requestInsert2(req,resp);
 			requestInsert3(req,resp);
 			requestInsert1(req,resp);
@@ -371,6 +370,7 @@ public class MemberController extends HttpServlet {
 	
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		int id = Integer.parseInt(req.getParameter("m_id"));
+		int sId = Integer.parseInt(req.getParameter("s_id"));
 		MemberDAO mdao = MemberDAO.getInstance();
 		mdao.delete(id);
 		
@@ -380,7 +380,7 @@ public class MemberController extends HttpServlet {
 		CompanyDAO cDao = CompanyDAO.getInstance();
 		cDao.delete(id);
 		
-		resp.sendRedirect("select.do");
+		resp.sendRedirect("select.so?s_id="+sId);
 	}
 
 }

@@ -207,7 +207,6 @@
 						<td><%=b.getC_manager()%></td>
 						<td><%=b.getC_except()%></td>
 						
-
 					</tr>									
 			</tbody>	
 
