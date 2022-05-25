@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,14 +59,20 @@ public class MemberController extends HttpServlet {
 		if(command.equals("/home.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/main.jsp");
 			rd.forward(req, resp);
-		}else if(command.equals("/insert.do")) {
+		}
+		else if(command.equals("/er.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insertAction.jsp");
+			rd.forward(req, resp);
+		}
+		else if(command.equals("/insert.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insert.jsp");
 			rd.forward(req, resp);	
 		}
 		else if(command.equals("/insert2.do")) {
-			requestInsert1(req,resp);
+			
 			requestInsert2(req,resp);
 			requestInsert3(req,resp);
+			requestInsert1(req,resp);
 		}
 		else if(command.equals("/select.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/list.jsp");
@@ -142,7 +149,10 @@ public class MemberController extends HttpServlet {
 		
 		int mResult = memberDao.insert(dto);
 		System.out.println(mResult);
-			
+		resp.sendRedirect("select.so?s_id="+sId);
+
+		
+		
 	}
 	
 	public void requestInsert2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -167,14 +177,15 @@ public class MemberController extends HttpServlet {
 		cDto.setC_number(cNumber);
 		cDto.setC_manager(cManager);
 		cDto.setC_except(cExcept);
-		cDto.setM_id(companyDao.nextval());
+		cDto.setM_id(companyDao.nextval() +1);
 		
 		int cResult = companyDao.cInsert(cDto);
-		System.out.println(cResult);
+
 	}
 	
 	
 	public void requestInsert3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		
 		String coResult = req.getParameter("co_result");
 		String coAttend = req.getParameter("co_attend");
@@ -210,12 +221,12 @@ public class MemberController extends HttpServlet {
 		coDto.setCo_asse(coAsse);
 		coDto.setCo_porf(coPorf);
 		coDto.setCo_certificate(coCer);
-		coDto.setM_id(coDao.nextval());
+		coDto.setM_id(coDao.nextval() +1);
 		
 		
 		int conResult = coDao.coInsert(coDto);
 		System.out.println(conResult);
-		resp.sendRedirect("select.do");
+
 		
 	}
 	
@@ -283,6 +294,7 @@ public class MemberController extends HttpServlet {
 		
 		int mResult = mDao.update(mDto);
 		System.out.print(mResult);
+		
 		
 	}
 	

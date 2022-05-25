@@ -53,7 +53,7 @@ public class CompanyDAO {
 	public int nextval() {
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
-		query.append("SELECT MAX(m_id) ").append("FROM member");
+		query.append("SELECT MAX(m_id) ").append("FROM company");
 		
 		try {
 			pstmt = conn.prepareStatement(query.toString());

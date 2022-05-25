@@ -197,6 +197,7 @@ public class MemberDAO {
 				tmp.setM_option2(rs.getString(10));
 				tmp.setM_option3(rs.getString(11));
 				tmp.setM_note(rs.getString(12));
+				tmp.setS_id(rs.getInt(13));
 					
 				return tmp;
 			 }
@@ -213,7 +214,7 @@ public class MemberDAO {
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("update member set ");
-		query.append("m_name = ?, m_birth = ?, m_number = ?, m_area = ?, m_age1 = ?, m_age2 = ?, m_sex = ?, m_option1 = ?, m_option2 = ?, m_option3 = ?, m_note= ? ");
+		query.append("m_name = ?, m_birth = ?, m_number = ?, m_area = ?, m_age1 = ?, m_age2 = ?, m_sex = ?, m_option1 = ?, m_option2 = ?, m_option3 = ?, m_note= ?, s_id = ? ");
 		query.append("where m_id = ?");
 		
 		try {
@@ -229,8 +230,9 @@ public class MemberDAO {
 			pstmt.setString(9, dto.getM_option2());
 			pstmt.setString(10, dto.getM_option3());
 			pstmt.setString(11, dto.getM_note());
+			pstmt.setInt(12, dto.getS_id());
 			
-			pstmt.setInt(12, dto.getM_id());
+			pstmt.setInt(13, dto.getM_id());
 			return pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

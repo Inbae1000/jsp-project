@@ -26,10 +26,9 @@
 					</thead>
 					</tbody>
 						<tr>
-						<input type = "text" class="form-control" name ="s_id" value = ${suSelectOne.s_id}>
+						<input type = "hidden" class="form-control" name ="s_id" value = ${suSelectOne.s_id}>
 							<th style = "text-align:center">
 								<label for="cars" >이름</label>
-								
 								<input type = "text" class="form-control"placeholder="이름" name="m_name" maxlength="10">
 							</th>
 							<th style = "text-align:center">
@@ -46,7 +45,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">나이</label>
-								<input type = "text" class="form-control"placeholder="나이" name="m_age1" maxlength="20" readonly>
+								<input style="text-align:center" type = "text" class="form-control"placeholder="나이" name="m_age1" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">성별</label>
@@ -90,7 +89,7 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">결과</label>
-								<input type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10" readonly>
+								<input style="width:80px; font-size:5px;" type = "text" class="form-control"placeholder="결과" id = "co_resultId" name="co_result" maxlength="10" readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">출석률</label>
@@ -227,7 +226,7 @@
 						</tr>
 					</tbody>					
 				</table>
-				<input type="submit" class="btn btn-primary pull-right" value="등록"/> <!-- 수강인원추가버튼부분 -->								
+				<input type="button" class="btn btn-primary pull-right" value="등록" onclick = "check()"> <!-- 수강인원추가버튼부분 -->								
 			</form>			
 		</div>
 	</div>
@@ -235,7 +234,7 @@
 <script>
 
 
-	function addage(){
+	function addage(){  // 나이계산
 		
 		
 		birth = document.getElementById("birthId").value;
@@ -246,7 +245,7 @@
 		insert.m_age1.value = (year-age)+1;
 	}
 	
-	function adddate(){
+	function adddate(){  // 날짜계산
 		month = document.getElementById("dateId").value;
 		const today = new Date(month);
 		const nextDate = new Date( today.getFullYear(), 
@@ -260,7 +259,7 @@
 	}
 	
 	
-	function Attendance1(){
+	function Attendance1(){  // 출석률로 결과 및 이수여부 확인
 		birth = document.getElementById("birthId").value;
 		att = document.getElementById("co_attendId").value;
 		item1 = document.getElementById("item1Id").value;
@@ -295,7 +294,7 @@
 		}
 		
 	}
-	function Attendance2(){
+	function Attendance2(){  // 직종 가중치, 취업률 가중치 계산
 		item3 = document.getElementById("item3Id").value;
 		
 		if(item3 == ""){
@@ -313,7 +312,7 @@
 		}
 	}
 	
-	function Attendance3(){
+	function Attendance3(){  // 직종 가중치, 취업률 가중치 계산
 		completion = document.getElementById("co_compleId").value;
 		item1 = document.getElementById("item1Id").value;
 		
@@ -329,7 +328,7 @@
 		}
 	}
 	
-	function Attendance4(){
+	function Attendance4(){  // 직종 가중치, 취업률 가중치 계산
 		type2 = document.getElementById("m_option2Id").value;
 		
 		if(type2 == "취성패1"){
@@ -344,7 +343,7 @@
 		}
 	}
 	
-	function Attendance5(){
+	function Attendance5(){  // 평가기준 직종기준 계산
 		item1 = document.getElementById("item1Id").value;
 		co_option1 = document.getElementById("co_option1Id").value;
 		co_option3 = document.getElementById("co_option3Id").value;
@@ -365,9 +364,23 @@
 		
 	}
 	
-	function enterkeydown(e){
+	function enterkeydown(e){ // input에서 enter키 적용 안되게 하는 함수
 		if(e.keyCode == 13)
 			return false;
+	}
+	
+	function check(){
+		var form = document.insert;
+		if(form.m_age1.value == ""){
+			alert("생년월일을 입력해 주세요");
+			form.m_birth.focus();
+			return false;
+		} else if (form.co_attend.value == ""){
+			alert("출석률을 입력해 주세요");
+			form.co_attend.focus();
+			return false;
+		}
+		form.submit();
 	}
 
 	

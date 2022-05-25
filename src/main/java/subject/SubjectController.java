@@ -54,7 +54,6 @@ public class SubjectController extends HttpServlet {
 			selectOne(req, resp);
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/insert.jsp");
 			rd.forward(req, resp);	
-
 		}
 		else if(command.equals("/insert.so")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/subjectinsert.jsp");
@@ -72,6 +71,10 @@ public class SubjectController extends HttpServlet {
 		}
 		else if(command.equals("/delete.so")) {
 			delete(req,resp);
+		}
+		else if(command.equals("/search.so")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/search.jsp");
+			rd.forward(req, resp);	
 		}
 	 }
 	

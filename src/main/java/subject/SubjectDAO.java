@@ -204,4 +204,33 @@ public class SubjectDAO {
 		return result;
 	}
 	
+	public ArrayList<SubjectDTO> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
+		ArrayList<SubjectDTO> list = new ArrayList<>();
+      String SQL ="select * from subject WHERE "+searchField.trim() + " like ?";
+      //System.out.println(searchField+"/"+searchText); //데이터 입력값 확인
+      try {
+    	  conn = ConnectionDB.getConnection();
+    	  pstmt = conn.prepareStatement(SQL);	 
+    	  pstmt.setString(1, "%"+searchText+"%");
+    	  rs = pstmt.executeQuery();
+    	  
+         while(rs.next()) {
+        	 
+        	 SubjectDTO tmp = new SubjectDTO();
+				tmp.setS_id(rs.getInt(1));
+				tmp.setS_name(rs.getString(2));
+				tmp.setS_code(rs.getString(3));
+				tmp.setS_start(rs.getString(4));
+				tmp.setS_end(rs.getString(5));
+				tmp.setS_manage(rs.getString(6));
+				tmp.setS_professor(rs.getString(7));
+			
+				list.add(tmp);
+         }         
+      } catch(Exception e) {
+         e.printStackTrace();
+      }
+      return list;//ㄱㅔ시글 리스트 반환
+   }
+	
 }

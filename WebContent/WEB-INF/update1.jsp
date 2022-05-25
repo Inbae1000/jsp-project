@@ -30,6 +30,7 @@
 					</tbody>
 						<tr>
 						<input type = "hidden" class="form-control" name="m_id" maxlength="10" value = ${selectOne.m_id}>
+						<input type = "text" class="form-control" name="s_id" maxlength="10" value = ${selectOne.s_id}>
 							<th style = "text-align:center">
 								<label for="cars" >이름</label>
 								<input type = "text" class="form-control" name="m_name" maxlength="10" value = ${selectOne.m_name}>
@@ -48,7 +49,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">나이</label>
-								<input type = "text" class="form-control" name="m_age1" maxlength="20" readonly value =${selectOne.m_age1}>
+								<input style="text-align:center" type = "text" class="form-control" name="m_age1" maxlength="20" readonly value =${selectOne.m_age1}>
 								<input type = "hidden" class="form-control" name="m_age2" maxlength="20" readonly value =${selectOne.m_age2}>
 							</th>
 							<th style = "text-align:center">
@@ -94,7 +95,7 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">결과</label>
-								<input type = "text" class="form-control" id = "co_resultId" name="co_result" maxlength="10" value =${coSelectOne.co_result}>
+								<input style="width:80px; font-size:5px;" type = "text" class="form-control" id = "co_resultId" name="co_result" maxlength="10" value =${coSelectOne.co_result}>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">출석률</label>
