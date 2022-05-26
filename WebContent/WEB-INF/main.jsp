@@ -13,61 +13,61 @@
 </head>
 <body>
 	<%@ include file ="menu2.jsp" %>
-	
 		<div style="width:auto" class = "container">
-		<div style="width: 1000px; margin: auto;">
-		<div style="text-align:center;">
-			<form method="post" name="search" action="search.so">
-				<table class="pull-right" style="margin-bottom: 20px">
-						<tr>
-							<td><select class="form-control" name="searchField">								
-									<option value="s_name" selected>과정명</option>
-									<option value="s_code">과정코드</option>
-									<option value="s_professor">담당교수</option>								
-							</select></td>
-							<td><input type="text" class="form-control"
-								placeholder="검색" name="searchText" maxlength="100"></td>
-							<td><input type="submit" class="btn btn-info" value = "검색"></td>
-						</tr>
-	
-					</table>
-				</form>
-		</div>
-			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
-				<tr>
-					<th style="background-color:#eeeeee; text-align:center;">번호</th>
-					<th style="background-color:#eeeeee; text-align:center;">과목이름</th>
-					<th style="background-color:#eeeeee; text-align:center;">과목코드</th>
-					<th style="background-color:#eeeeee; text-align:center;">훈련시작</th>
-					<th style="background-color:#eeeeee; text-align:center;">훈련종료</th>
-					<th style="background-color:#eeeeee; text-align:center;">관리</th>
-					<th style="background-color:#eeeeee; text-align:center;">담당교수</th>					
-				</tr>
-				<%
-					SubjectDAO subjectDao = SubjectDAO.getInstance();
-					List<SubjectDTO> list = subjectDao.subjectList();
-					int a = 0;
-					for(SubjectDTO b : list){
-						a=a+1;					
-				%>
-				<tr>
-					<td><%=a %></td> 
-					<th style="background-color:#FFFFFF; text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a></th>  <!-- 수정필요  -->
-					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_code() %></th>
-					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_start() %></th>
-					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_end() %></th>
-					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_manage() %></th>
-					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_professor() %></th>
-				</tr>
-				<%
-					}
-				%>								
+			<div style="width: 1000px; margin: auto;">
+				<div style="text-align:center;">
+					<form method="post" name="search" action="search.so">
+						<table class="pull-right" style="margin-bottom: 20px">
+							<tr>
+								<td><select class="form-control" name="searchField">								
+										<option value="s_name" selected>과정명</option>
+										<option value="s_code">과정코드</option>
+										<option value="s_professor">담당교수</option>								
+								</select></td>
+								<td><input type="text" class="form-control"
+									placeholder="검색" name="searchText" maxlength="100"></td>
+								<td><input type="submit" class="btn btn-info" value = "검색"></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<tr>
+						<th style="background-color:#eeeeee; text-align:center;">번호</th>
+						<th style="background-color:#eeeeee; text-align:center;">과목이름</th>
+						<th style="background-color:#eeeeee; text-align:center;">과목코드</th>
+						<th style="background-color:#eeeeee; text-align:center;">훈련시작</th>
+						<th style="background-color:#eeeeee; text-align:center;">훈련종료</th>
+						<th style="background-color:#eeeeee; text-align:center;">관리</th>
+						<th style="background-color:#eeeeee; text-align:center;">담당교수</th>					
+					</tr>
+					<%
+						SubjectDAO subjectDao = SubjectDAO.getInstance();
+						List<SubjectDTO> list = subjectDao.subjectList();
+						int a = 0;
+						for(SubjectDTO b : list){
+							a=a+1;					
+					%>
+					<tr>
+						<td><%=a %></td> 
+						<th style="background-color:#FFFFFF; text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a></th>  <!-- 수정필요  -->
+						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_code() %></th>
+						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_start() %></th>
+						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_end() %></th>
+						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_manage() %></th>
+						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_professor() %></th>
+					</tr>
+					<%
+						}
+					%>								
 				</table>
-				<a href ="insert.so" class="btn btn-primary pull-right">과목추가</a>	
+				<form method="get" action ="loginAction2.do">
+				<input type = "hidden" name = "loginAdd" value = "1">
+				<input type = "submit" class="btn btn-primary pull-right" value="과정등록">	
+				</form>
+				
 			</div>
 		</div>	 
-	
-	
-
 </body>
 </html>

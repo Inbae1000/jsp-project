@@ -87,7 +87,6 @@ public class MemberController extends HttpServlet {
 		}
 		else if(command.equals("/delete.do")) {
 			delete(req, resp);
-			
 		}
 		else if(command.equals("/join.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/join.jsp");
@@ -105,9 +104,12 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/loginAction.jsp");
 			rd.forward(req, resp);	
 		}
-
 		else if(command.equals("/logout.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/logoutAction.jsp");
+			rd.forward(req, resp);
+		}
+		else if(command.equals("/loginAction2.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/admin.jsp");
 			rd.forward(req, resp);
 		}
     }
@@ -274,6 +276,7 @@ public class MemberController extends HttpServlet {
 		String option2 = req.getParameter("m_option2");
 		String option3 = req.getParameter("m_option3");
 		String note = req.getParameter("m_note");
+		int sId = Integer.parseInt(req.getParameter("s_id"));
 		
 		MemberDAO mDao = MemberDAO.getInstance();
 		MemberDTO mDto = new MemberDTO();
@@ -290,9 +293,11 @@ public class MemberController extends HttpServlet {
 		mDto.setM_option2(option2);
 		mDto.setM_option3(option3);
 		mDto.setM_note(note);
+		mDto.setS_id(sId);
 		
 		int mResult = mDao.update(mDto);
-		System.out.print(mResult);
+		resp.sendRedirect("select.so?s_id="+sId);
+
 		
 		
 	}
@@ -365,7 +370,7 @@ public class MemberController extends HttpServlet {
 		coDto.setM_id(id);
 		
 		int conReuslt = coDao.update(coDto);
-		resp.sendRedirect("select.so");
+
 	}
 	
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
