@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.io.PrintWriter" %>
-<!-- 인원정보  -->
 <%@ page import ="member.*" %>
-<!-- 업체현황  -->
 <%@ page import ="company.*" %>
-<!-- 인원결과  -->
 <%@ page import ="consequence.*" %>
 <%@ page import = "java.util.List" %>
 <!DOCTYPE html>
@@ -14,7 +11,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>수강인원 목록</title>
+<title>수강인원목록</title>
 <style type = "text/css">
 	a,a:hover{
 		color:#000000;
@@ -26,7 +23,6 @@
 </style>
 </head>
 <body>
-	
 	<%@ include file = "menu2.jsp" %>
 <!-- 과목정보 -->
 	<div>
@@ -128,7 +124,6 @@
 						<th style="background-color:#eeeeee; text-align:center;">유형</th>
 						<th style="background-color:#eeeeee; text-align:center;">구분</th>
 						<th style="background-color:#eeeeee; text-align:center;">비고</th>
-
 						<!-- 수강인원결과  -->
 						<th style="background-color:#eeeeee; text-align:center;">결과</th>
 						<th style="background-color:#eeeeee; text-align:center;">출석률</th>
@@ -153,24 +148,21 @@
 						<th style="background-color:#eeeeee; text-align:center;">주소</th>
 						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업전담제</th>
-						<th style="background-color:#eeeeee; text-align:center;">산정제외</th>						
-						
-						
+						<th style="background-color:#eeeeee; text-align:center;">산정제외</th>	
 					</tr>
  				</thead>
  					
  					<%int sId = (int)request.getAttribute("id"); %>
  					
  					<%
-					MemberDAO memberDao = MemberDAO.getInstance();
-					List<MemberJoin> list = memberDao.selectList(sId);
-					int a = 0;
-						for(MemberJoin b : list){
-							a =a+1;
+						MemberDAO memberDao = MemberDAO.getInstance();
+						List<MemberJoin> list = memberDao.selectList(sId);
+						int a = 0;
+							for(MemberJoin b : list){
+								a =a+1;
 					%>
 				<tbody>
 					<tr> 
-
 						<td><%=a %></td> 
 						<td><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
 						<td><%=b.getM_birth()%></td>
@@ -206,15 +198,12 @@
 						<td><%=b.getC_number()%></td>
 						<td><%=b.getC_manager()%></td>
 						<td><%=b.getC_except()%></td>
-						
 					</tr>									
-			</tbody>	
-
+				</tbody>	
 			<%
 					}
-			%>			
+			%>
 			</table>
-			
 			<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
 		</div>
 	</div>

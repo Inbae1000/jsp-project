@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>Insert title here</title>
+<title>영진직업전문학교 인원관리</title>
 </head>
 <body>
 	<%@ include file ="menu2.jsp" %>
@@ -27,6 +27,7 @@
 								<td><input type="text" class="form-control"
 									placeholder="검색" name="searchText" maxlength="100"></td>
 								<td><input type="submit" class="btn btn-info" value = "검색"></td>
+								<a href ="insert.so" class="btn btn-info pull-left">과정등록</a>
 							</tr>
 						</table>
 					</form>
@@ -61,12 +62,7 @@
 					<%
 						}
 					%>								
-				</table>
-				<form method="get" action ="loginAction2.do">
-				<input type = "hidden" name = "loginAdd" value = "1">
-				<input type = "submit" class="btn btn-primary pull-right" value="과정등록">	
-				</form>
-				
+				</table>	
 			</div>
 		</div>	 
 </body>

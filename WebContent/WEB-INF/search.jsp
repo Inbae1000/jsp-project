@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>메인 겸 과목 리스트</title>
+<title>영진직업전문학교 인원관리</title>
 </head>
 <body>
 	<%@ include file ="menu2.jsp" %> 
@@ -40,6 +40,7 @@
 							<td><input type="text" class="form-control"
 								placeholder="검색" name="searchText" maxlength="100"></td>
 							<td><button type="submit" class="btn btn-info">검색</button></td>
+							<a href ="insert.so" class="btn btn-info pull-left">과정등록</a>
 						</tr>
 	
 					</table>
@@ -73,7 +74,7 @@
 				%>
 				<tr>
 					<td><%=a %></td> 
-					<th style="background-color:#FFFFFF; text-align:center;"><a href="select.do?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a></th>  <!-- 수정필요  -->
+					<th style="background-color:#FFFFFF; text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a></th>  <!-- 수정필요  -->
 					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_code() %></th>
 					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_start() %></th>
 					<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_end() %></th>
@@ -84,7 +85,7 @@
 					}
 				%>								
 				</table>
-				<a href ="insert.so" class="btn btn-primary pull-right">과목추가</a>	
+					
 			</div>
 		</div>	 			
 	

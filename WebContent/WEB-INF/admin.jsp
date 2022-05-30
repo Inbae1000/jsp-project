@@ -23,15 +23,7 @@
 		script.println("location.href='login.do'");
 		script.println("</script>");
 	}
-	if(loginAdd == 1){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("location.href='insert.so'");
-		script.println("</script>");
-	}
-
 
 %>
-
 </body>
 </html>

@@ -7,10 +7,19 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>과정 등록 페이지</title>
+<title>과정등록</title>
 </head>
 <body>
 	<%@ include file = "menu2.jsp" %>
+	<%
+		if(userID == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 하세요')");
+			script.println("location.href='login.do'");
+			script.println("</script>");
+		}
+	%>
 	<div class = "container">
 		<div class = "row" style="height: 461px;width: 1300px; margin-right:auto;"> 
 			<form method = "post" name ="insert" action="insert3.so" onkeydown="return enterkeydown(event)">

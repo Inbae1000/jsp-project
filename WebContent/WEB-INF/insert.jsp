@@ -7,10 +7,20 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>Insert title here</title>
+<title>학생정보입력</title>
 </head>
 <body>
 	<%@ include file = "menu2.jsp" %>
+
+	<%
+		if(userID == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 하세요')");
+			script.println("location.href='login.do'");
+			script.println("</script>");
+		}
+	%>
 	<div class = "container">
 		<div class = "row">
 			<form method = "post" name ="insert" action="insert2.do" onkeydown="return enterkeydown(event)">
@@ -60,8 +70,8 @@
 								<select name ="m_option2" id = "m_option2Id" oninput = Attendance4(),Attendance5();>
 									<option value = ""> </option>
 									<option value = "40세이상">40세이상</option>
-									<option value = "취성패1">취성패1</option>
-									<option value = "취성패2">취성패2</option>
+									<option value = "국취지1">국취지1</option>
+									<option value = "국취지2">국취지2</option>
 								</select>
 							</th>
 							<th style = "text-align:center">
@@ -169,8 +179,6 @@
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
 								</select>
-								
-							
 							</th>
 						</tr>
 					</tbody>					
@@ -230,10 +238,7 @@
 			</form>			
 		</div>
 	</div>
-     
 <script>
-
-
 	function addage(){  // 나이계산
 		
 		
@@ -331,7 +336,7 @@
 	function Attendance4(){  // 직종 가중치, 취업률 가중치 계산
 		type2 = document.getElementById("m_option2Id").value;
 		
-		if(type2 == "취성패1"){
+		if(type2 == "국취지1"){
 			insert.co_option5.value = 1.5;
 			insert.co_option6.value = 1.5;
 		} else if (type2 == "40세이상"){
@@ -382,10 +387,6 @@
 		}
 		form.submit();
 	}
-
-	
 </script>
-     
-     
 </body>
 </html>

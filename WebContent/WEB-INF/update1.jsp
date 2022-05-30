@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>Insert title here</title>
+<title>학생정보 수정 및 삭제</title>
 </head>
 <body>
 
@@ -65,8 +65,8 @@
 								<select name ="m_option2" id = "m_option2Id" oninput = Attendance4(),Attendance5()>
 									<option value = ""> </option>
 									<option value = "40세이상">40세이상</option>
-									<option value = "취성패1">취성패1</option>
-									<option value = "취성패2">취성패2</option>
+									<option value = "국취지1">국취지1</option>
+									<option value = "국취지2">국취지2</option>
 									<option hidden value = ${selectOne.m_option2} selected>${selectOne.m_option2}</option>
 								</select>
 							</th>
@@ -95,7 +95,7 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">결과</label>
-								<input style="width:80px; font-size:5px;" type = "text" class="form-control" id = "co_resultId" name="co_result" maxlength="10" value =${coSelectOne.co_result}>
+								<input style="width:80px; font-size:5px;" type = "text" class="form-control" id = "co_resultId" name="co_result" maxlength="10" value =${coSelectOne.co_result} readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">출석률</label>
@@ -103,7 +103,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">수료</label>
-								<input type = "text" class="form-control" id = "co_compleId" name="co_comple" maxlength="20" oninput= Attendance3(); readonly value=${coSelectOne.co_comple}>
+								<input type = "text" class="form-control" id = "co_compleId" name="co_comple" maxlength="20" oninput= Attendance3(); readonly value= ${coSelectOne.co_comple}>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">취업</label>
@@ -129,7 +129,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">고용보험</label>
-								<select name ="co_insurance" id= "item3Id" onchange= Attendance2(),Attendance5();>
+								<select name ="co_insurance" id= "item3Id" onchange= Attendance2(),Attendance5()>
 									<option value = ""> </option>
 									<option value = "O">O</option>
 									<option value = "X">X</option>
@@ -237,8 +237,8 @@
 						</tr>
 					</tbody>					
 				</table>
-				<input type="submit" class="btn btn-primary pull-right" value="수정"/> <!-- 수강인원추가버튼부분 -->
-				<input type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.do"/> 								
+				<input onclick = "return confirm('정말 삭제 하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.do"/>
+				<input type="submit" class="btn btn-primary pull-right" value="수정" style="margin-right : 10px;"/>							
 			</form>			
 		</div>
 	</div>
@@ -329,7 +329,7 @@
 	function Attendance4(){
 		type2 = document.getElementById("m_option2Id").value;
 		
-		if(type2 == "취성패1"){
+		if(type2 == "국취지1"){
 			insert.co_option5.value = 1.5;
 			insert.co_option6.value = 1.5;
 		} else if (type2 == "40세이상"){
@@ -366,6 +366,8 @@
 		if(e.keyCode == 13)
 			return false;
 	}
+	
+
 	
 </script>
      

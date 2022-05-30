@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>Insert title here</title>
+<title>과정 수정 및 삭제</title>
 </head>
 <body>
 
@@ -57,8 +57,8 @@
 						</tr>
 					</tbody>					
 				</table>
-				<input type="submit" class="btn btn-primary pull-right" value="수정"/>
-				<input type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.so"/> 								
+				<input  onclick = "return confirm('정말 삭제 하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.so"/> 								
+				<input type="submit" class="btn btn-primary pull-right" value="수정" style="margin-right : 10px;"/>
 			</form>
 <script>
 
