@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.io.PrintWriter" %>
@@ -23,10 +24,11 @@
 </style>
 </head>
 <body>
+
 	<%@ include file = "menu2.jsp" %>
 <!-- 과목정보 -->
 	<div>
-		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd;">
 			<tr>
 				<th colspan='2'>${suSelectOne.s_id}</th>
 				<th colspan='16' style="text-align:center;">${suSelectOne.s_name} ${suSelectOne.s_code}</th>
@@ -66,13 +68,13 @@
 				</tr>
 				<tr>
 					<td rowspan='2' style="background-color:#; text-align:center;">25</td>
-					<td style="background-color:#E5FFCC; text-align:center;">17명</td>
-					<td style="background-color:#E5FFCC; text-align:center;">13명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">2명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">1명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">0명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">12명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">2명</td>
+					<td style="background-color:#E5FFCC; text-align:center;"><%=(int)a %>명</td>
+					<td style="background-color:#E5FFCC; text-align:center;"><%=(int)c %>명</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re1 %>명</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re2 %>명</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=re3 %>명</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=re4 %>명</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=re5 %>명</td>
 					<td style="background-color:#eeeeee; text-align:center;">수료전</td>
 					<td style="background-color:#eeeeee; text-align:center;">수료후</td>
 					<td style="background-color:#eeeeee; text-align:center;">재직자</td>
@@ -83,13 +85,13 @@
 					<td style="background-color:#FFCCCC; text-align:center;">108.1%</td>
 					<td style="background-color:#FFFFFF; text-align:center;">11명</td>
 					<td style="background-color:#FFFFFF; text-align:center;">11명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">11명</td>					
+					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					
 				</tr>
 				<tr>
-					<td style="background-color:#E5FFCC; text-align:center;">68.0%</td>
-					<td style="background-color:#E5FFCC; text-align:center;">76.5%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">11.8%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">5.9%</td>
+					<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(aDiv) %>%</td>
+					<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(cDiv) %>%</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv1) %>%</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv2) %>%</td>
 					<td style="background-color:#FFFFFF; text-align:center;">0.0%</td>
 					<td style="background-color:#FFFFFF; text-align:center;">92.3%</td>
 					<td style="background-color:#FFFFFF; text-align:center;">15.4%</td>
@@ -102,7 +104,7 @@
 					<td style="background-color:#FFFFFF; text-align:center;">113.5%</td>
 					<td style="background-color:#FFFFFF; text-align:center;">73.3%</td>
 					<td style="background-color:#FFFFFF; text-align:center;">84.6%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">64.7%</td>
+					<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(cerDiv) %>%</td>
 				</tr>				
 			</table>
 		</div>	
@@ -154,16 +156,65 @@
  					
  					<%int sId = (int)request.getAttribute("id"); %>
  					
+ 					<%!
+ 						DecimalFormat format = new DecimalFormat(".0");
+ 						double a = 0;
+ 						double c = 0;
+ 						double re1 = 0;
+ 						double re2 = 0;
+ 						int re3 = 0;
+ 						int re4 = 0;
+ 						int re5 = 0;
+ 						double cer = 0;
+ 						double aDiv = 0;
+ 						double cDiv = 0;
+ 						double reDiv1 = 0;
+ 						double reDiv2 = 0;
+ 						double cerDiv = 0;
+ 					%>
  					<%
 						MemberDAO memberDao = MemberDAO.getInstance();
 						List<MemberJoin> list = memberDao.selectList(sId);
-						int a = 0;
+						a = 0;
+						c = 0;
+						re1 = 0;
+						re2 = 0;
+						re3 = 0;
+						re4 = 0;
+						re5 = 0;
+						cer = 0;
+						aDiv = 0;
+						cDiv = 0;
 							for(MemberJoin b : list){
 								a =a+1;
+								if(b.getCo_comple().equals("O")){
+									c = c+1;
+								}
+								if(b.getCo_result().equals("중도탈락")){
+									re1 = re1+1;
+								}
+								if(b.getCo_result().equals("조기취업")){
+									re2 = re2+1;
+								}
+								if(b.getCo_result().equals("이수취업")){
+									re3 = re3+1;
+								}
+								if(b.getCo_result().equals("수료취업")){
+									re4 = re4+1;
+								}
+								if(b.getCo_result().equals("수료미취업")){
+									re5 = re5+1;
+								}
+								if(b.getCo_certificate().equals("O")){
+									cer = cer+1;
+								}
+								
+								
 					%>
+					
 				<tbody>
 					<tr> 
-						<td><%=a %></td> 
+						<td><%=(int)a %></td> 
 						<td><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
 						<td><%=b.getM_birth()%></td>
 						<td><%=b.getM_number()%></td>
@@ -202,6 +253,12 @@
 				</tbody>	
 			<%
 					}
+					aDiv = (a/25)*100;
+					cDiv = (c/a)*100;
+					reDiv1 = (re1/a)*100; 
+					reDiv2 = (re2/a)*100;
+					cerDiv = (cer/a)*100;
+							
 			%>
 			</table>
 			<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
