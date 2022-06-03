@@ -157,7 +157,11 @@
 					</tr>
  				</thead>
  					
- 					<%int sId = (int)request.getAttribute("id"); %>
+ 					<%
+ 						int sId = (int)request.getAttribute("id");
+ 					 	String at = (String)request.getAttribute("member");
+ 					 	int att = Integer.parseInt(at);
+ 					%>
  					
  					<%!
  						DecimalFormat format = new DecimalFormat(".0");
@@ -188,6 +192,7 @@
 						cer = 0;
 						aDiv = 0;
 						cDiv = 0;
+	
 							for(MemberJoin b : list){
 								a =a+1;
 								if(b.getCo_comple().equals("O")){
@@ -211,8 +216,6 @@
 								if(b.getCo_certificate().equals("O")){
 									cer = cer+1;
 								}
-								
-								
 					%>
 					
 				<tbody>
@@ -256,7 +259,7 @@
 				</tbody>	
 			<%
 					}
-					aDiv = (a/25)*100;
+					aDiv = (a/att)*100;
 					cDiv = (c/a)*100;
 					reDiv1 = (re1/a)*100; 
 					reDiv2 = (re2/a)*100;

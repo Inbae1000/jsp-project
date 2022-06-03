@@ -120,7 +120,7 @@ public class SubjectController extends HttpServlet {
 		
 		req.setAttribute("suSelectOne", sDto);
 		req.setAttribute("id", sDto.getS_id());
-		
+		req.setAttribute("member", sDto.getS_member());
 	}
 	
 	public void requestUpdate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
