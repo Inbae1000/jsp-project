@@ -29,7 +29,7 @@
 					</thead>
 					</tbody>
 						<tr>
-						<input type = "text" class="form-control" name="s_id" maxlength="10" value = ${suSelectOne.s_id}>
+						<input type = "hidden" class="form-control" name="s_id" maxlength="10" value = ${suSelectOne.s_id}>
 							<th style = "text-align:center">
 								<label for="cars" >과정명</label>
 								<input type = "text" class="form-control" name="s_name" value = "${suSelectOne.s_name}">
@@ -40,19 +40,19 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정시작일</label>
-								<input type = "date" class="form-control" name="s_start" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value =${suSelectOne.s_start}>
+								<input type = "date" class="form-control" name="s_start" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_start}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정종료일</label>
-								<input type = "date" class="form-control" id = "dateid" name="s_end" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value =${suSelectOne.s_end} onchange = adddate();>
+								<input type = "date" class="form-control" id = "dateid" name="s_end" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_end}" onchange = adddate();>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">추후관리</label>
-								<input type = "text" class="form-control" name="s_manage" maxlength="20" readonly value =${suSelectOne.s_manage}>
+								<input type = "text" class="form-control" name="s_manage" maxlength="20" readonly value ="${suSelectOne.s_manage}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">담당교수</label>
-								<input type = "text" class="form-control" name="s_professor" maxlength="20" value =${suSelectOne.s_professor}>
+								<input type = "text" class="form-control" name="s_professor" maxlength="20" value ="${suSelectOne.s_professor}">
 							</th>
 						</tr>
 					</tbody>					
