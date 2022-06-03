@@ -54,6 +54,14 @@
 								<label for="cars">담당교수</label>
 								<input type = "text" class="form-control" name="s_professor" maxlength="20" value ="${suSelectOne.s_professor}">
 							</th>
+							<th style = "text-align:center">
+								<label for="cars" >수강정원</label>
+								<input type = "text" class="form-control" name="s_member" maxlength="10" value = "${suSelectOne.s_member}">
+							</th>
+							<th style = "text-align:center">
+								<label for="cars" >목표취업률</label>
+								<input type = "text" class="form-control" name="s_empoyee" maxlength="10"value = "${suSelectOne.s_empoyee}">
+							</th>
 						</tr>
 					</tbody>					
 				</table>

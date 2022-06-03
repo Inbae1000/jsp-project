@@ -68,7 +68,7 @@
 					<th style="background-color:#eeeeee; text-align:center;">자격취득</th>
 				</tr>
 				<tr>
-					<td rowspan='2' style="background-color:#; text-align:center;">25</td>
+					<td rowspan='2' style="background-color:#; text-align:center;">${suSelectOne.s_member}명</td>
 					<td style="background-color:#E5FFCC; text-align:center;"><%=(int)a %>명</td>
 					<td style="background-color:#E5FFCC; text-align:center;"><%=(int)c %>명</td>
 					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re1 %>명</td>

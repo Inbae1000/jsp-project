@@ -68,3 +68,6 @@ create table subject(
 	primary key(s_id)
 );
 
+
+alter table subject add s_member varchar(20);
+alter table subject add s_empoyee varchar(20);

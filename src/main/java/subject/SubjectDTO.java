@@ -2,12 +2,14 @@ package subject;
 
 public class SubjectDTO {
 	private int s_id;
-	private String s_name;
-	private String s_code;
-	private String s_start;
-	private String s_end;
-	private String s_manage;
-	private String s_professor;
+	private String s_name;			//과정명
+	private String s_code;			//과정코드
+	private String s_start;			//과정 시작일
+	private String s_end;			//과정 종료일
+	private String s_manage;		//추후 관리일
+	private String s_professor;		//담당교수
+	private String s_member;		//수강정원
+	private String s_empoyee;		//목표취업률
 	
 
 	public int getS_id() {
@@ -52,5 +54,19 @@ public class SubjectDTO {
 	public void setS_professor(String s_professor) {
 		this.s_professor = s_professor;
 	}
+	public String getS_member() {
+		return s_member;
+	}
+	public void setS_member(String s_member) {
+		this.s_member = s_member;
+	}
+	public String getS_empoyee() {
+		return s_empoyee;
+	}
+	public void setS_empoyee(String s_empoyee) {
+		this.s_empoyee = s_empoyee;
+	}
 
+	
+	
 }

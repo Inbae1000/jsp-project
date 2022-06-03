@@ -57,6 +57,14 @@
 									<label for="cars" >담당교수</label>
 									<input type = "text" class="form-control"placeholder="담당교수" name="s_professor" maxlength="10">
 								</th>
+								<th style = "text-align:center">
+									<label for="cars" >수강정원</label>
+									<input type = "text" class="form-control"placeholder="수강정원" name="s_member" maxlength="10">
+								</th>
+								<th style = "text-align:center">
+									<label for="cars" >목표취업률</label>
+									<input type = "text" class="form-control"placeholder="목표취업률" name="s_empoyee" maxlength="10">
+								</th>
 							<tr>
 						</tbody>
 				</table>
