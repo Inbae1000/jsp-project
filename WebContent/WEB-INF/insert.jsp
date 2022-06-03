@@ -22,7 +22,7 @@
 		}
 	%>
 	<div class = "container">
-		<div class = "row">
+		<div class = "row" style="width : 1500px; margin-left : -200px;">
 			<form method = "post" name ="insert" action="insert2.do" onkeydown="return enterkeydown(event)">
 			
 			

@@ -32,11 +32,11 @@
 						<input type = "text" class="form-control" name="s_id" maxlength="10" value = ${suSelectOne.s_id}>
 							<th style = "text-align:center">
 								<label for="cars" >과정명</label>
-								<input type = "text" class="form-control" name="s_name" value = ${suSelectOne.s_name}>
+								<input type = "text" class="form-control" name="s_name" value = "${suSelectOne.s_name}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과목코드</label>
-								<input type = "text" class="form-control"name="s_code" value = ${suSelectOne.s_code} >
+								<input type = "text" class="form-control"name="s_code" value = "${suSelectOne.s_code}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정시작일</label>

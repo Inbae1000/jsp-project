@@ -32,6 +32,7 @@
 			<tr>
 				<th colspan='2'>${suSelectOne.s_id}</th>
 				<th colspan='16' style="text-align:center;">${suSelectOne.s_name} ${suSelectOne.s_code}</th>
+				<a href ="update.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top: -10px; margin-bottom : 10px;">과목수정</a> <!-- 수강인원추가버튼부분 -->
 			</tr>
 			<tr>
 				<th colspan='20'>　</th>
@@ -110,6 +111,8 @@
 		</div>	
 	</div>
 <!-- 인원리스트  -->
+<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top : -10px;margin-bottom : 10px;">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
+
 	<div style="width:2500px" class = "container">   
 		<div class = "row" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
@@ -261,7 +264,7 @@
 							
 			%>
 			</table>
-			<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
+			
 		</div>
 	</div>
 </body>

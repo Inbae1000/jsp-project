@@ -65,6 +65,8 @@ public class SubjectController extends HttpServlet {
 		
 		else if(command.equals("/update.so")) {
 			selectOne(req, resp);
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/subjectUpdate.jsp");
+			rd.forward(req, resp);	
 		}
 		else if(command.equals("/update2.so")) {
 			requestUpdate(req, resp);
