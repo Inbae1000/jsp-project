@@ -126,7 +126,7 @@
 					<tr>
 						<!-- 기본정보 -->
 						<th style="position : sticky; left : 0; background-color:#eeeeee; text-align:center;">번호</th>
-						<th style="position : sticky; left : 49px;background-color:#eeeeee; text-align:center;">성명</th>
+						<th style="position : sticky; left : 49.5px;background-color:#eeeeee; text-align:center;">성명</th>
 						<th style="background-color:#eeeeee; text-align:center;">생년월일</th>
 						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
 						<th style="background-color:#eeeeee; text-align:center;">지역</th>
@@ -264,7 +264,7 @@
 				<tbody>
 					<tr> 
 						<td style="position : sticky; left : 0; background-color : #eeeeee;"><%=(int)a %></td> 
-						<td style="position : sticky; left : 49px; background-color : #eeeeee;"><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
+						<td style="position : sticky; left : 49.5px; background-color : #eeeeee;"><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
 						<td><%=b.getM_birth()%></td>
 						<td><%=b.getM_number()%></td>
 						<td><%=b.getM_area()%></td>

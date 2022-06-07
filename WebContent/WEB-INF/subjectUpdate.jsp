@@ -40,11 +40,11 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정시작일</label>
-								<input type = "date" class="form-control" name="s_start" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_start}">
+								<input type = "date" class="form-control" name="s_start" maxlength="20" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_start}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정종료일</label>
-								<input type = "date" class="form-control" id = "dateid" name="s_end" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_end}" onchange = adddate();>
+								<input type = "date" class="form-control" id = "dateid" name="s_end" maxlength="20" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_end}" onchange = adddate();>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">추후관리</label>
