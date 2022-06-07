@@ -43,7 +43,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">생년월일</label>
-								<input type = "date" id = "birthId" class="form-control"name="m_birth" value = "1900-01-01" min="0000-00-00" max="3000-12-31" maxlength="20" onchange = addage(); >
+								<input type = "date" id = "birthId" class="form-control"name="m_birth" value = "1900-01-01" min="0000-00-00" max="3000-12-31" maxlength="20" onchange = addAge(); >
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">전화번호</label>
@@ -131,7 +131,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">고용보험</label>
-								<select name ="co_insurance" id= "item3Id" onchange= Attendance2(),Attendance5();>
+								<select name ="co_insurance" id= "item3Id" onchange= Attendance2(),Attendance5(),addDate();>
 									<option value = ""> </option>
 									<option value = "O">O</option>
 									<option value = "X">X</option>
@@ -195,11 +195,11 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">입사일</label>
-								<input type = "date" class="form-control"placeholder="입사일" id= "dateId" name="c_start" maxlength="10" value = "1900-01-01" min="0000-00-00" max="3000-12-31" onchange = adddate()>
+								<input type = "date" class="form-control"placeholder="입사일" id= "dateId" name="c_start" maxlength="10" value = "1900-01-01" min="0000-00-00" max="3000-12-31" onchange = addDate()>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">고용유지</label>
-								<input type = "text" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" readonly>
+								<input type = "text" class="form-control"placeholder="고용유지" name="c_maintain" maxlength="20" min="0000-00-00" max="3000-12-31" readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">퇴사여부</label>
@@ -229,7 +229,10 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">산정제외</label>
-								<input type = "text" class="form-control"placeholder="산정제외" name="c_except" maxlength="20">
+								<select id="cars" name="c_except" style ="width:90px; height:30px"> <!-- 값 수정 다해야함 -->
+									<option value=""></option>
+									<option value="산정제외">산정제외</option>									
+								</select>
 							</th>
 						</tr>
 					</tbody>					
@@ -239,35 +242,40 @@
 		</div>
 	</div>
 <script>
-	function addage(){  // 나이계산
+	function addAge(){  // 나이계산
 		
 		
-		birth = document.getElementById("birthId").value;
+		birth = document.getElementById("birthId").value; // 생년월일
 		var now = new Date();
 		var age = birth.substring(0,4);
 		var year = now.getFullYear();
 		
-		insert.m_age1.value = (year-age)+1;
+		insert.m_age1.value = (year-age)+1;  // 나이
 	}
 	
-	function adddate(){  // 날짜계산
-		month = document.getElementById("dateId").value;
+	function addDate(){  // 날짜계산
+		month = document.getElementById("dateId").value; //입사일
+		item3 = document.getElementById("item3Id").value; //고용보험
 		const today = new Date(month);
 		const nextDate = new Date( today.getFullYear(), 
 									today.getMonth()+6 , 
 									today.getDate() -1 );
 		
 		const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
-				
-		/* const addMonth = new Date(nextDate) */
-		insert.c_maintain.value=formatted_date;
+		
+		if(item3 != "X"){
+			insert.c_maintain.value=formatted_date;	
+		}else{
+			insert.c_maintain.value="";
+		}
+		
 	}
 	
 	
 	function Attendance1(){  // 출석률로 결과 및 이수여부 확인
-		birth = document.getElementById("birthId").value;
-		att = document.getElementById("co_attendId").value;
-		item1 = document.getElementById("item1Id").value;
+		birth = document.getElementById("birthId").value;  // 생년월일
+		att = document.getElementById("co_attendId").value;  // 출석률
+		item1 = document.getElementById("item1Id").value;  // 취업
 
 		
 		if(birth != ""){
@@ -299,7 +307,7 @@
 		}
 		
 	}
-	function Attendance2(){  // 직종 가중치, 취업률 가중치 계산
+	function Attendance2(){  // 고용보험으로 직종 가중치, 취업률 가중치 계산
 		item3 = document.getElementById("item3Id").value;
 		
 		if(item3 == ""){
@@ -317,7 +325,7 @@
 		}
 	}
 	
-	function Attendance3(){  // 직종 가중치, 취업률 가중치 계산
+	function Attendance3(){  //수료 및 취업으로 직종 가중치, 취업률 가중치 계산
 		completion = document.getElementById("co_compleId").value;
 		item1 = document.getElementById("item1Id").value;
 		
@@ -333,7 +341,7 @@
 		}
 	}
 	
-	function Attendance4(){  // 직종 가중치, 취업률 가중치 계산
+	function Attendance4(){  //구분으로 직종 가중치, 취업률 가중치 계산
 		type2 = document.getElementById("m_option2Id").value;
 		
 		if(type2 == "국취지1"){
@@ -374,15 +382,21 @@
 			return false;
 	}
 	
-	function check(){
+	function check(){  // 유효성 검사
 		var form = document.insert;
-		if(form.m_age1.value == ""){
+		if (form.m_name.value == ""){
+			alert("이름을 입력해 주세요");
+			return false;
+		} else if(form.m_age1.value == ""){
 			alert("생년월일을 입력해 주세요");
 			form.m_birth.focus();
 			return false;
 		} else if (form.co_attend.value == ""){
 			alert("출석률을 입력해 주세요");
 			form.co_attend.focus();
+			return false;
+		} else if (form.m_name.value == ""){
+			alert("이름을 입력해 주세요");
 			return false;
 		}
 		form.submit();

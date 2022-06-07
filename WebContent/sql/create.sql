@@ -1,6 +1,6 @@
 create table company(
 	c_start date,
-	c_maintain date,
+	c_maintain text,
 	c_end text,
 	c_name varchar(100),
 	c_address varchar(200),
@@ -71,3 +71,4 @@ create table subject(
 
 alter table subject add s_member varchar(20);
 alter table subject add s_empoyee varchar(20);
+ALTER TABLE company MODIFY COLUMN c_maintain text;
