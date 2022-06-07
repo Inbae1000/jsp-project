@@ -21,7 +21,7 @@
 			script.println("</script>");
 		}
 	%>
-	<div class = "container">
+	<div style = " margin-top : 70px;"class = "container">
 		<div class = "row" style="width : 1500px; margin-left : -200px;">
 			<form method = "post" name ="insert" action="insert2.do" onkeydown="return enterkeydown(event)">
 			

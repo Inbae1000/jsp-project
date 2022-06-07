@@ -13,7 +13,7 @@
 </head>
 <body>
 	<%@ include file ="menu2.jsp" %>
-		<div style="width:auto" class = "container">
+		<div style="width:auto; margin-top : 70px;" class = "container">
 			<div style="width: 1000px; margin: auto;">
 				<div style="text-align:center;">
 					<form method="post" name="search" action="search.so">
@@ -33,7 +33,7 @@
 					</form>
 				</div>
 				
-				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd;">
 					<tr>
 						<th style="background-color:#eeeeee; text-align:center;">번호</th>
 						<th style="background-color:#eeeeee; text-align:center;">과목이름</th>

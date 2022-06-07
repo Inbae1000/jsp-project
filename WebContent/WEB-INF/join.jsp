@@ -12,7 +12,7 @@
 	<%@ include file = "menu.jsp" %>
 	
 	
-	<div class="container">
+	<div style = " margin-top : 70px;" class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4"></div>
 			<div class="jumborron" style="padding-top:20px">

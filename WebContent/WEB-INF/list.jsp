@@ -24,96 +24,102 @@
 </style>
 </head>
 <body>
+<%@ include file = "menu2.jsp" %>
+<div style = "width : 3000px; margin-top : 70px;">
+	<div style = "position : sticky; left : 0px; width : 1920px;">
+	
+		<!-- 과목정보 -->
+			<div>
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd;">
+					<tr>
+						<th colspan='2'>${suSelectOne.s_id}</th>
+						<th colspan='16' style="text-align:center;">${suSelectOne.s_name} ${suSelectOne.s_code}</th>
+						<a href ="update.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top: -10px; margin-bottom : 10px;">과목수정</a> <!-- 수강인원추가버튼부분 -->
+					</tr>
+					<tr>
+						<th colspan='20'>　</th>
+					</tr>
+					<tr>
+						<th rowspan='2'>훈련과정</th>
+						<th>:</th>
+						<th colspan='6' >${suSelectOne.s_name}<br>${suSelectOne.s_code}</th>
+						<th>훈련기간 : ${suSelectOne.s_start} ~ ${suSelectOne.s_end}</th>
+						<th>관리: ${suSelectOne.s_manage}</th>
+						<th>담당교수 : ${suSelectOne.s_professor}</th>
+					</tr>			
+				</table>
+			</div>
+		<!-- 인원total정보 -->	
+			<div style="width:auto" class = "container">
+				<div style="width: auto;">
+					<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+						<tr>
+							<th style="background-color:#eeeeee; text-align:center;">정원</th>
+							<th style="background-color:#eeeeee; text-align:center;">모집인원</th>
+							<th style="background-color:#eeeeee; text-align:center;">수료인원</th>
+							<th style="background-color:#eeeeee; text-align:center;">중도탈락</th>
+							<th style="background-color:#eeeeee; text-align:center;">조기취업</th>
+							<th style="background-color:#eeeeee; text-align:center;">이수취업</th>
+							<th style="background-color:#eeeeee; text-align:center;">수료취업</th>
+							<th style="background-color:#eeeeee; text-align:center;">수료미취업</th>
+							<th colspan='3' style="background-color:#eeeeee; text-align:center;">산정제외</th> <!-- colspan3  -->
+							<th style="background-color:#eeeeee; text-align:center;">산정인원</th>
+							<th colspan='4' style="background-color:#eeeeee; text-align:center;">취업률</th> <!-- colspan4 -->
+							<th style="background-color:#eeeeee; text-align:center;">고보가입</th>
+							<th style="background-color:#eeeeee; text-align:center;">수료고보</th>
+							<th style="background-color:#eeeeee; text-align:center;">자격취득</th>
+						</tr>
+						<tr>
+							<td rowspan='2' style="background-color:#; text-align:center;">${suSelectOne.s_member}명</td>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=(int)a %>명</td>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=(int)c %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re1 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re2 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re3 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re4 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re5 %>명</td>
+							<td style="background-color:#eeeeee; text-align:center;">수료전</td>
+							<td style="background-color:#eeeeee; text-align:center;">수료후</td>
+							<td style="background-color:#eeeeee; text-align:center;">재직자</td>
+							<td rowspan='2' style="background-color:#E5FFCC; text-align:center;">13명</td>
+							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
+							<td style="background-color:#eeeeee; text-align:center;">평가기준</td>
+							<td style="background-color:#FFCCCC; text-align:center;">14.05명</td>
+							<td style="background-color:#FFCCCC; text-align:center;">108.1%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">11명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">11명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					
+						</tr>
+						<tr>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(aDiv) %>%</td>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(cDiv) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv1) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv2) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">0.0%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">92.3%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">15.4%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">0명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">0명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">0명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">88.1%</td>
+							<td style="background-color:#eeeeee; text-align:center;">직종기준</td>
+							<td style="background-color:#FFFFFF; text-align:center;">14.75명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">113.5%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">73.3%</td>
+							<td style="background-color:#FFFFFF; text-align:center;">84.6%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(cerDiv) %>%</td>
+						</tr>				
+					</table>
+				</div>	
+				<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top : -10px;margin-bottom : 10px;">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
+			</div>
+	</div>
+</div>
 
-	<%@ include file = "menu2.jsp" %>
-<!-- 과목정보 -->
-	<div>
-		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd;">
-			<tr>
-				<th colspan='2'>${suSelectOne.s_id}</th>
-				<th colspan='16' style="text-align:center;">${suSelectOne.s_name} ${suSelectOne.s_code}</th>
-				<a href ="update.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top: -10px; margin-bottom : 10px;">과목수정</a> <!-- 수강인원추가버튼부분 -->
-			</tr>
-			<tr>
-				<th colspan='20'>　</th>
-			</tr>
-			<tr>
-				<th rowspan='2'>훈련과정</th>
-				<th>:</th>
-				<th colspan='6' >${suSelectOne.s_name}<br>${suSelectOne.s_code}</th>
-				<th>훈련기간 : ${suSelectOne.s_start} ~ ${suSelectOne.s_end}</th>
-				<th>관리: ${suSelectOne.s_manage}</th>
-				<th>담당교수 : ${suSelectOne.s_professor}</th>
-			</tr>			
-		</table>
-	</div>
-<!-- 인원total정보 -->	
-	<div style="width:auto" class = "container">
-		<div style="width: auto;">
-			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
-				<tr>
-					<th style="background-color:#eeeeee; text-align:center;">정원</th>
-					<th style="background-color:#eeeeee; text-align:center;">모집인원</th>
-					<th style="background-color:#eeeeee; text-align:center;">수료인원</th>
-					<th style="background-color:#eeeeee; text-align:center;">중도탈락</th>
-					<th style="background-color:#eeeeee; text-align:center;">조기취업</th>
-					<th style="background-color:#eeeeee; text-align:center;">이수취업</th>
-					<th style="background-color:#eeeeee; text-align:center;">수료취업</th>
-					<th style="background-color:#eeeeee; text-align:center;">수료미취업</th>
-					<th colspan='3' style="background-color:#eeeeee; text-align:center;">산정제외</th> <!-- colspan3  -->
-					<th style="background-color:#eeeeee; text-align:center;">산정인원</th>
-					<th colspan='4' style="background-color:#eeeeee; text-align:center;">취업률</th> <!-- colspan4 -->
-					<th style="background-color:#eeeeee; text-align:center;">고보가입</th>
-					<th style="background-color:#eeeeee; text-align:center;">수료고보</th>
-					<th style="background-color:#eeeeee; text-align:center;">자격취득</th>
-				</tr>
-				<tr>
-					<td rowspan='2' style="background-color:#; text-align:center;">${suSelectOne.s_member}명</td>
-					<td style="background-color:#E5FFCC; text-align:center;"><%=(int)a %>명</td>
-					<td style="background-color:#E5FFCC; text-align:center;"><%=(int)c %>명</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re1 %>명</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re2 %>명</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=re3 %>명</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=re4 %>명</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=re5 %>명</td>
-					<td style="background-color:#eeeeee; text-align:center;">수료전</td>
-					<td style="background-color:#eeeeee; text-align:center;">수료후</td>
-					<td style="background-color:#eeeeee; text-align:center;">재직자</td>
-					<td rowspan='2' style="background-color:#E5FFCC; text-align:center;">13명</td>
-					<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
-					<td style="background-color:#eeeeee; text-align:center;">평가기준</td>
-					<td style="background-color:#FFCCCC; text-align:center;">14.05명</td>
-					<td style="background-color:#FFCCCC; text-align:center;">108.1%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">11명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">11명</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					
-				</tr>
-				<tr>
-					<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(aDiv) %>%</td>
-					<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(cDiv) %>%</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv1) %>%</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv2) %>%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">0.0%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">92.3%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">15.4%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">0명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">0명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">0명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">88.1%</td>
-					<td style="background-color:#eeeeee; text-align:center;">직종기준</td>
-					<td style="background-color:#FFFFFF; text-align:center;">14.75명</td>
-					<td style="background-color:#FFFFFF; text-align:center;">113.5%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">73.3%</td>
-					<td style="background-color:#FFFFFF; text-align:center;">84.6%</td>
-					<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(cerDiv) %>%</td>
-				</tr>				
-			</table>
-		</div>	
-	</div>
+	
+		
 <!-- 인원리스트  -->
-<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top : -10px;margin-bottom : 10px;">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
-
-	<div style="width:2500px" class = "container">   
+	<div style= "width : 2950px;white-space: nowrap; margin-left : 15px;">
 		<div class = "row" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
@@ -267,7 +273,6 @@
 							
 			%>
 			</table>
-			
 		</div>
 	</div>
 </body>

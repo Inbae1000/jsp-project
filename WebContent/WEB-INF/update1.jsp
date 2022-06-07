@@ -14,7 +14,7 @@
 	<%@ include file = "menu2.jsp" %>
 
 
-	<div class = "container">
+	<div style = " margin-top : 70px;" class = "container">
 		<div class = "row" style="width : 1500px; margin-left : -200px;">
 			<form method = "post" name ="insert" action="update2.do" onkeydown="return enterkeydown(event)">
 			
