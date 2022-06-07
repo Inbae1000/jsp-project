@@ -400,9 +400,6 @@ function check(){  // 유효성 검사
 		alert("출석률을 입력해 주세요");
 		form.co_attend.focus();
 		return false;
-	} else if (form.m_name.value == ""){
-		alert("이름을 입력해 주세요");
-		return false;
 	}
 	form.submit();
 }
