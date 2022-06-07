@@ -153,9 +153,10 @@ public class SubjectController extends HttpServlet {
 	}
 	
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		int id = Integer.parseInt(req.getParameter("s_id"));
+		int sid = Integer.parseInt(req.getParameter("s_id"));
 		SubjectDAO sDao = SubjectDAO.getInstance();
-		sDao.delete(id);
+		sDao.delete(sid);
+		sDao.delete2(sid);
 		resp.sendRedirect("home.do");
 	}
 }

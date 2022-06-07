@@ -209,6 +209,22 @@ public class SubjectDAO {
 		return result;
 	}
 	
+	public int delete2(int s_id) {
+		String sql = "delete from a,b,c using member as a left join company as b on a.m_id=b.m_id left join consequence as c on a.m_id = c.m_id where a.s_id = ?;";
+		
+		try {
+			conn = ConnectionDB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, s_id);
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, pstmt, null);
+		}
+		return result;
+	}
+	
 	public ArrayList<SubjectDTO> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
 		ArrayList<SubjectDTO> list = new ArrayList<>();
       String SQL ="select * from subject WHERE "+searchField.trim() + " like ?";
