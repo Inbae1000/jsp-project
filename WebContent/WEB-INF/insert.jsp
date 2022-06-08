@@ -359,13 +359,14 @@
 	function Attendance5(){  // 평가기준 직종기준 계산
 		item1 = document.getElementById("item1Id").value;
 		co_option1 = document.getElementById("co_option1Id").value;
+		co_option2 = document.getElementById("co_option2Id").value;
 		co_option3 = document.getElementById("co_option3Id").value;
 		co_option4 = document.getElementById("co_option4Id").value;
 		co_option5 = document.getElementById("co_option5Id").value;
 		co_option6 = document.getElementById("co_option6Id").value;
 		
 		var a1 = co_option1*co_option3*co_option5;
-		var a2 = co_option1*co_option4*co_option6;
+		var a2 = co_option2*co_option4*co_option6;
 		
 		if(item1 == "O"){
 			insert.co_asse.value = a1;

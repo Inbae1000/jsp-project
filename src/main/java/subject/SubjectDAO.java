@@ -251,7 +251,8 @@ public class SubjectDAO {
       } catch(Exception e) {
          e.printStackTrace();
       }
-      return list;//ㄱㅔ시글 리스트 반환
-   }
+      return list;//게시글 리스트 반환
+	}
+	
 	
 }

@@ -52,7 +52,7 @@
 					%>
 					<tr>
 						<td><%=a %></td> 
-						<th style="background-color:#FFFFFF; text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a></th>  <!-- 수정필요  -->
+						<th style="background-color:#FFFFFF; text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a></th>
 						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_code() %></th>
 						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_start() %></th>
 						<th style="background-color:#FFFFFF; text-align:center;"><%=b.getS_end() %></th>
@@ -61,7 +61,7 @@
 					</tr>
 					<%
 						}
-					%>								
+					%>
 				</table>	
 			</div>
 		</div>	 

@@ -26,31 +26,33 @@
 <body>
 
 <%!
-DecimalFormat format = new DecimalFormat(".0");
-double a = 0;			//모집인원
-double c = 0;			//수료인원
-double re1 = 0;			//중도탈락
-double re2 = 0;			//조기취업
-int re3 = 0;			//이수취업
-int re4 = 0;			//수료취업
-int re5 = 0;			//수료미취업
-int re6 = 0;			//산정제외-수료후
-int re7 = 0;			//산정제외-재직자
-int re8 = 0;			//산정제외-수료전
-double re9 = 0;			//산정인원
-int re10 = 0;			//고보가입
-int re11 = 0;			//수료고보
-double cer = 0;			//자격취득
-double aDiv = 0;		//모집인원 %값
-double cDiv = 0;		//수료인원 %값
-double reDiv1 = 0;		//중도탈락 %값
-double reDiv2 = 0;		//조기취업 %값
-double reDiv3 = 0;		//이수취업 %값
-double reDiv4 = 0;		//수료취업 %값
-double reDiv5 = 0;		//수료미취업 %값
-double reDiv6 = 0;		//고보가입 %값
-double reDiv7 = 0;		//수료고보 %값
-double cerDiv = 0;		//자격취득 %값
+	DecimalFormat format = new DecimalFormat(".0");
+	double a = 0;			//모집인원
+	double c = 0;			//수료인원
+	double re1 = 0;			//중도탈락
+	double re2 = 0;			//조기취업
+	int re3 = 0;			//이수취업
+	int re4 = 0;			//수료취업
+	int re5 = 0;			//수료미취업
+	int re6 = 0;			//산정제외-수료후
+	int re7 = 0;			//산정제외-재직자
+	int re8 = 0;			//산정제외-수료전
+	double re9 = 0;			//산정인원
+	int re10 = 0;			//고보가입
+	int re11 = 0;			//수료고보
+	int re12 = 0;			//수료취업+이수취업
+	double cer = 0;			//자격취득
+	double aDiv = 0;		//모집인원 %값
+	double cDiv = 0;		//수료인원 %값
+	double reDiv1 = 0;		//중도탈락 %값
+	double reDiv2 = 0;		//조기취업 %값
+	double reDiv3 = 0;		//이수취업 %값
+	double reDiv4 = 0;		//수료취업 %값
+	double reDiv5 = 0;		//수료미취업 %값
+	double reDiv6 = 0;		//고보가입 %값
+	double reDiv7 = 0;		//수료고보 %값
+	double reDiv8 = 0;		//일반취업률 %값
+	double cerDiv = 0;		//자격취득 %값
 	
 %>
 
@@ -170,6 +172,7 @@ double cerDiv = 0;		//자격취득 %값
 							}
 							aDiv = (a/att)*100;
 							cDiv = (c/a)*100;
+							re12 = re3 + re4;
 							reDiv1 = (re1/a)*100; 
 							reDiv2 = (re2/a)*100;
 							cerDiv = (cer/a)*100;
@@ -178,6 +181,7 @@ double cerDiv = 0;		//자격취득 %값
 							reDiv5 = (re5/re9)*100;
 							reDiv6 = (re10/(re2+re3+re4+re5))*100;
 							reDiv7 = (re11/re9)*100;
+							reDiv8 = (re3+re4)/re9*100;
 						%>
 						
 						<tr>
@@ -194,7 +198,7 @@ double cerDiv = 0;		//자격취득 %값
 							<td style="background-color:#eeeeee; text-align:center;">재직자</td>
 							<td rowspan='2' style="background-color:#E5FFCC; text-align:center;"><%=(int)re9%>명</td>
 							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
-							<td style="background-color:#eeeeee; text-align:center;">평가기준</td>
+							<td style="background-color:#eeeeee; text-align:center;">가중치취업률</td>
 							<td style="background-color:#FFCCCC; text-align:center;">명</td>
 							<td style="background-color:#FFCCCC; text-align:center;">%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re10 %>명</td>
@@ -213,9 +217,9 @@ double cerDiv = 0;		//자격취득 %값
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re6 %>명</td> 
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re7 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;">${suSelectOne.s_empoyee}%</td>
-							<td style="background-color:#eeeeee; text-align:center;">직종기준</td>
-							<td style="background-color:#FFFFFF; text-align:center;">명</td>
-							<td style="background-color:#FFFFFF; text-align:center;">%</td>
+							<td style="background-color:#eeeeee; text-align:center;">일반취업률</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re12 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv8) %>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv6) %>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv7) %>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(cerDiv) %>%</td>
@@ -253,12 +257,12 @@ double cerDiv = 0;		//자격취득 %값
 						<th style="background-color:#eeeeee; text-align:center;">취업</th>
 						<th style="background-color:#eeeeee; text-align:center;">동일</th>
 						<th style="background-color:#eeeeee; text-align:center;">고보</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">평가기준</th>
 						<th style="background-color:#eeeeee; text-align:center;">직종기준</th>
 						<th style="background-color:#eeeeee; text-align:center;">자격증</th>
@@ -276,9 +280,9 @@ double cerDiv = 0;		//자격취득 %값
  				
 
  					<%
- 					a = 0;
-							for(MemberJoin b : list){
-								a =a+1;
+ 						a = 0;
+						for(MemberJoin b : list){
+							a =a+1;
 					%>
 					
 				<tbody>
