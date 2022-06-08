@@ -24,6 +24,36 @@
 </style>
 </head>
 <body>
+
+<%!
+DecimalFormat format = new DecimalFormat(".0");
+double a = 0;			//모집인원
+double c = 0;			//수료인원
+double re1 = 0;			//중도탈락
+double re2 = 0;			//조기취업
+int re3 = 0;			//이수취업
+int re4 = 0;			//수료취업
+int re5 = 0;			//수료미취업
+int re6 = 0;			//산정제외-수료후
+int re7 = 0;			//산정제외-재직자
+int re8 = 0;			//산정제외-수료전
+double re9 = 0;			//산정인원
+int re10 = 0;			//고보가입
+int re11 = 0;			//수료고보
+double cer = 0;			//자격취득
+double aDiv = 0;		//모집인원 %값
+double cDiv = 0;		//수료인원 %값
+double reDiv1 = 0;		//중도탈락 %값
+double reDiv2 = 0;		//조기취업 %값
+double reDiv3 = 0;		//이수취업 %값
+double reDiv4 = 0;		//수료취업 %값
+double reDiv5 = 0;		//수료미취업 %값
+double reDiv6 = 0;		//고보가입 %값
+double reDiv7 = 0;		//수료고보 %값
+double cerDiv = 0;		//자격취득 %값
+	
+%>
+
 <%@ include file = "menu2.jsp" %>
 <div style = "width : 3000px; margin-top : 70px;">
 	<div style = "position : sticky; left : 0px; width : 1920px;">
@@ -69,135 +99,13 @@
 							<th style="background-color:#eeeeee; text-align:center;">수료고보</th>
 							<th style="background-color:#eeeeee; text-align:center;">자격취득</th>
 						</tr>
-						<tr>
-							<td rowspan='2' style="background-color:#; text-align:center;">${suSelectOne.s_member}명</td>
-							<td style="background-color:#E5FFCC; text-align:center;"><%=(int)a %>명</td>
-							<td style="background-color:#E5FFCC; text-align:center;"><%=(int)c %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re1 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re2 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re3 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re4 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re5 %>명</td>
-							<td style="background-color:#eeeeee; text-align:center;">수료전</td>
-							<td style="background-color:#eeeeee; text-align:center;">수료후</td>
-							<td style="background-color:#eeeeee; text-align:center;">재직자</td>
-							<td rowspan='2' style="background-color:#E5FFCC; text-align:center;"><%=(int)re9%>명</td>
-							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
-							<td style="background-color:#eeeeee; text-align:center;">평가기준</td>
-							<td style="background-color:#FFCCCC; text-align:center;">명</td>
-							<td style="background-color:#FFCCCC; text-align:center;">%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re10 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re11 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					
-						</tr>
-						<tr>
-							<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(aDiv) %>%</td>
-							<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(cDiv) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv1) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv2) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv3) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv4) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv5) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re8 %>명</td> 
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re6 %>명</td> 
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re7 %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;">${suSelectOne.s_empoyee}%</td>
-							<td style="background-color:#eeeeee; text-align:center;">직종기준</td>
-							<td style="background-color:#FFFFFF; text-align:center;">명</td>
-							<td style="background-color:#FFFFFF; text-align:center;">%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv6) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv7) %>%</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(cerDiv) %>%</td>
-						</tr>				
-					</table>
-				</div>	
-				<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top : -10px;margin-bottom : 10px;">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
-			</div>
-	</div>
-</div>
-
-	
-		
-<!-- 인원리스트  -->
-	<div style= "width : 2950px;white-space: nowrap; margin-left : 15px;">
-		<div class = "row" >
-			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
-				<thead style ="position : sticky; top : 50px;">
-					<tr>
-						<!-- 기본정보 -->
-						<th style="position : sticky; left : 0; background-color:#eeeeee; text-align:center;">번호</th>
-						<th style="position : sticky; left : 49.5px;background-color:#eeeeee; text-align:center;">성명</th>
-						<th style="background-color:#eeeeee; text-align:center;">생년월일</th>
-						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
-						<th style="background-color:#eeeeee; text-align:center;">지역</th>
-						<th style="background-color:#eeeeee; text-align:center;">나이</th>
-						<th style="background-color:#eeeeee; text-align:center;">성별</th>
-						<th style="background-color:#eeeeee; text-align:center;">유형</th>
-						<th style="background-color:#eeeeee; text-align:center;">구분</th>
-						<th style="background-color:#eeeeee; text-align:center;">비고</th>
-						<!-- 수강인원결과  -->
-						<th style="background-color:#eeeeee; text-align:center;">결과</th>
-						<th style="background-color:#eeeeee; text-align:center;">출석률</th>
-						<th style="background-color:#eeeeee; text-align:center;">수료</th>
-						<th style="background-color:#eeeeee; text-align:center;">취업</th>
-						<th style="background-color:#eeeeee; text-align:center;">동일</th>
-						<th style="background-color:#eeeeee; text-align:center;">고보</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">평가기준</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종기준</th>
-						<th style="background-color:#eeeeee; text-align:center;">자격증</th>
-						<!-- 업체현황  -->
-						<th style="background-color:#eeeeee; text-align:center;">입사일</th>
-						<th style="background-color:#eeeeee; text-align:center;">고용유지기간</th>
-						<th style="background-color:#eeeeee; text-align:center;">퇴사여부</th>
-						<th style="background-color:#eeeeee; text-align:center;">업체명</th>
-						<th style="background-color:#eeeeee; text-align:center;">주소</th>
-						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
-						<th style="background-color:#eeeeee; text-align:center;">취업전담제</th>
-						<th style="background-color:#eeeeee; text-align:center;">산정제외</th>	
-					</tr>
- 				</thead>
- 					
- 					<%
- 						int sId = (int)request.getAttribute("id");
+						
+						<%
+						
+						int sId = (int)request.getAttribute("id");
  					 	String at = (String)request.getAttribute("member");
  					 	int att = Integer.parseInt(at);
- 					%>
- 					
- 					<%!
- 						DecimalFormat format = new DecimalFormat(".0");
-						double a = 0;			//모집인원
-						double c = 0;			//수료인원
-						double re1 = 0;			//중도탈락
-						double re2 = 0;			//조기취업
-						int re3 = 0;			//이수취업
-						int re4 = 0;			//수료취업
-						int re5 = 0;			//수료미취업
-						int re6 = 0;			//산정제외-수료후
-						int re7 = 0;			//산정제외-재직자
-						int re8 = 0;			//산정제외-수료전
-						double re9 = 0;			//산정인원
-						int re10 = 0;			//고보가입
-						int re11 = 0;			//수료고보
-						double cer = 0;			//자격취득
-						double aDiv = 0;		//모집인원 %값
-						double cDiv = 0;		//수료인원 %값
-						double reDiv1 = 0;		//중도탈락 %값
-						double reDiv2 = 0;		//조기취업 %값
-						double reDiv3 = 0;		//이수취업 %값
-						double reDiv4 = 0;		//수료취업 %값
-						double reDiv5 = 0;		//수료미취업 %값
-						double reDiv6 = 0;		//고보가입 %값
-						double reDiv7 = 0;		//수료고보 %값
-						double cerDiv = 0;		//자격취득 %값
- 						
- 					%>
- 					<%
+						
 						MemberDAO memberDao = MemberDAO.getInstance();
 						List<MemberJoin> list = memberDao.selectList(sId);
 						a = 0;
@@ -259,12 +167,124 @@
 								} 
 								re8 = re7+re6;								
 								re9 = re6+re3+c;
+							}
+							aDiv = (a/att)*100;
+							cDiv = (c/a)*100;
+							reDiv1 = (re1/a)*100; 
+							reDiv2 = (re2/a)*100;
+							cerDiv = (cer/a)*100;
+							reDiv3 = (re3/re9)*100;
+							reDiv4 = (re4/re9)*100;
+							reDiv5 = (re5/re9)*100;
+							reDiv6 = (re10/(re2+re3+re4+re5))*100;
+							reDiv7 = (re11/re9)*100;
+						%>
+						
+						<tr>
+							<td rowspan='2' style="background-color:#; text-align:center;">${suSelectOne.s_member}명</td>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=(int)a %>명</td>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=(int)c %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re1 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)re2 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re3 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re4 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re5 %>명</td>
+							<td style="background-color:#eeeeee; text-align:center;">수료전</td>
+							<td style="background-color:#eeeeee; text-align:center;">수료후</td>
+							<td style="background-color:#eeeeee; text-align:center;">재직자</td>
+							<td rowspan='2' style="background-color:#E5FFCC; text-align:center;"><%=(int)re9%>명</td>
+							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
+							<td style="background-color:#eeeeee; text-align:center;">평가기준</td>
+							<td style="background-color:#FFCCCC; text-align:center;">명</td>
+							<td style="background-color:#FFCCCC; text-align:center;">%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re10 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re11 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					
+						</tr>
+						<tr>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(aDiv) %>%</td>
+							<td style="background-color:#E5FFCC; text-align:center;"><%=format.format(cDiv) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv1) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv2) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv3) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv4) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv5) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re8 %>명</td> 
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re6 %>명</td> 
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re7 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">${suSelectOne.s_empoyee}%</td>
+							<td style="background-color:#eeeeee; text-align:center;">직종기준</td>
+							<td style="background-color:#FFFFFF; text-align:center;">명</td>
+							<td style="background-color:#FFFFFF; text-align:center;">%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv6) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv7) %>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(cerDiv) %>%</td>
+						</tr>				
+					</table>
+				</div>	
+				<a href ="add.so?s_id=${suSelectOne.s_id}" class="btn btn-primary pull-right" style ="margin-right : 20px; margin-top : -10px;margin-bottom : 10px;">수강인원 추가</a> <!-- 수강인원추가버튼부분 -->
+			</div>
+	</div>
+</div>
+
+	
+		
+<!-- 인원리스트  -->
+	<div style= "width : 2950px;white-space: nowrap; margin-left : 15px;">
+		<div class = "row" >
+			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+				<thead style ="position : sticky; top : 50px;">
+					<tr>
+						<!-- 기본정보 -->
+						<th style="position : sticky; left : 0; background-color:#eeeeee; text-align:center; width : 48px;">번호</th>
+						<th style="position : sticky; left : 48px;background-color:#eeeeee; text-align:center;">성명</th>
+						<th style="background-color:#eeeeee; text-align:center;">생년월일</th>
+						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
+						<th style="background-color:#eeeeee; text-align:center;">지역</th>
+						<th style="background-color:#eeeeee; text-align:center;">나이</th>
+						<th style="background-color:#eeeeee; text-align:center;">성별</th>
+						<th style="background-color:#eeeeee; text-align:center;">유형</th>
+						<th style="background-color:#eeeeee; text-align:center;">구분</th>
+						<th style="background-color:#eeeeee; text-align:center;">비고</th>
+						<!-- 수강인원결과  -->
+						<th style="background-color:#eeeeee; text-align:center;">결과</th>
+						<th style="background-color:#eeeeee; text-align:center;">출석률</th>
+						<th style="background-color:#eeeeee; text-align:center;">수료</th>
+						<th style="background-color:#eeeeee; text-align:center;">취업</th>
+						<th style="background-color:#eeeeee; text-align:center;">동일</th>
+						<th style="background-color:#eeeeee; text-align:center;">고보</th>
+						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">평가기준</th>
+						<th style="background-color:#eeeeee; text-align:center;">직종기준</th>
+						<th style="background-color:#eeeeee; text-align:center;">자격증</th>
+						<!-- 업체현황  -->
+						<th style="background-color:#eeeeee; text-align:center;">입사일</th>
+						<th style="background-color:#eeeeee; text-align:center;">고용유지기간</th>
+						<th style="background-color:#eeeeee; text-align:center;">퇴사여부</th>
+						<th style="background-color:#eeeeee; text-align:center;">업체명</th>
+						<th style="background-color:#eeeeee; text-align:center;">주소</th>
+						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
+						<th style="background-color:#eeeeee; text-align:center;">취업전담제</th>
+						<th style="background-color:#eeeeee; text-align:center;">산정제외</th>	
+					</tr>
+ 				</thead>
+ 				
+
+ 					<%
+ 					a = 0;
+							for(MemberJoin b : list){
+								a =a+1;
 					%>
 					
 				<tbody>
 					<tr> 
-						<td style="position : sticky; left : 0; background-color : #eeeeee;"><%=(int)a %></td> 
-						<td style="position : sticky; left : 49.5px; background-color : #eeeeee;"><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
+						<td style="position : sticky; left : 0; background-color : #eeeeee;  width : 48px;"><%=(int)a %></td> 
+						<td style="position : sticky; left : 48px; background-color : #eeeeee;;"><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
 						<td><%=b.getM_birth()%></td>
 						<td><%=b.getM_number()%></td>
 						<td><%=b.getM_area()%></td>
@@ -302,16 +322,6 @@
 				</tbody>	
 			<%
 					}
-					aDiv = (a/att)*100;
-					cDiv = (c/a)*100;
-					reDiv1 = (re1/a)*100; 
-					reDiv2 = (re2/a)*100;
-					cerDiv = (cer/a)*100;
-					reDiv3 = (re3/re9)*100;
-					reDiv4 = (re4/re9)*100;
-					reDiv5 = (re5/re9)*100;
-					reDiv6 = (re10/(re2+re3+re4+re5))*100;
-					reDiv7 = (re11/re9)*100;
 							
 			%>
 			</table>
