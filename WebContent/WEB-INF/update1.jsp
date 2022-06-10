@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import ="java.io.PrintWriter" %>
+<%@ page import = "note.*" %>
+<%@ page import = "java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head> 
@@ -75,15 +77,9 @@
 								<label for="cars">대상구분</label>
 								<input type = "text" class="form-control" name="m_option3" maxlength="20" value ="${selectOne.m_option3}">
 							</th>
-							<th style = "text-align:center">
-								<label for="cars">비고</label>
-								<input type = "text" class="form-control" name="m_note" maxlength="20" value ="${selectOne.m_note}">
-							</th>
-							
 						</tr>
 					</tbody>					
-				</table
-				>
+				</table>
 <!-- 수강인원 결과 관리 테이블  -->
 
 				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
@@ -222,7 +218,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">취업전담제</label>
-								<select id="cars" name="c_manager"> <!-- 값 수정 다해야함 -->
+								<select id="cars" name="c_manager">
 									<option value=""></option>
 									<option value="팀장">팀장</option>
 									<option value="교수">교수</option> 
@@ -233,7 +229,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">산정제외</label>
-								<select id="cars" name="c_except" style ="width:90px; height:30px"> <!-- 값 수정 다해야함 -->
+								<select id="cars" name="c_except" style ="width:90px; height:30px">
 									<option value=""></option>
 									<option value="산정제외">산정제외</option>
 									<option hidden value = "${cSelectOne.c_except}" selected>${cSelectOne.c_except}</option>
@@ -242,12 +238,57 @@
 						</tr>
 					</tbody>					
 				</table>
-				<input onclick = "return confirm('정말 삭제 하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.do"/>
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">비고</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+						</tr>
+					</thead>
+					</tbody>
+						<tr>
+							<th style = "text-align:center">
+								<input type = "text" class="form-control" name="n_note" value ="">
+							</th>
+						</tr>
+					</tbody>					
+				</table>
+				<input onclick = "return confirm('삭제 하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.do"/>
 				<input type="button" class="btn btn-primary pull-right" value="수정" style="margin-right : 10px;" onclick = "check()">					
-			</form>			
+			</form>	
+			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd; margin-top : 20px;">
+				<thead>
+					<tr>
+						<th style="background-color:#eeeeee; text-align:center;">번호</th>
+						<th style="background-color:#eeeeee; text-align:center;">날짜</th>
+						<th style="background-color:#eeeeee; text-align:center;">비고</th>
+					</tr>	
+				</thead>
+				
+				<%
+					int mId = (int)request.getAttribute("mId");
+					NoteDAO nDao = NoteDAO.getInstance();
+					List<NoteDTO> list = nDao.selectList(mId);
+					
+					int a = 0;
+					for(NoteDTO nd : list){
+						a = a+1;
+					
+				%>
+					
+				
+				<tbody>
+					<tr>
+						<td><%=a %></td>
+						<td><%=nd.getN_date() %></td>
+						<td><%=nd.getN_note() %></td>
+					</tr>
+				</tbody>
+				<%
+					}
+				%>
+			</table>		
 		</div>
-	</div>
-     
+		
 <script>
 function addAge(){  // 나이계산
 	birth = document.getElementById("birthId").value; // 생년월일

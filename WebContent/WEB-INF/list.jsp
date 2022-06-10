@@ -168,7 +168,7 @@
 									re11 = re11+1;
 								} 
 								re8 = re7+re6;								
-								re9 = re6+re3+c;
+								re9 = c+re3-re6-re7;
 							}
 							aDiv = (a/att)*100;
 							cDiv = (c/a)*100;
@@ -249,7 +249,6 @@
 						<th style="background-color:#eeeeee; text-align:center;">성별</th>
 						<th style="background-color:#eeeeee; text-align:center;">유형</th>
 						<th style="background-color:#eeeeee; text-align:center;">구분</th>
-						<th style="background-color:#eeeeee; text-align:center;">비고</th>
 						<!-- 수강인원결과  -->
 						<th style="background-color:#eeeeee; text-align:center;">결과</th>
 						<th style="background-color:#eeeeee; text-align:center;">출석률</th>
@@ -296,7 +295,6 @@
 						<td><%=b.getM_sex()%></td>
 						<td><%=b.getM_option1()%></td>
 						<td><%=b.getM_option2()%></td>				
-						<td><%=b.getM_note()%></td>
 						
 						<td><%=b.getCo_result()%></td>
 						<td><%=b.getCo_attend()%></td>
@@ -323,7 +321,7 @@
 						<td><%=b.getC_manager()%></td>
 						<td><%=b.getC_except()%></td>
 					</tr>									
-				</tbody>	
+				</tbody>
 			<%
 					}
 							

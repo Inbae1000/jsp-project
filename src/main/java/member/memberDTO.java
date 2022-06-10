@@ -12,7 +12,6 @@ public class MemberDTO {
 	private String m_option1;
 	private String m_option2;
 	private String m_option3;
-	private String m_note;
 	private int s_id;
 	
 	
@@ -82,12 +81,6 @@ public class MemberDTO {
 	}
 	public void setM_option3(String m_option3) {
 		this.m_option3 = m_option3;
-	}
-	public String getM_note() {
-		return m_note;
-	}
-	public void setM_note(String m_note) {
-		this.m_note = m_note;
 	}
 	public int getS_id() {
 		return s_id;

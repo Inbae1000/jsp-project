@@ -78,11 +78,6 @@
 								<label for="cars">대상구분</label>
 								<input type = "text" class="form-control"placeholder="대상구분" name="m_option3" maxlength="20">
 							</th>
-							<th style = "text-align:center">
-								<label for="cars">비고</label>
-								<input type = "text" class="form-control"placeholder="비고" name="m_note" maxlength="20">
-							</th>
-							
 						</tr>
 					</tbody>					
 				</table
@@ -235,7 +230,20 @@
 								</select>
 							</th>
 						</tr>
-					</tbody>					
+					</tbody>
+					<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">비고</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
+						</tr>
+					</thead>
+					</tbody>
+						<tr>
+							<th style = "text-align:center">
+								<input type = "text" class="form-control" name="n_note" value ="">
+							</th>
+						</tr>
+					</tbody>							
 				</table>
 				<input type="button" class="btn btn-primary pull-right" value="등록" onclick = "check()"> <!-- 수강인원추가버튼부분 -->								
 			</form>			

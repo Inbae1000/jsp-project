@@ -23,7 +23,6 @@ create table member(
 	m_option1 varchar(20),
 	m_option2 varchar(20),
 	m_option3 varchar(20),
-	m_note varchar(200),
 	s_id int not null,
 	
 	primary key(m_id)
@@ -68,7 +67,18 @@ create table subject(
 	primary key(s_id)
 );
 
+create table note(
+	m_id int,
+	n_id int,
+	n_note varchar(200),
+	n_date date not null,
+	
+	primary key(m_id, n_id)
+);
+
 
 alter table subject add s_member varchar(20);
 alter table subject add s_empoyee varchar(20);
 ALTER TABLE company MODIFY COLUMN c_maintain text;
+ALTER TABLE member drop column m_note;
+alter table note add n_date date not null;
