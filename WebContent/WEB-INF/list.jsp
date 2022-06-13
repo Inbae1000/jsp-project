@@ -54,7 +54,6 @@
 	double reDiv7 = 0;		//수료고보 %값
 	double reDiv8 = 0;		//일반취업률 %값
 	double cerDiv = 0;		//자격취득 %값
-	
 %>
 
 <%@ include file = "menu2.jsp" %>
@@ -105,8 +104,8 @@
 						
 						<%
 						
-						int sId = (int)request.getAttribute("id");
- 					 	String at = (String)request.getAttribute("member");
+						int sId = (int)request.getAttribute("id");				// 과목 id
+ 					 	String at = (String)request.getAttribute("member");		// 해당 과목의 학생 정원
  					 	int att = Integer.parseInt(at);
 						
 						MemberDAO memberDao = MemberDAO.getInstance();
@@ -114,22 +113,22 @@
 						
 						NoteDAO noteDao = NoteDAO.getInstance();
 						
-						a = 0;
-						c = 0;
-						re1 = 0;
-						re2 = 0;
-						re3 = 0;
-						re4 = 0;
-						re5 = 0;
-						re6 = 0;
-						re7 = 0;
-						re8 = 0;
-						re9 = 0;
-						re10 = 0;
-						re11 = 0;
-						cer = 0;
-						aDiv = 0;
-						cDiv = 0;
+						a = 0;		//모집인원
+						c = 0;		//수료인원
+						re1 = 0;	//중도탈락
+						re2 = 0;	//조기취업
+						re3 = 0;	//이수취업
+						re4 = 0;	//수료취업
+						re5 = 0;	//수료미취업
+						re6 = 0;	//산정제외-수료후
+						re7 = 0;	//산정제외-재직자
+						re8 = 0;	//산정제외-수료전
+						re9 = 0;	//산정인원
+						re10 = 0;	//고보가입
+						re11 = 0;	//수료고보
+						cer = 0;	//자격취득
+						aDiv = 0;	//모집인원 %값
+						cDiv = 0;	//수료인원 %값
 	
 							for(MemberJoin b : list){
 								a =a+1;
@@ -286,11 +285,11 @@
 
  					<%
  						a = 0;
-						for(MemberJoin b : list){
+						for(MemberJoin b : list){	//과목별 학생 리스트
 							a =a+1;
 							int on = b.getM_id();
 							String one = null;
-							if(noteDao.selectNewList(on) == null){
+							if(noteDao.selectNewList(on) == null){	// 비고
 								one = "";
 							}else{
 								one = noteDao.selectNewList(on).getN_note();
