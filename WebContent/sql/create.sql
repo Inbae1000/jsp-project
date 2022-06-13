@@ -81,4 +81,5 @@ alter table subject add s_member varchar(20);
 alter table subject add s_empoyee varchar(20);
 ALTER TABLE company MODIFY COLUMN c_maintain text;
 ALTER TABLE member drop column m_note;
-alter table note add n_date date not null;
+alter table note drop column n_date;
+alter table note add n_date date not null default(current_date);

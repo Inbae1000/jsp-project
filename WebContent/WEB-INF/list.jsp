@@ -320,12 +320,14 @@
 						<td><%=b.getC_number()%></td>
 						<td><%=b.getC_manager()%></td>
 						<td><%=b.getC_except()%></td>
+
 					</tr>									
 				</tbody>
-			<%
-					}
-							
-			%>
+					<%
+							}
+									
+					%>
+
 			</table>
 		</div>
 	</div>

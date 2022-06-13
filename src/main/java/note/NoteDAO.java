@@ -92,7 +92,7 @@ public class NoteDAO {
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("insert into note ");
-		query.append("values (?,?,?,?)");
+		query.append("values (?,?,?,curdate())");
 		 
 		try {
 			pstmt = conn.prepareStatement(query.toString());
@@ -101,8 +101,6 @@ public class NoteDAO {
 			pstmt.setString(3, dto.getN_note());
 			
 			return pstmt.executeUpdate();
-			 
-			 
 			 
 		 } catch(SQLException e) {
 			 e.printStackTrace();
@@ -145,6 +143,7 @@ public class NoteDAO {
 				dto.setM_id(rs.getInt(1));
 				dto.setN_id(rs.getInt(2));
 				dto.setN_note(rs.getString(3));
+				dto.setN_date(rs.getString(4));
 				
 				list.add(dto);
 				
@@ -157,5 +156,38 @@ public class NoteDAO {
 		}
 		return list;
 	}
+	
+	
+	public List<NoteDTO> selectNewList(int m_id){
+
+		List<NoteDTO> list = new ArrayList<>();
+		
+		try {
+			conn = ConnectionDB.getConnection();
+			String sql = "select * from note where m_id = ? order by n_id desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, m_id);
+			rs = pstmt.executeQuery();
+			
+			
+			while (rs.next()) {
+				NoteDTO dto = new NoteDTO();
+				dto.setM_id(rs.getInt(1));
+				dto.setN_id(rs.getInt(2));
+				dto.setN_note(rs.getString(3));
+				dto.setN_date(rs.getString(4));
+				
+				list.add(dto);
+				
+			}
+
+		} catch(SQLException e){
+			e.printStackTrace();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
 
 }

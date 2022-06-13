@@ -1,9 +1,5 @@
 package note;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-
 public class NoteDTO {
 	private int m_id;
 	private int n_id;
