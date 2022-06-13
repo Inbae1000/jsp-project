@@ -255,7 +255,7 @@
 				<input onclick = "return confirm('삭제 하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.do"/>
 				<input type="button" class="btn btn-primary pull-right" value="수정" style="margin-right : 10px;" onclick = "check()">					
 			</form>	
-			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd; margin-top : 20px;">
+			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd; margin-top : 75px;">
 				<thead>
 					<tr>
 						<th style="background-color:#eeeeee; text-align:center;">번호</th>

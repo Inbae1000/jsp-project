@@ -110,8 +110,8 @@ public class NoteDAO {
 		 return -1;
 	}
 	
-	public int delete(int n_id, int m_id) {
-		String sql = "delete from member where n_id = ? and m_id = ? ";
+	public int delete1(int n_id, int m_id) {
+		String sql = "delete from note where n_id = ? and m_id = ? ";
 		
 		try {
 			conn = ConnectionDB.getConnection();
@@ -126,6 +126,24 @@ public class NoteDAO {
 		}
 		return result;
 	}
+	
+	public int delete2(int m_id) {
+		String sql = "delete from note where m_id = ? ";
+		
+		try {
+			conn = ConnectionDB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, m_id);
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, pstmt, null);
+		}
+		return result;
+	}
+	
+	
 	public List<NoteDTO> selectList(int m_id){
 
 		List<NoteDTO> list = new ArrayList<>();
@@ -158,13 +176,12 @@ public class NoteDAO {
 	}
 	
 	
-	public List<NoteDTO> selectNewList(int m_id){
+	public NoteDTO selectNewList(int m_id){
 
-		List<NoteDTO> list = new ArrayList<>();
 		
 		try {
 			conn = ConnectionDB.getConnection();
-			String sql = "select * from note where m_id = ? order by n_id desc";
+			String sql = "select * from note where m_id = ? order by n_id desc limit 1";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, m_id);
 			rs = pstmt.executeQuery();
@@ -172,12 +189,9 @@ public class NoteDAO {
 			
 			while (rs.next()) {
 				NoteDTO dto = new NoteDTO();
-				dto.setM_id(rs.getInt(1));
-				dto.setN_id(rs.getInt(2));
 				dto.setN_note(rs.getString(3));
-				dto.setN_date(rs.getString(4));
-				
-				list.add(dto);
+
+				return dto;
 				
 			}
 
@@ -186,7 +200,7 @@ public class NoteDAO {
 		} finally {
 			close(conn, pstmt, rs);
 		}
-		return list;
+		return null;
 	}
 
 

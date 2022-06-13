@@ -419,6 +419,8 @@ public class MemberController extends HttpServlet {
 		CompanyDAO cDao = CompanyDAO.getInstance();
 		cDao.delete(id);
 		
+		NoteDAO nDao = NoteDAO.getInstance();
+		nDao.delete2(id);
 		resp.sendRedirect("select.so?s_id="+sId);
 	}
 

@@ -210,7 +210,7 @@ public class SubjectDAO {
 	}
 	
 	public int delete2(int s_id) {
-		String sql = "delete from a,b,c using member as a left join company as b on a.m_id=b.m_id left join consequence as c on a.m_id = c.m_id where a.s_id = ?;";
+		String sql = "delete from a,b,c,d using member as a left join company as b on a.m_id=b.m_id left join consequence as c on a.m_id = c.m_id left join note as d on a.m_id = d.m_id where a.s_id = ?";
 		
 		try {
 			conn = ConnectionDB.getConnection();

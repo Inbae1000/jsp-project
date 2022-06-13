@@ -1,3 +1,4 @@
+<%@page import="note.NoteDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -110,6 +111,9 @@
 						
 						MemberDAO memberDao = MemberDAO.getInstance();
 						List<MemberJoin> list = memberDao.selectList(sId);
+						
+						NoteDAO noteDao = NoteDAO.getInstance();
+						
 						a = 0;
 						c = 0;
 						re1 = 0;
@@ -274,6 +278,8 @@
 						<th style="background-color:#eeeeee; text-align:center;">전화번호</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업전담제</th>
 						<th style="background-color:#eeeeee; text-align:center;">산정제외</th>	
+						<!-- 비고 -->
+						<th style="background-color:#eeeeee; text-align:center;">비고</th>	
 					</tr>
  				</thead>
  				
@@ -282,10 +288,19 @@
  						a = 0;
 						for(MemberJoin b : list){
 							a =a+1;
+							int on = b.getM_id();
+							String one = null;
+							if(noteDao.selectNewList(on) == null){
+								one = "";
+							}else{
+								one = noteDao.selectNewList(on).getN_note();
+							}
+
 					%>
 					
 				<tbody>
 					<tr> 
+						<!-- 기본정보 -->
 						<td style="position : sticky; left : 0; background-color : #eeeeee;  width : 48px;"><%=(int)a %></td> 
 						<td style="position : sticky; left : 48px; background-color : #eeeeee;;"><a href="update.do?m_id=<%=b.getM_id()%>"><%=b.getM_name()%></a></td>
 						<td><%=b.getM_birth()%></td>
@@ -295,7 +310,7 @@
 						<td><%=b.getM_sex()%></td>
 						<td><%=b.getM_option1()%></td>
 						<td><%=b.getM_option2()%></td>				
-						
+						<!-- 수강인원결과  -->
 						<td><%=b.getCo_result()%></td>
 						<td><%=b.getCo_attend()%></td>
 						<td><%=b.getCo_comple()%></td>
@@ -311,7 +326,7 @@
 						<td><%=b.getCo_asse()%></td>
 						<td><%=b.getCo_porf()%></td>
 						<td><%=b.getCo_certificate()%></td>
-
+						<!-- 업체현황  -->
 						<td><%=b.getC_start()%></td>
 						<td><%=b.getC_maintain()%></td>
 						<td><%=b.getC_end()%></td>
@@ -320,7 +335,8 @@
 						<td><%=b.getC_number()%></td>
 						<td><%=b.getC_manager()%></td>
 						<td><%=b.getC_except()%></td>
-
+						<!-- 비고 -->
+						<td><%=one %></td>
 					</tr>									
 				</tbody>
 					<%
