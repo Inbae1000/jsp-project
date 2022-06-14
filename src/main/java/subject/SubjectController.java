@@ -91,6 +91,14 @@ public class SubjectController extends HttpServlet {
 		String professor = req.getParameter("s_professor");
 		String member = req.getParameter("s_member");
 		String empoyee = req.getParameter("s_empoyee");
+		String session = req.getParameter("s_session");
+		String profession = req.getParameter("s_profession");
+		String subject = req.getParameter("s_subject");
+		String affiliation = req.getParameter("s_affiliation");
+		String name2 = req.getParameter("s_name2");
+		String option = req.getParameter("s_option");
+		String code2 = req.getParameter("s_code2");
+		String condition = req.getParameter("s_condition");
 		
 		SubjectDAO subjectDao = SubjectDAO.getInstance();
 		SubjectDTO dto = new SubjectDTO();
@@ -104,6 +112,14 @@ public class SubjectController extends HttpServlet {
 		dto.setS_professor(professor);
 		dto.setS_member(member);
 		dto.setS_empoyee(empoyee);
+		dto.setS_session(session);
+		dto.setS_profession(profession);
+		dto.setS_subject(subject);
+		dto.setS_affiliation(affiliation);
+		dto.setS_name2(name2);
+		dto.setS_option(option);
+		dto.setS_code2(code2);
+		dto.setS_condition(condition);
 		
 		int sResult = subjectDao.insert(dto);
 		System.out.println(sResult);	
@@ -133,6 +149,14 @@ public class SubjectController extends HttpServlet {
 		String pro = req.getParameter("s_professor");
 		String member = req.getParameter("s_member");
 		String empoyee = req.getParameter("s_empoyee");
+		String session = req.getParameter("s_session");
+		String profession = req.getParameter("s_profession");
+		String subject = req.getParameter("s_subject");
+		String affiliation = req.getParameter("s_affiliation");
+		String name2 = req.getParameter("s_name2");
+		String option = req.getParameter("s_option"); 
+		String code2 = req.getParameter("s_code2");
+		String condition = req.getParameter("s_condition");
 		
 		SubjectDAO sDao = SubjectDAO.getInstance();
 		SubjectDTO sDto = new SubjectDTO();
@@ -146,10 +170,18 @@ public class SubjectController extends HttpServlet {
 		sDto.setS_professor(pro);
 		sDto.setS_member(member);
 		sDto.setS_empoyee(empoyee);
+		sDto.setS_session(session);
+		sDto.setS_profession(profession);
+		sDto.setS_subject(subject);
+		sDto.setS_affiliation(affiliation);
+		sDto.setS_name2(name2);
+		sDto.setS_option(option);
+		sDto.setS_code2(code2);
+		sDto.setS_condition(condition);
 		
 		int sResult = sDao.update(sDto);
 		System.out.print(sResult);
-		resp.sendRedirect("home.do");
+		resp.sendRedirect("select.so?s_id="+id);
 	}
 	
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{

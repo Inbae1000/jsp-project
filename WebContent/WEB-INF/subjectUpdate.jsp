@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>과정 수정 및 삭제</title>
+<title>Insert title here</title>
 </head>
 <body>
 
@@ -40,11 +40,11 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정시작일</label>
-								<input type = "date" class="form-control" name="s_start" maxlength="20" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_start}">
+								<input type = "date" class="form-control" name="s_start" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_start}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">과정종료일</label>
-								<input type = "date" class="form-control" id = "dateid" name="s_end" maxlength="20" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_end}" onchange = adddate();>
+								<input type = "date" class="form-control" id = "dateid" name="s_end" maxlength="20" value = "1900-01-01" min="0000-00-00" max="3000-12-31" value ="${suSelectOne.s_end}" onchange = adddate();>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">추후관리</label>
@@ -65,28 +65,65 @@
 						</tr>
 					</tbody>					
 				</table>
-				<input  onclick = "return confirm('정말 삭제 하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.so"/> 								
-				<input type="submit" class="btn btn-primary pull-right" value="수정" style="margin-right : 10px;"/>
-			</form>
-<script>
-
-	function adddate(){
-		month = document.getElementById("dateid").value;
-		const today = new Date(month);
-		const nextDate = new Date( today.getFullYear(), 
-									today.getMonth()+6 , 
-									today.getDate() -1 );
-		
-		const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
 				
-		/* const addMonth = new Date(nextDate) */
-		insert.s_manage.value=formatted_date;
-	}
-	
-	function enterkeydown(e){
-		if(e.keyCode == 13)
-			return false;
-	}
+<!-- 과정 상세정보  -->
+				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">과정 상세정보</th>			
+						</tr>
+					</thead>
+					<tbody>
+							<tr>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >회차</label>
+									<input type = "text" class="form-control"placeholder="회차" name="s_session" maxlength="50"  value = "${suSelectOne.s_session}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >직종</label>
+									<input type = "text" class="form-control"placeholder="직종" name="s_profession" maxlength="50"  value = "${suSelectOne.s_profession}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >소분류</label>
+									<input type = "text" class="form-control"placeholder="소분류" name="s_subject" maxlength="50"  value = "${suSelectOne.s_subject}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >소분류코드</label>
+									<input type = "text" class="form-control"placeholder="소분류코드" name="s_code2" maxlength="50" value = "${suSelectOne.s_code2}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >상태</label>
+									<input type = "text" class="form-control"placeholder="상태" name="s_condition" maxlength="50" value = "${suSelectOne.s_condition}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >소속</label>
+									<input type = "text" class="form-control"placeholder="소속" name="s_affiliation" maxlength="50"  value = "${suSelectOne.s_affiliation}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >과정명2</label>
+									<input type = "text" class="form-control"placeholder="과정명" name="s_name2" maxlength="50"  value = "${suSelectOne.s_name2}">
+								</th>
+								<th>
+									<th style = "text-align:center">
+									<label for="cars" >취성패조회</label>
+									<input type = "text" class="form-control"placeholder="취성패조회" name="s_option" maxlength="50"  value = "${suSelectOne.s_option}">
+								</th>
+							</tr>
+					</tbody>
+				</table>
+				<input onclick =" return confirm('정말 삭제 하시겠습니까')"  type="submit" class="btn btn-primary pull-right" value="삭제" formaction="delete.so"/> 	
+				<input type="submit" class="btn btn-primary pull-right" value="수정" style="margin-right : 10px;"/>										
+			</form>
+		</div>
+	</div>	
+<script>
 	
 </script>
 			
