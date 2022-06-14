@@ -140,7 +140,7 @@
 								<input type = "text" class="form-control" id = "co_option1Id" name="co_option1" maxlength="20" readonly value ="${coSelectOne.co_option1}">
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종가종치</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" id = "co_option2Id" name="co_option2" maxlength="20" readonly value ="${coSelectOne.co_option2}">
 							</th>
 							<th style = "text-align:center">
@@ -148,7 +148,7 @@
 								<input type = "text" class="form-control" id = "co_option3Id" name="co_option3" maxlength="20" readonly value ="${coSelectOne.co_option3}">
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종가중치</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" id = "co_option4Id" name="co_option4" maxlength="20" readonly value ="${coSelectOne.co_option4}">
 							</th>
 							<th style = "text-align:center">
@@ -156,7 +156,7 @@
 								<input type = "text" class="form-control" id = "co_option5Id" name="co_option5" maxlength="20" readonly value ="${coSelectOne.co_option5}">
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종가중치</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" id = "co_option6Id" name="co_option6" maxlength="20" readonly value ="${coSelectOne.co_option6}">
 							</th>
 							<th style = "text-align:center">
@@ -164,7 +164,7 @@
 								<input type = "text" class="form-control" name= "co_asse" maxlength="20" readonly value ="${coSelectOne.co_asse}">
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종기준</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" name= "co_porf" maxlength="20" readonly value ="${coSelectOne.co_porf}">
 							</th>
 							<th style = "text-align:center">
@@ -343,7 +343,7 @@ function Attendance1(){  // 출석률로 결과 및 이수여부 확인
 	if(att >= 80){
 		insert.co_comple.value = "O";
 	} else if(result == "중도탈락"){
-		insert.co_comple.value = "1";
+		insert.co_comple.value = "";
 	} else if(att >= 70 && att <= 79){
 		insert.co_comple.value = "이수";
 	} else {
@@ -390,10 +390,10 @@ function Attendance4(){  //구분으로 직종 가중치, 취업률 가중치 �
 	
 	if(type2 == "국취지1"){
 		insert.co_option5.value = 1.5;
-		insert.co_option6.value = 1.5;
+		insert.co_option6.value = 1;
 	} else if (type2 == "40세이상"){
 		insert.co_option5.value = 1.3;
-		insert.co_option6.value = 1.5;
+		insert.co_option6.value = 1;
 	} else {
 		insert.co_option5.value = 1;
 		insert.co_option6.value = 1;
@@ -403,13 +403,14 @@ function Attendance4(){  //구분으로 직종 가중치, 취업률 가중치 �
 function Attendance5(){  // 평가기준 직종기준 계산
 	item1 = document.getElementById("item1Id").value;
 	co_option1 = document.getElementById("co_option1Id").value;
+	co_option2 = document.getElementById("co_option2Id").value;
 	co_option3 = document.getElementById("co_option3Id").value;
 	co_option4 = document.getElementById("co_option4Id").value;
 	co_option5 = document.getElementById("co_option5Id").value;
 	co_option6 = document.getElementById("co_option6Id").value;
 	
 	var a1 = co_option1*co_option3*co_option5;
-	var a2 = co_option1*co_option4*co_option6;
+	var a2 = co_option2*co_option4*co_option6;
 	
 	if(item1 == "O"){
 		insert.co_asse.value = a1;

@@ -139,7 +139,7 @@
 								<input type = "text" class="form-control" id = "co_option1Id" name="co_option1" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종가종치</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" id = "co_option2Id" name="co_option2" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
@@ -147,7 +147,7 @@
 								<input type = "text" class="form-control" id = "co_option3Id" name="co_option3" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종가중치</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" id = "co_option4Id" name="co_option4" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
@@ -155,7 +155,7 @@
 								<input type = "text" class="form-control" value ="1" id = "co_option5Id" name="co_option5" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종가중치</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control" value ="1" id = "co_option6Id" name="co_option6" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
@@ -163,7 +163,7 @@
 								<input type = "text" class="form-control"placeholder="평가기준" name= "co_asse" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
-								<label for="cars">직종기준</label>
+								<label for="cars">일반취업률</label>
 								<input type = "text" class="form-control"placeholder="직종기준" name= "co_porf" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
@@ -307,7 +307,7 @@
 		if(att >= 80){
 			insert.co_comple.value = "O";
 		} else if(result == "중도탈락"){
-			insert.co_comple.value = "1";
+			insert.co_comple.value = "";
 		} else if(att >= 70 && att <= 79){
 			insert.co_comple.value = "이수";
 		} else {
@@ -354,10 +354,10 @@
 		
 		if(type2 == "국취지1"){
 			insert.co_option5.value = 1.5;
-			insert.co_option6.value = 1.5;
+			insert.co_option6.value = 1;
 		} else if (type2 == "40세이상"){
 			insert.co_option5.value = 1.3;
-			insert.co_option6.value = 1.5;
+			insert.co_option6.value = 1;
 		} else {
 			insert.co_option5.value = 1;
 			insert.co_option6.value = 1;

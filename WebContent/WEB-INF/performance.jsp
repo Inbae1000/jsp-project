@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +25,7 @@ th{
 <body>
 
 <!-- 메뉴 -->
-	<%@ include file = "WEB-INF/menu2.jsp" %>
+	<%@ include file = "menu2.jsp" %>
 	
 <div style = " width : 3500px; margin-top : 70px;">
 <div style = "position : sticky; left : 0px;">	
@@ -113,17 +114,26 @@ th{
 <!-- 정보입력  -->
 
 			<%
+				Date date = new Date();
 				
+				
+				SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+				String strdate = simpleDate.format(date);
+			
+				Calendar cal = Calendar.getInstance();
 				
 				SubjectDAO subjectDao = SubjectDAO.getInstance();
 				List<SubjectDTO> list = subjectDao.subjectList2(); 
 				int a = 0;
 					for(SubjectDTO b : list){
 						a=a+1;
+						SimpleDateFormat simpleDate2 = new SimpleDateFormat("yyyy-MM-dd");
+						String pss = b.getS_manage();
+						Date date2 = simpleDate2.parse(pss);
+						long dm = (long)date.getTime();  //현재시간
+						long dm2 = (long)date2.getTime(); // 관리종료
+						long dm3 = (dm2-dm)/(1000*60*60*24)+1; // 계산
 						
-						/* LocalDate now = LocalDate.now();
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-						String formatedNow = now.format(formatter);	 */
 						
 			%>
 					<tr>
@@ -137,11 +147,11 @@ th{
 						<th style="text-align:center;"><%=b.getS_condition() %></th>
 						<th style="text-align:center;"><%=b.getS_start() %></th>
 						<th style="text-align:center;"><%=b.getS_end() %></th>
-						<th style="text-align:center;" id="date1" onchange=date123()><%=b.getS_manage() %></th>
-						<th style="text-align:center;">수강인원</th>
+						<th style="text-align:center;" id="date1" onchange=date123()><%=b.getS_manage()%></th>
+						<th style="text-align:center;"><%=dm3 %></th>
 						<th style="text-align:center;"><%=b.getS_member() %></th>
-						<th style="text-align:center;">인원</th>
-						<th style="text-align:center;">모집률</th>
+						<th style="text-align:center;"><%=date2.getTime() %></th>
+						<th style="text-align:center;"><%=date.getTime() %></th>
 						<th style="text-align:center;">수료인원</th>
 						<th style="text-align:center;">수료률</th>
 						<th style="text-align:center;">중도탈락</th>

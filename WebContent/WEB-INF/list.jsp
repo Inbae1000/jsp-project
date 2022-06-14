@@ -257,14 +257,14 @@
 						<th style="background-color:#eeeeee; text-align:center;">취업</th>
 						<th style="background-color:#eeeeee; text-align:center;">동일</th>
 						<th style="background-color:#eeeeee; text-align:center;">고보</th>
-						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
+						<!-- <th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
 						<th style="background-color:#eeeeee; text-align:center;">취업가중치</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th>
+						<th style="background-color:#eeeeee; text-align:center;">직종가중치</th> -->
 						<th style="background-color:#eeeeee; text-align:center;">평가기준</th>
-						<th style="background-color:#eeeeee; text-align:center;">직종기준</th>
+						<th style="background-color:#eeeeee; text-align:center;">일반취업률</th>
 						<th style="background-color:#eeeeee; text-align:center;">자격증</th>
 						<!-- 업체현황  -->
 						<th style="background-color:#eeeeee; text-align:center;">입사일</th>
@@ -314,12 +314,12 @@
 						<td><%=b.getCo_employ()%></td>
 						<td><%=b.getCo_same()%></td>
 						<td><%=b.getCo_insurance()%></td>
-						<td><%=b.getCo_option1()%></td>
+						<%-- <td><%=b.getCo_option1()%></td>
 						<td><%=b.getCo_option2()%></td>
 						<td><%=b.getCo_option3()%></td>
 						<td><%=b.getCo_option4()%></td>
 						<td><%=b.getCo_option5()%></td>
-						<td><%=b.getCo_option6()%></td>						
+						<td><%=b.getCo_option6()%></td>			 --%>			
 						<td><%=b.getCo_asse()%></td>
 						<td><%=b.getCo_porf()%></td>
 						<td><%=b.getCo_certificate()%></td>

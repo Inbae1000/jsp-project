@@ -23,6 +23,8 @@
 		<div class = "collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="home.do">메인</a></li>
+				<li><a href="#">팀별실적</a></li>
+				<li><a href="performance.do">훈련실적현황</a></li>	
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
