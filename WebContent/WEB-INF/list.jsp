@@ -35,13 +35,15 @@
 	int re3 = 0;			//이수취업
 	int re4 = 0;			//수료취업
 	int re5 = 0;			//수료미취업
-	int re6 = 0;			//산정제외-수료후
-	int re7 = 0;			//산정제외-재직자
-	int re8 = 0;			//산정제외-수료전
+	int re6 = 0;			//산정제외-수료전
+	int re7 = 0;			//산정제외-수료전
+	int re8 = 0;			//산정제외-수료전 re6+re7
 	double re9 = 0;			//산정인원
 	int re10 = 0;			//고보가입
 	int re11 = 0;			//수료고보
 	int re12 = 0;			//수료취업+이수취업
+	int re13 = 0;			//산정제외-수료후
+	int re14 = 0;			//산정제외-재직자
 	double cer = 0;			//자격취득
 	double aDiv = 0;		//모집인원 %값
 	double cDiv = 0;		//수료인원 %값
@@ -120,12 +122,14 @@
 						re3 = 0;	//이수취업
 						re4 = 0;	//수료취업
 						re5 = 0;	//수료미취업
-						re6 = 0;	//산정제외-수료후
-						re7 = 0;	//산정제외-재직자
+						re6 = 0;	//산정제외-수료전
+						re7 = 0;	//산정제외-수료전
 						re8 = 0;	//산정제외-수료전
 						re9 = 0;	//산정인원
 						re10 = 0;	//고보가입
 						re11 = 0;	//수료고보
+						re13 = 0;	//산정제외-수료후
+						re14 = 0;	//산정제외-재직자
 						cer = 0;	//자격취득
 						aDiv = 0;	//모집인원 %값
 						cDiv = 0;	//수료인원 %값
@@ -153,13 +157,21 @@
 								if(b.getCo_certificate().equals("O")){
 									cer = cer+1;
 								}
-								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("O") && 
+								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("") && 
 										b.getM_option1().equals("실업자일반")){
 									re6 = re6+1;
 								}
-								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("O") && 
+								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("") && 
 										b.getM_option1().equals("근로자개인")){
 									re7 = re7+1;
+								}
+								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("O") && 
+										b.getM_option1().equals("실업자일반")){
+									re13 = re13+1;
+								}
+								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("O") && 
+										b.getM_option1().equals("근로자개인")){
+									re14 = re14+1;
 								}
 								if(b.getCo_insurance().equals("예정") || b.getCo_insurance().equals("O")){
 									re10 = re10+1;
@@ -175,6 +187,7 @@
 							}
 							aDiv = (a/att)*100;
 							cDiv = (c/a)*100;
+							re1 = re1-re8;
 							re12 = re3 + re4;
 							reDiv1 = (re1/a)*100; 
 							reDiv2 = (re2/a)*100;
@@ -217,8 +230,8 @@
 							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv4) %>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv5) %>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re8 %>명</td> 
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re6 %>명</td> 
-							<td style="background-color:#FFFFFF; text-align:center;"><%=re7 %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re13 %>명</td> 
+							<td style="background-color:#FFFFFF; text-align:center;"><%=re14 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;">${suSelectOne.s_empoyee}%</td>
 							<td style="background-color:#eeeeee; text-align:center;">일반취업률</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re12 %>명</td>
