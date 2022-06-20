@@ -133,9 +133,10 @@
 						cer = 0;	//자격취득
 						aDiv = 0;	//모집인원 %값
 						cDiv = 0;	//수료인원 %값
-	
+						
 							for(MemberJoin b : list){
 								a =a+1;
+								
 								if(b.getCo_comple().equals("O")){
 									c = c+1;
 								}

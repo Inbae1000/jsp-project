@@ -133,13 +133,12 @@ public class SubjectDAO {
 			list2.add(tmp);
 		}
 		}catch(SQLException e){ 
-			  e.printStackTrace(); 
-			  } finally { 
-				  close(conn,pstmt,rs); 
-				 } 
-		  return list2; 
-		  }
-	
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		return list2; 
+	}
 	
 	public int insert(SubjectDTO dto) {
 
@@ -312,6 +311,8 @@ public class SubjectDAO {
          }         
       } catch(Exception e) {
          e.printStackTrace();
+      }finally {
+			close(conn, pstmt, rs);
       }
       return list;//게시글 리스트 반환
 	}

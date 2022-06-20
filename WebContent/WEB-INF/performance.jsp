@@ -12,32 +12,46 @@
 <%@page import="company.*" %>
 <%@page import="consequence.*" %>
 <%@page import="java.util.*" %>
-<%-- <%@page import="java.time.LocalDate" %>
-<%@page import="java.time.format.DateTimeFormatter;" %> --%>
 
-<link rel="stylesheet" href="css/bootstrap.css">
 <title>전체(진행)</title>
-<style>
-th{
-	border: 1px solid;
-}
-</style>
-</head>
-<body>
-
 <!-- 메뉴 -->
 	<%@ include file = "menu2.jsp" %>
 	
-<div style = " width : 3500px; margin-top : 70px;">
-<div style = "position : sticky; left : 0px;">	
 	
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css"
+ href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+
+<script>
+    $(function(){
+        $("#tablesort").dataTable({
+        	 searching: false,
+        	 info: false,
+             scrollY:        "500px",
+             scrollX:        true,
+             scrollCollapse: true,
+             fixedColumns: true
+
+        });
+       
+    });
+</script>
+
+
+</head>
+<body>
+
 <!-- 테이블 시작  -->
 
-			<div style ="border-top : 1px solid; font-size: 11px;" name="insert">
-				<table class="table table-striped" style="text-align:center;">
+   <div style ="border-top : 1px solid; font-size : 11px; margin-top : 70px;" name="insert" >
+				<table id="tablesort" class="table table-striped" style="text-align:center; white-space: nowrap; ">
+				<thead>
 					<tr>
-						<th colspan='8' style="/* position : sticky; left : 0; */ background-color:#DCE6F1; text-align:center;">구분</th>
-						<th colspan='4' style="/* position : sticky; left : 425.5px; */ background-color:#DCE6F1; text-align:center;">훈련기간</th>
+						<th colspan='8' style="background-color:#DCE6F1; text-align:center;">구분</th>
+						<th colspan='4' style="background-color:#DCE6F1; text-align:center;">훈련기간</th>
 						<th style="background-color:#DCE6F1; text-align:center;">정원</th>
 						<th colspan='2' style="background-color:#DCE6F1; text-align:center;">모집인원</th>
 						<th colspan='2' style="background-color:#DCE6F1; text-align:center;">수료인원</th>
@@ -60,11 +74,9 @@ th{
 						<th style="background-color:#DCE6F1; text-align:center;">과정구분</th>
 					</tr>
 					
-<!-- 2번째  -->
-		
 					<tr>
 						<th style="background-color:#DCE6F1; text-align:center; width:55px ">순번</th>
-						<th style="background-color:#DCE6F1; text-align:center; ">소속</th>
+						<th style="background-color:#DCE6F1; text-align:center; ">소속
 						<th style="background-color:#DCE6F1; text-align:center;">과정명</th>
 						<th style="background-color:#DCE6F1; text-align:center;">회차</th>
 						<th style="background-color:#DCE6F1; text-align:center;">담임</th>
@@ -111,8 +123,11 @@ th{
 						<th style="background-color:#DCE6F1; text-align:center;">수료과정</th>
 						<th style="background-color:#DCE6F1; text-align:center;">종료과정</th>
 					</tr>
-					
-<!-- 정보입력  -->
+				</thead>
+				<tbody>
+				
+<!-- 정보계산 -->
+				
 			<%!
 				DecimalFormat format = new DecimalFormat(".0");
 				double aLb = 0;		//모집인원 -> 인원
@@ -141,8 +156,8 @@ th{
 				double reDiv6 = 0;	//수료고보가입률
 				double cer = 0;		//자격취득
 				double cerDiv = 0;	//자격증취득률
-				
-			
+				List<SubjectDTO> list = new ArrayList<>();
+
 			%>
 			<%
 				Date date = new Date();
@@ -154,7 +169,7 @@ th{
 				Calendar cal = Calendar.getInstance();
 				
 				SubjectDAO subjectDao = SubjectDAO.getInstance();
-				List<SubjectDTO> list = subjectDao.subjectList2(); 
+				List<SubjectDTO> list = subjectDao.subjectList2();
 				int a = 0;
 					for(SubjectDTO b : list){
 						a=a+1;
@@ -323,32 +338,12 @@ th{
 					</tr>
 				<%
 					}
-				%>			
-				</table>
-			</div>
+				%>		
+				</tbody>	
+			</table>
+	</div>
 </div>
 </div>
-<script>
-	function date(){
-		a = document.getElementById("date1").value; //관리일
-		const today = new Date();
-		const day = new Date(a)			//관리종료일
-		const nextDate = new Date (day.getFullYear() - today.getFullYear(),
-									day.getFullYear() - today.getFullYear(),
-									day.getDate() - today.getDate());
-	}
-	
-	function date123(){
-		a = document.getElementById("date1").value; //관리일
-		const today = new Date();
-		const day = new Date(a);
-		
-		const elapsedMSec = day.getTime() - today.getTime();
-		const elapsedDay = elapsedMSec /1000 /60 /60 /24;
-		
-		insert.date2.value=elapsedDay;	
-		document.println(elapsedDay);
-	}
-</script>
+
 </body>
 </html>
