@@ -12,6 +12,7 @@ public class MemberDTO {
 	private String m_option1;
 	private String m_option2;
 	private String m_option3;
+	private String asse;
 	private int s_id;
 	
 	
@@ -81,6 +82,13 @@ public class MemberDTO {
 	}
 	public void setM_option3(String m_option3) {
 		this.m_option3 = m_option3;
+	}
+	
+	public String getAsse() {
+		return asse;
+	}
+	public void setAsse(String asse) {
+		this.asse = asse;
 	}
 	public int getS_id() {
 		return s_id;

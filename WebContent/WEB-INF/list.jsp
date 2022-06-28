@@ -56,6 +56,7 @@
 	double reDiv7 = 0;		//수료고보 %값
 	double reDiv8 = 0;		//일반취업률 %값
 	double cerDiv = 0;		//자격취득 %값
+	double reDiv9 = 0;		//가중치취업률 %값
 %>
 
 <%@ include file = "menu2.jsp" %>
@@ -112,6 +113,8 @@
 						
 						MemberDAO memberDao = MemberDAO.getInstance();
 						List<MemberJoin> list = memberDao.selectList(sId);
+						String asse = memberDao.selectAsse(sId).getAsse();
+						double doubleAsse = Double.parseDouble(asse);
 						
 						NoteDAO noteDao = NoteDAO.getInstance();
 						
@@ -199,6 +202,7 @@
 							reDiv6 = (re10/(re2+re3+re4+re5))*100;
 							reDiv7 = (re11/re9)*100;
 							reDiv8 = (re3+re4)/re9*100;
+							reDiv9 = (doubleAsse/att)*100;	// 가중치 취업률 **계산식 몰라서 임시로 계산했음**
 						%>
 						
 						<tr>
@@ -216,8 +220,8 @@
 							<td rowspan='2' style="background-color:#FFFFFF; border: 1px solid #dddddd; text-align:center;"><%=(int)re9%>명</td>
 							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
 							<td style="background-color:#eeeeee; text-align:center;">가중치취업률</td>
-							<td style="background-color:#FFFFFF; text-align:center;">명</td>
-							<td style="background-color:#FFFFFF; text-align:center;">%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=asse %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv9)%>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re10 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re11 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					
