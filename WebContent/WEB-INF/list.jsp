@@ -57,6 +57,7 @@
 	double reDiv8 = 0;		//일반취업률 %값
 	double cerDiv = 0;		//자격취득 %값
 	double reDiv9 = 0;		//가중치취업률 %값
+	double doubleAsse = 0;	//sum(asse) 값
 %>
 
 <%@ include file = "menu2.jsp" %>
@@ -114,7 +115,13 @@
 						MemberDAO memberDao = MemberDAO.getInstance();
 						List<MemberJoin> list = memberDao.selectList(sId);
 						String asse = memberDao.selectAsse(sId).getAsse();
-						double doubleAsse = Double.parseDouble(asse);
+						if(asse == null){	//이거 없으면 값 없을때 null로 보임
+							asse = "0";
+						}
+						if(asse != null){	// 이거 없으면 값 없을때 오류남
+							doubleAsse = Double.parseDouble(asse);
+						}
+						
 						
 						NoteDAO noteDao = NoteDAO.getInstance();
 						
