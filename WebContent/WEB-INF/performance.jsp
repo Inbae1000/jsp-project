@@ -154,8 +154,14 @@
 				double reDiv5 = 0;	//고보가입률
 				double re14 = 0;	//수료고보가입
 				double reDiv6 = 0;	//수료고보가입률
+				double re15 = 0;	//일반취업률
+				double reDiv7 = 0;	//일반취업률
+				double re16 = 0;	//전담인원
+				double reDiv8 = 0;	//전담률
 				double cer = 0;		//자격취득
 				double cerDiv = 0;	//자격증취득률
+				double doubleAsse = 0;	//sum(asse) 
+				double reDiv9 = 0;		//가중치취업률 %값
 				List<SubjectDTO> list = new ArrayList<>();
 
 			%>
@@ -184,6 +190,15 @@
 						int member2 = Integer.parseInt(member);
 						MemberDAO memberDao = MemberDAO.getInstance();
 						List<MemberJoin> list2 = memberDao.selectList(b.getS_id());
+						
+						String asse = memberDao.selectAsse(b.getS_id()).getAsse();
+						if(asse == null){	//이거 없으면 값 없을때 null로 보임
+							asse = "0";
+						}
+						if(asse != null){	// 이거 없으면 값 없을때 오류남
+							doubleAsse = Double.parseDouble(asse);
+						}
+						
 						aLb = 0;	//모집인원 -> 인원
 						co = 0;		//수료인원
 						re1 = 0;	//중도탈락
@@ -201,6 +216,8 @@
 						re12 = 0;	//취업인원
 						re13 = 0;	//고보가입
 						re14 = 0;	//수료고보가입
+						re15 = 0;	//일반취업률
+						re16 = 0; 	//전담인원
 						cer = 0;
 						for (MemberJoin Lb : list2){
 							aLb = aLb +1;	//모집인원 -> 인원
@@ -249,7 +266,13 @@
 								Lb.getCo_result().equals("이수취업") && Lb.getCo_insurance().equals("O") ||
 								Lb.getCo_result().equals("이수취업") && Lb.getCo_insurance().equals("예정")){
 								re14 = re14+1;
-							} 
+							}
+							if(Lb.getCo_porf().equals("1")){
+								re15 = re15+1;
+							}
+							if(!Lb.getC_manager().equals("")){
+								re16 = re16+1;
+							}
 						}
 						
 						aLbDiv = (aLb/member2)*100;
@@ -265,12 +288,15 @@
 						cerDiv = (cer/a)*100;
 						reDiv5 = (re13/(re2+re3+re4+re5))*100;
 						reDiv6 = (re14/re11)*100;
+						reDiv8 = (re16/re11)*100;
+						reDiv9=(doubleAsse/re11)*100;
+						
 			%>
 					<tr>
 						<!-- 구분 -->
 						<th style="text-align:center; "><%=a %></th>											<!-- 순번 -->
 						<th style="text-align:center; "><%=b.getS_affiliation() %></th>							<!-- 소속 -->
-						<th style="text-align:center;"><%=b.getS_name() %><br><%=b.getS_code() %></th>			<!-- 과정명 -->
+						<th style="text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a><br><%=b.getS_code() %></th>			<!-- 과정명 -->
 						<th style="text-align:center;"><%=b.getS_session() %></th>								<!-- 회차 -->
 						<th style="text-align:center;"><%=b.getS_professor() %></th>							<!-- 담임 -->
 						<th style="text-align:center;"><%=b.getS_profession() %></th>							<!-- 직종 -->
@@ -311,8 +337,8 @@
 						<th style="text-align:center;"><%=(int)re12 %></th>										<!-- 취업인원 -->
 						<th style="text-align:center;"><%=format.format(reDiv4) %>%</th>						<!-- 일반취업률 -->
 						<!-- 취업률 -->
-						<th style="text-align:center;">평가기준</th>												<!-- 평가기준 -->
-						<th style="text-align:center;">평가기준취업률</th>											<!-- 평가기준취업률 -->
+						<th style="text-align:center;"><%=asse %></th>												<!-- 평가기준 -->
+						<th style="text-align:center;"><%=format.format(reDiv9) %>%</th>											<!-- 평가기준취업률 -->
 						<!-- 직종취업률 -->
 						<th style="text-align:center;">직종기준</th>												<!-- 직종기준 -->
 						<th style="text-align:center;">직종기준취업률</th>											<!-- 직종기준취업률 -->
@@ -326,8 +352,8 @@
 						<th style="text-align:center;"><%=(int)cer %></th>										<!-- 자격증 -->
 						<th style="text-align:center;"><%=format.format(cerDiv) %>%</th>						<!-- 자격증취득률 -->
 						<!-- 취업전담제 -->
-						<th style="text-align:center;">전담인원</th>												<!-- 전담인원 -->
-						<th style="text-align:center;">전담률</th>												<!-- 전담률 -->
+						<th style="text-align:center;"><%=(int)re16 %></th>												<!-- 전담인원 -->
+						<th style="text-align:center;"><%=format.format(reDiv8) %>%</th>												<!-- 전담률 -->
 						<!-- 취성패 -->
 						<th style="text-align:center;"><%=b.getS_option() %></th>								<!-- 취성패조회 -->
 						<!-- 과정명 -->

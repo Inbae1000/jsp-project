@@ -56,6 +56,8 @@
 	double reDiv7 = 0;		//수료고보 %값
 	double reDiv8 = 0;		//일반취업률 %값
 	double cerDiv = 0;		//자격취득 %값
+	double reDiv9 = 0;		//가중치취업률 %값
+	double doubleAsse = 0;	//sum(asse) 값
 %>
 
 <%@ include file = "menu2.jsp" %>
@@ -114,6 +116,13 @@
 						List<MemberJoin> list = memberDao.selectList(sId);
 						
 						NoteDAO noteDao = NoteDAO.getInstance();
+						String asse = memberDao.selectAsse(sId).getAsse();
+						if(asse == null){	//이거 없으면 값 없을때 null로 보임
+							asse = "0";
+						}
+						if(asse != null){	// 이거 없으면 값 없을때 오류남
+							doubleAsse = Double.parseDouble(asse);
+						}
 						
 						a = 0;		//모집인원
 						c = 0;		//수료인원
@@ -128,6 +137,7 @@
 						re9 = 0;	//산정인원
 						re10 = 0;	//고보가입
 						re11 = 0;	//수료고보
+						re12 = 0;	//일반취업률
 						re13 = 0;	//산정제외-수료후
 						re14 = 0;	//산정제외-재직자
 						cer = 0;	//자격취득
@@ -183,13 +193,15 @@
 									b.getCo_result().equals("이수취업") && b.getCo_insurance().equals("예정")){
 									re11 = re11+1;
 								} 
+								if(b.getCo_porf().equals("1")){
+									re12 = re12+1;
+								}
 								re8 = re7+re6;								
 								re9 = c+re3-re6-re7;
 							}
 							aDiv = (a/att)*100;
 							cDiv = (c/a)*100;
 							re1 = re1-re8;
-							re12 = re3 + re4;
 							reDiv1 = (re1/a)*100; 
 							reDiv2 = (re2/a)*100;
 							cerDiv = (cer/a)*100;
@@ -198,7 +210,8 @@
 							reDiv5 = (re5/re9)*100;
 							reDiv6 = (re10/(re2+re3+re4+re5))*100;
 							reDiv7 = (re11/re9)*100;
-							reDiv8 = (re3+re4)/re9*100;
+							reDiv8 = (re12/re9)*100;
+							reDiv9=(doubleAsse/re9)*100;
 						%>
 						
 						<tr>
@@ -216,8 +229,8 @@
 							<td rowspan='2' style="background-color:#FFFFFF; border: 1px solid #dddddd; text-align:center;"><%=(int)re9%>명</td>
 							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
 							<td style="background-color:#eeeeee; text-align:center;">가중치취업률</td>
-							<td style="background-color:#FFFFFF; text-align:center;">명</td>
-							<td style="background-color:#FFFFFF; text-align:center;">%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=asse %>명</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv9)%>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re10 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re11 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					

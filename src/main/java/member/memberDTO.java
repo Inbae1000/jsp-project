@@ -12,6 +12,7 @@ public class MemberDTO {
 	private String m_option1;
 	private String m_option2;
 	private String m_option3;
+	private String asse;
 	private int s_id;
 	
 	
@@ -33,7 +34,6 @@ public class MemberDTO {
 	public void setM_birth(String m_birth) {
 		this.m_birth = m_birth;
 	}
-	
 	public String getM_number() {
 		return m_number;
 	}
@@ -82,15 +82,16 @@ public class MemberDTO {
 	public void setM_option3(String m_option3) {
 		this.m_option3 = m_option3;
 	}
+	public String getAsse() {
+		return asse;
+	}
+	public void setAsse(String asse) {
+		this.asse = asse;
+	}
 	public int getS_id() {
 		return s_id;
 	}
 	public void setS_id(int s_id) {
 		this.s_id = s_id;
 	}
-	
-	
-	
-	
-	
 }
