@@ -296,7 +296,7 @@
 						<!-- 구분 -->
 						<th style="text-align:center; "><%=a %></th>											<!-- 순번 -->
 						<th style="text-align:center; "><%=b.getS_affiliation() %></th>							<!-- 소속 -->
-						<th style="text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %></a><br><%=b.getS_code() %></th>			<!-- 과정명 -->
+						<th style="text-align:center;"><a href="select.so?s_id=<%=b.getS_id()%>"><%=b.getS_name() %><br><%=b.getS_code() %></a></th>			<!-- 과정명 -->
 						<th style="text-align:center;"><%=b.getS_session() %></th>								<!-- 회차 -->
 						<th style="text-align:center;"><%=b.getS_professor() %></th>							<!-- 담임 -->
 						<th style="text-align:center;"><%=b.getS_profession() %></th>							<!-- 직종 -->

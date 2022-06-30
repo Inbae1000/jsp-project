@@ -140,6 +140,119 @@ public class SubjectDAO {
 		return list2; 
 	}
 	
+	public List<SubjectDTO> subjectList3(){
+		  
+		 List<SubjectDTO> list3 = new ArrayList<>();
+		 try {
+			 conn = ConnectionDB.getConnection();
+			 String sql = "select * from subject where s_affiliation = '±³¹«1ÆÀ'";
+			 pstmt = conn.prepareStatement(sql);
+			 rs = pstmt.executeQuery();
+			 
+		while(rs.next()) {
+			SubjectDTO tmp = new SubjectDTO();
+			tmp.setS_id(rs.getInt(1)); 
+			tmp.setS_name(rs.getString(2));
+			tmp.setS_code(rs.getString(3)); 
+			tmp.setS_start(rs.getString(4));
+			tmp.setS_end(rs.getString(5)); 
+			tmp.setS_manage(rs.getString(6));
+			tmp.setS_professor(rs.getString(7));
+			tmp.setS_member(rs.getString(8));
+			tmp.setS_session(rs.getString(10));
+			tmp.setS_profession(rs.getString(11));
+			tmp.setS_subject(rs.getString(12));
+			tmp.setS_affiliation(rs.getString(13));
+			tmp.setS_name2(rs.getString(14));
+			tmp.setS_option(rs.getString(15));
+			tmp.setS_code2(rs.getString(16));
+			tmp.setS_condition(rs.getString(17));
+			
+			list3.add(tmp);
+		}
+		}catch(SQLException e){ 
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		return list3; 
+	}
+	public List<SubjectDTO> subjectList4(){
+		  
+		 List<SubjectDTO> list3 = new ArrayList<>();
+		 try {
+			 conn = ConnectionDB.getConnection();
+			 String sql = "select * from subject where s_affiliation = '±³¹«2ÆÀ'";
+			 pstmt = conn.prepareStatement(sql);
+			 rs = pstmt.executeQuery();
+			 
+		while(rs.next()) {
+			SubjectDTO tmp = new SubjectDTO();
+			tmp.setS_id(rs.getInt(1)); 
+			tmp.setS_name(rs.getString(2));
+			tmp.setS_code(rs.getString(3)); 
+			tmp.setS_start(rs.getString(4));
+			tmp.setS_end(rs.getString(5)); 
+			tmp.setS_manage(rs.getString(6));
+			tmp.setS_professor(rs.getString(7));
+			tmp.setS_member(rs.getString(8));
+			tmp.setS_session(rs.getString(10));
+			tmp.setS_profession(rs.getString(11));
+			tmp.setS_subject(rs.getString(12));
+			tmp.setS_affiliation(rs.getString(13));
+			tmp.setS_name2(rs.getString(14));
+			tmp.setS_option(rs.getString(15));
+			tmp.setS_code2(rs.getString(16));
+			tmp.setS_condition(rs.getString(17));
+			
+			list3.add(tmp);
+		}
+		}catch(SQLException e){ 
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		return list3; 
+	}
+	public List<SubjectDTO> subjectList5(){
+		  
+		 List<SubjectDTO> list3 = new ArrayList<>();
+		 try {
+			 conn = ConnectionDB.getConnection();
+			 String sql = "select * from subject where s_affiliation = '±³¹«3ÆÀ'";
+			 pstmt = conn.prepareStatement(sql);
+			 rs = pstmt.executeQuery();
+			 
+		while(rs.next()) {
+			SubjectDTO tmp = new SubjectDTO();
+			tmp.setS_id(rs.getInt(1)); 
+			tmp.setS_name(rs.getString(2));
+			tmp.setS_code(rs.getString(3)); 
+			tmp.setS_start(rs.getString(4));
+			tmp.setS_end(rs.getString(5)); 
+			tmp.setS_manage(rs.getString(6));
+			tmp.setS_professor(rs.getString(7));
+			tmp.setS_member(rs.getString(8));
+			tmp.setS_session(rs.getString(10));
+			tmp.setS_profession(rs.getString(11));
+			tmp.setS_subject(rs.getString(12));
+			tmp.setS_affiliation(rs.getString(13));
+			tmp.setS_name2(rs.getString(14));
+			tmp.setS_option(rs.getString(15));
+			tmp.setS_code2(rs.getString(16));
+			tmp.setS_condition(rs.getString(17));
+			
+			list3.add(tmp);
+		}
+		}catch(SQLException e){ 
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		return list3; 
+	}
+	
+	
 	public int insert(SubjectDTO dto) {
 
 		conn = ConnectionDB.getConnection();

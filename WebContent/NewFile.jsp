@@ -1,0 +1,434 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<%@ page import ="java.io.PrintWriter" %>
+<%@page import="subject.*" %>
+<%@page import="member.*" %>
+<%@page import="company.*" %>
+<%@page import="consequence.*" %>
+<%@page import="java.util.*" %>
+<meta name='viewport' content="width=device-width",initial-scale="1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<title>팀별실적</title>
+ <%@ include file = "WEB-INF/menu2.jsp"%>
+</head>
+<body>
+
+<%!
+	int a = 0;		//모집정원
+	int a2 = 0;		//1팀 모집정원
+	int a3 = 0;		//2팀 모집정원
+	int a4 = 0;		//3팀 모집정원
+	int a5 = 0;		//total 모집정원
+	int b = 0;		//모집인원
+	int b2 = 0;		//모집인원 계산값
+	int b3 = 0;		//1팀 모집인원
+	int co = 0;		//수료인원
+	int re1 = 0;	//중도탈락
+	int re2 = 0;	//이수취업
+	int re3 = 0;	//수료취업
+	int re4 = 0;	//이수취업+수료취업
+	int re5 = 0;
+	int re6 = 0;
+	int re7 = 0;
+	double doubleAsse = 0;	//sum(asse)
+	double doubleAsse2 = 0;	//sum(asse) 
+
+%>
+
+<!-- 첫번째 테이블  -->
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+			<thead>
+				<tr>
+					<th>팀별</th>
+					<th>모집정원</th>
+					<th>모집인원</th>
+					<th>수료인원</th>
+					<th>중탈인원</th>
+					<th>일반취업</th>
+					<th>최종수료</th>
+					<th>가중치취업</th>
+				</tr>
+				
+				<%
+					SubjectDAO subjectDao = SubjectDAO.getInstance();
+					List<SubjectDTO> list = subjectDao.subjectList3();
+					
+					a = 0;	//모집정원
+					b2 = 0;	//모집인원 계산값
+					re4 = 0;	//일반취업
+					re7 = 0;	//
+					doubleAsse2 = 0;
+					a2 = 0;
+					for(SubjectDTO sb : list){
+						int member = Integer.parseInt(sb.getS_member());
+						a = a+member;
+						MemberDAO memberDao = MemberDAO.getInstance();
+						List<MemberJoin> list2 = memberDao.selectList(sb.getS_id());
+						
+						String asse = memberDao.selectAsse(sb.getS_id()).getAsse();
+						if(asse == null){	//이거 없으면 값 없을때 null로 보임
+							asse = "0";
+						}
+						if(asse != null){	// 이거 없으면 값 없을때 오류남
+							doubleAsse = Double.parseDouble(asse);
+						}
+						doubleAsse2 = doubleAsse2+doubleAsse;
+						
+						b=0;
+						co = 0;		// 수료인원
+						re1 = 0;	//중도탈락
+						re2 = 0;	//이수취업
+						re3 = 0;	//수료취업
+						re5 = 0;
+						re6 = 0;
+						
+						for(MemberJoin mj : list2){
+							b = b+1;
+							if(mj.getCo_comple().equals("O")){
+								co = co+1;	//수료인원
+							}
+							if(mj.getCo_result().equals("중도탈락")){
+								re1 = re1+1;	//중도탈락
+							}
+							if(mj.getCo_result().equals("이수취업")){
+								re2 = re2+1;
+							}
+							if(mj.getCo_result().equals("수료취업")){
+								re3 = re3+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+									mj.getM_option1().equals("실업자일반")){
+								re5 = re5+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+									mj.getM_option1().equals("근로자개인")){
+								re6 = re6+1;
+							}
+							
+						}
+						b2 = b2+b;
+						re4=re4+(re2+re3);
+						re7 = re7+(co+re2-re5-re6);
+						
+					}
+					a2 = a2+a;
+				%>
+				<tr>
+					<th>교무1팀</th>
+					<th><%=a %></th>
+					<th><%=b2 %></th>
+					<th><%=co %></th>
+					<th><%=re1 %></th>
+					<th><%=re4 %></th>
+					<th><%=re7 %></th>
+					<th><%=doubleAsse2 %></th>
+				</tr>
+				
+				<%
+					List<SubjectDTO> list3 = subjectDao.subjectList4();
+					
+					a = 0;	//모집정원
+					b2 = 0;	//모집인원 계산값
+					re4 = 0;	//일반취업
+					re7 = 0;	//
+					doubleAsse2 = 0;
+					a3 = 0;
+					for(SubjectDTO sb : list3){
+						int member = Integer.parseInt(sb.getS_member());
+						a = a+member;
+						MemberDAO memberDao = MemberDAO.getInstance();
+						List<MemberJoin> list4 = memberDao.selectList(sb.getS_id());
+						
+						String asse = memberDao.selectAsse(sb.getS_id()).getAsse();
+						if(asse == null){	//이거 없으면 값 없을때 null로 보임
+							asse = "0";
+						}
+						if(asse != null){	// 이거 없으면 값 없을때 오류남
+							doubleAsse = Double.parseDouble(asse);
+						}
+						doubleAsse2 = doubleAsse2+doubleAsse;
+						
+						b=0;
+						co = 0;		// 수료인원
+						re1 = 0;	//중도탈락
+						re2 = 0;	//이수취업
+						re3 = 0;	//수료취업
+						re5 = 0;
+						re6 = 0;
+						
+						for(MemberJoin mj : list4){
+							b = b+1;
+							if(mj.getCo_comple().equals("O")){
+								co = co+1;	//수료인원
+							}
+							if(mj.getCo_result().equals("중도탈락")){
+								re1 = re1+1;	//중도탈락
+							}
+							if(mj.getCo_result().equals("이수취업")){
+								re2 = re2+1;
+							}
+							if(mj.getCo_result().equals("수료취업")){
+								re3 = re3+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+									mj.getM_option1().equals("실업자일반")){
+								re5 = re5+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+									mj.getM_option1().equals("근로자개인")){
+								re6 = re6+1;
+							}
+							
+						}
+						b2 = b2+b;
+						re4=re4+(re2+re3);
+						re7 = re7+(co+re2-re5-re6);
+						
+					}
+					a3 = a3+a;
+				%>
+				
+				<tr>
+					<th>교무2팀</th>
+					<th><%=a %></th>
+					<th><%=b2 %></th>
+					<th><%=co %></th>
+					<th><%=re1 %></th>
+					<th><%=re4 %></th>
+					<th><%=re7 %></th>
+					<th><%=doubleAsse2 %></th>
+				</tr>
+				<%
+					List<SubjectDTO> list5 = subjectDao.subjectList5();
+					
+					a = 0;	//모집정원
+					b2 = 0;	//모집인원 계산값
+					re4 = 0;	//일반취업
+					re7 = 0;	//
+					a4 = 0;
+					doubleAsse2 = 0;
+					for(SubjectDTO sb : list5){
+						int member = Integer.parseInt(sb.getS_member());
+						a = a+member;
+						MemberDAO memberDao = MemberDAO.getInstance();
+						List<MemberJoin> list6 = memberDao.selectList(sb.getS_id());
+						
+						String asse = memberDao.selectAsse(sb.getS_id()).getAsse();
+						if(asse == null){	//이거 없으면 값 없을때 null로 보임
+							asse = "0";
+						}
+						if(asse != null){	// 이거 없으면 값 없을때 오류남
+							doubleAsse = Double.parseDouble(asse);
+						}
+						doubleAsse2 = doubleAsse2+doubleAsse;
+						
+						b=0;
+						co = 0;		// 수료인원
+						re1 = 0;	//중도탈락
+						re2 = 0;	//이수취업
+						re3 = 0;	//수료취업
+						re5 = 0;
+						re6 = 0;
+						
+						for(MemberJoin mj : list6){
+							b = b+1;
+							if(mj.getCo_comple().equals("O")){
+								co = co+1;	//수료인원
+							}
+							if(mj.getCo_result().equals("중도탈락")){
+								re1 = re1+1;	//중도탈락
+							}
+							if(mj.getCo_result().equals("이수취업")){
+								re2 = re2+1;
+							}
+							if(mj.getCo_result().equals("수료취업")){
+								re3 = re3+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+									mj.getM_option1().equals("실업자일반")){
+								re5 = re5+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+									mj.getM_option1().equals("근로자개인")){
+								re6 = re6+1;
+							}
+							
+						}
+						b2 = b2+b;
+						re4=re4+(re2+re3);
+						re7 = re7+(co+re2-re5-re6);
+						
+					}
+					a4 = a4+a;
+					a5 = a2+a3+a4;
+				%>
+				<tr>
+					<th>교무3팀</th>
+					<th><%=a %></th>
+					<th><%=b2 %></th>
+					<th><%=co %></th>
+					<th><%=re1 %></th>
+					<th><%=re4 %></th>
+					<th><%=re7 %></th>
+					<th><%=doubleAsse2 %></th>
+				</tr>
+				
+				<tr>
+					<th>전체현황</th>
+					<th><%=a5 %></th>
+					<th>#</th>
+					<th>#</th>
+					<th>#</th>
+					<th>#</th>
+					<th>#</th>
+					<th>#</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	
+<!-- 2번쨰 테이블  -->
+
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th>팀별</th>
+						<th>정원비중</th>
+						<th>모집률</th>
+						<th>수료율</th>
+						<th>중탈률</th>
+						<th>일반취업률</th>
+						<th>수료자비중</th>
+						<th>가중치취업률</th>
+					</tr>
+					
+					<tr>
+						<th>교무1팀</th>
+						<th>420</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					
+					<tr>
+						<th>교무2팀</th>
+						<th>470</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					
+					<tr>
+						<th>교무3팀</th>
+						<th>470</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					
+					<tr>
+						<th>전체현황</th>
+						<th>1271</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		
+		
+		
+<!-- 3번째 테이블  -->
+
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th rowspan = "2" style=" text-align: center;">구분</th>
+						<th rowspan = "2" colspan = "2" style="text-align: center;">직종</th>
+						<th rowspan = "2" style="text-align: center;">2022년 적용<br>전국평균 취업률</th>
+						<th colspan = "5">2021년 종료과정 中 관리기간 종료과정 (25개/51개 과정)</th>
+						
+					</tr>
+					
+					<tr>						
+						<th>종료과정수/미종료과정수</th>
+						<th>수료인원</th>
+						<th>취업인원</th>
+						<th>취업률</th>
+						<th>평균대비</th>
+					</tr>
+					
+					<tr>
+						<th >1팀</th>
+						<th>150102</th>
+						<th>기계설계</th>
+						<th>75.8</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					
+					<tr>
+						<th>1팀</th>
+						<th>150502</th>
+						<th>냉동건조</th>
+						<th>72.8</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					
+					<tr>
+						<th>1팀</th>
+						<th>160105</th>
+						<th>용접</th>
+						<th>75.3</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+					
+					<tr>
+						<th>1팀</th>
+						<th>160105</th>
+						<th>전기공사</th>
+						<th>71.9</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+						<th>#</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+</body>
+</html>

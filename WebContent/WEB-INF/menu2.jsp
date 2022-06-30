@@ -30,7 +30,8 @@
 			<ul class="nav navbar-nav">
 				<li><a href="home.do">메인</a></li>
 				<li><a href="#">팀별실적</a></li>
-				<li><a href="performance.do">훈련실적현황</a></li>	
+				<li><a href="performance.do">훈련실적현황</a></li>
+				<li><a href="NewFile.jsp">팀별성적(작업중)</a>
 			</ul>
 			<%
 				if(userID ==null){
