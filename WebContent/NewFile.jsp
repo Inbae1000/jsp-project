@@ -28,16 +28,41 @@
 	int b = 0;		//모집인원
 	int b2 = 0;		//모집인원 계산값
 	int b3 = 0;		//1팀 모집인원
+	int b4 = 0;		//2팀 모집인원
+	int b5 = 0;		//3팀 모집인원
+	int b6 = 0;		//total 모집인원
 	int co = 0;		//수료인원
+	int co2 = 0;	//1팀 수료인원
+	int co3 = 0;	//2팀 수료인원
+	int co4 = 0;	//3팀 수료인원
+	int co5 = 0;	//total 수료인원
 	int re1 = 0;	//중도탈락
+	int re1_1 = 0;	//1팀 중도탈락
+	int re1_2 = 0;	//2팀 중도탈락
+	int re1_3 = 0;	//3팀 중도탈락
+	int re1_4 = 0;	//total 중도탈락
 	int re2 = 0;	//이수취업
 	int re3 = 0;	//수료취업
-	int re4 = 0;	//이수취업+수료취업
-	int re5 = 0;
-	int re6 = 0;
-	int re7 = 0;
-	double doubleAsse = 0;	//sum(asse)
-	double doubleAsse2 = 0;	//sum(asse) 
+	int re4 = 0;	//이수취업+수료취업 (일반취업)
+	int re4_1 = 0;	//1팀 일반취업
+	int re4_2 = 0;	//2팀 일반취업
+	int re4_3 = 0;	//3팀 일반취업
+	int re4_4 = 0;	//total 일반취업
+	int re5 = 0;	//중탈인원
+	int re6 = 0;	//산정제외
+	int re7 = 0;	//최종수료
+	int re7_1 = 0;	//1팀 최종수료
+	int re7_2 = 0;	//2팀 최종수료
+	int re7_3 = 0;	//3팀 최종수료
+	int re7_4 = 0;	//total 최종수료
+	int re8	= 0;	//산정제외 ->수료전
+	int re9	= 0;	//산정제외 ->수료전
+	double doubleAsse = 0;	//sum(asse) 가중치 취업
+	double doubleAsse2 = 0;	//sum(asse) 가중치 취업
+	double doubleAsse2_1 = 0; //1팀 가중치 취업
+	double doubleAsse2_2 = 0; //2팀 가중치 취업
+	double doubleAsse2_3 = 0; //3팀 가중치 취업
+	double doubleAsse2_4 = 0; //total 가중치 취업
 
 %>
 
@@ -60,12 +85,26 @@
 					SubjectDAO subjectDao = SubjectDAO.getInstance();
 					List<SubjectDTO> list = subjectDao.subjectList3();
 					
-					a = 0;	//모집정원
-					b2 = 0;	//모집인원 계산값
+					a = 0;		//모집정원
+					b2 = 0;		//모집인원 계산값
 					re4 = 0;	//일반취업
-					re7 = 0;	//
+					re7 = 0;	//최종수료
 					doubleAsse2 = 0;
-					a2 = 0;
+					a2 = 0;		//1팀 모집정원
+					b3 = 0;		//1팀 모집인원
+					co2 = 0;	//1팀 수료인원
+					re1_1 = 0;	//1팀 중도탈락 
+					re4_1 = 0;	//1팀 일반취업
+					re7_1 = 0;	//1팀 최종수료
+					doubleAsse2_1 = 0; //1팀 가중치 취업
+					co = 0;		//수료인원
+					re1 = 0;	//중도탈락
+					re2 = 0;	//이수취업
+					re3 = 0;	//수료취업
+					re5 = 0;	//중도탈락 계산
+					re6 = 0;	//산정제외
+					re8 = 0;	//산정제외 -> 수료전
+					re9 = 0;	//산정제외 -> 수료전
 					for(SubjectDTO sb : list){
 						int member = Integer.parseInt(sb.getS_member());
 						a = a+member;
@@ -81,13 +120,9 @@
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
 						
-						b=0;
-						co = 0;		// 수료인원
-						re1 = 0;	//중도탈락
-						re2 = 0;	//이수취업
-						re3 = 0;	//수료취업
-						re5 = 0;
-						re6 = 0;
+						b = 0;
+
+
 						
 						for(MemberJoin mj : list2){
 							b = b+1;
@@ -111,14 +146,30 @@
 									mj.getM_option1().equals("근로자개인")){
 								re6 = re6+1;
 							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("") && 
+									mj.getM_option1().equals("실업자일반")){
+								re8 = re8+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("") && 
+									mj.getM_option1().equals("근로자개인")){
+								re9 = re9+1;
+							}
 							
 						}
 						b2 = b2+b;
-						re4=re4+(re2+re3);
-						re7 = re7+(co+re2-re5-re6);
+						re4=re2+re3;
+						re7 = co+re2-re5-re6;
 						
 					}
 					a2 = a2+a;
+					b3 = b3+b2;
+					co2 = co2+co;
+					re5 = re8+re9;
+					re1 = re1-re5;
+					re1_1 = re1_1+re1;
+					re4_1 = re4_1+re4;
+					re7_1 = re7_1+re7;
+					doubleAsse2_1 = doubleAsse2_1 + doubleAsse2;
 				%>
 				<tr>
 					<th>교무1팀</th>
@@ -134,12 +185,26 @@
 				<%
 					List<SubjectDTO> list3 = subjectDao.subjectList4();
 					
-					a = 0;	//모집정원
-					b2 = 0;	//모집인원 계산값
+					a = 0;		//모집정원
+					b2 = 0;		//모집인원 계산값
 					re4 = 0;	//일반취업
-					re7 = 0;	//
+					re7 = 0;	//최종수료
 					doubleAsse2 = 0;
 					a3 = 0;
+					b4 = 0;
+					co3 = 0;
+					re1_2 = 0;
+					re4_2 = 0;	//2팀 일반취업
+					re7_2 = 0;	//2팀 최종수료
+					doubleAsse2_2 = 0; //2팀 가중치 취업
+					co = 0;		//수료인원
+					re1 = 0;	//중도탈락
+					re2 = 0;	//이수취업
+					re3 = 0;	//수료취업
+					re5 = 0;	//중도탈락 계산
+					re6 = 0;	//산정제외
+					re8 = 0;	//산정제외 -> 수료전
+					re9 = 0;	//산정제외 -> 수료전
 					for(SubjectDTO sb : list3){
 						int member = Integer.parseInt(sb.getS_member());
 						a = a+member;
@@ -155,14 +220,8 @@
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
 						
-						b=0;
-						co = 0;		// 수료인원
-						re1 = 0;	//중도탈락
-						re2 = 0;	//이수취업
-						re3 = 0;	//수료취업
-						re5 = 0;
-						re6 = 0;
-						
+						b=0;		//모집인원
+
 						for(MemberJoin mj : list4){
 							b = b+1;
 							if(mj.getCo_comple().equals("O")){
@@ -185,14 +244,30 @@
 									mj.getM_option1().equals("근로자개인")){
 								re6 = re6+1;
 							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("") && 
+									mj.getM_option1().equals("실업자일반")){
+								re8 = re8+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("") && 
+									mj.getM_option1().equals("근로자개인")){
+								re9 = re9+1;
+							}
 							
 						}
 						b2 = b2+b;
-						re4=re4+(re2+re3);
-						re7 = re7+(co+re2-re5-re6);
+						re4= re2+re3;
+						re7 = co+re2-re5-re6;
 						
 					}
 					a3 = a3+a;
+					b4 = b4+b2;
+					co3 = co3+co;
+					re5 = re8+re9;
+					re1 = re1-re5;
+					re1_2 = re1_2+re1;
+					re4_2 = re4_2+re4;
+					re7_2 = re7_2+re7;
+					doubleAsse2_2 = doubleAsse2_2+doubleAsse2;
 				%>
 				
 				<tr>
@@ -208,12 +283,26 @@
 				<%
 					List<SubjectDTO> list5 = subjectDao.subjectList5();
 					
-					a = 0;	//모집정원
-					b2 = 0;	//모집인원 계산값
+					a = 0;		//모집정원
+					b2 = 0;		//모집인원 계산값
 					re4 = 0;	//일반취업
-					re7 = 0;	//
+					re7 = 0;	//최종수료
 					a4 = 0;
 					doubleAsse2 = 0;
+					b5 = 0;
+					co4 = 0;
+					re1_3 = 0;
+					re4_3 = 0;	//3팀 일반취업
+					re7_3 = 0;	//3팀 최종수료
+					doubleAsse2_3 = 0; //3팀 가중치 취업
+					co = 0;		// 수료인원
+					re1 = 0;	//중도탈락
+					re2 = 0;	//이수취업
+					re3 = 0;	//수료취업
+					re5 = 0;	//중도탈락 계산
+					re6 = 0;	//산정제외
+					re8 = 0;	//산정제외 -> 수료전
+					re9 = 0;	//산정제외 -> 수료전
 					for(SubjectDTO sb : list5){
 						int member = Integer.parseInt(sb.getS_member());
 						a = a+member;
@@ -230,12 +319,7 @@
 						doubleAsse2 = doubleAsse2+doubleAsse;
 						
 						b=0;
-						co = 0;		// 수료인원
-						re1 = 0;	//중도탈락
-						re2 = 0;	//이수취업
-						re3 = 0;	//수료취업
-						re5 = 0;
-						re6 = 0;
+	
 						
 						for(MemberJoin mj : list6){
 							b = b+1;
@@ -259,15 +343,38 @@
 									mj.getM_option1().equals("근로자개인")){
 								re6 = re6+1;
 							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("") && 
+									mj.getM_option1().equals("실업자일반")){
+								re8 = re8+1;
+							}
+							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("") && 
+									mj.getM_option1().equals("근로자개인")){
+								re9 = re9+1;
+							}
 							
 						}
 						b2 = b2+b;
-						re4=re4+(re2+re3);
-						re7 = re7+(co+re2-re5-re6);
+						re4= re2+re3;
+						re7 = co+re2-re5-re6;
+						
 						
 					}
 					a4 = a4+a;
 					a5 = a2+a3+a4;
+					b5 = b5+b2;
+					b6 = b3+b4+b5;
+					co4 = co4+co;
+					co5 = co2+co3+co4;
+					re5 = re8+re9;
+					re1 = re1-re5;
+					re1_3 = re1_3+re1;
+					re1_4 = re1_1+re1_2+re1_3;
+					re4_3 = re4_3+re4;
+					re4_4 = re4_1+re4_2+re4_3;
+					re7_3 = re7_3+re7;
+					re7_4 = re7_1+re7_2+re7_3;
+					doubleAsse2_3 = doubleAsse2_3+doubleAsse2;
+					doubleAsse2_4 = doubleAsse2_1+doubleAsse2_2+doubleAsse2_3;
 				%>
 				<tr>
 					<th>교무3팀</th>
@@ -283,12 +390,12 @@
 				<tr>
 					<th>전체현황</th>
 					<th><%=a5 %></th>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
-					<th>#</th>
+					<th><%=b6 %></th>
+					<th><%=co5 %></th>
+					<th><%=re1_4 %></th>
+					<th><%=re4_4 %></th>
+					<th><%=re7_4 %></th>
+					<th><%=doubleAsse2_4 %></th>
 				</tr>
 			</thead>
 		</table>
@@ -309,49 +416,81 @@
 						<th>수료자비중</th>
 						<th>가중치취업률</th>
 					</tr>
+					<%
+					DecimalFormat format = new DecimalFormat("0.0");
+					double f1 = ((double)a2/a5)*100;	//1팀 정원비중
+					double f2 = ((double)a3/a5)*100;	//2팀 정원비중
+					double f3 = ((double)a4/a5)*100;	//3팀 정원비중
+					double f4 = (f1+f2+f3);				//total 정원비중
+					double g1 = ((double)b3/(double)a2)*100;	//1팀 모집률
+					double g2 = ((double)b4/(double)a3)*100;	//2팀 모집률
+					double g3 = ((double)b5/(double)a4)*100;	//3팀 모집률
+					double g4 = ((double)b6/(double)a5)*100;	//total 모집률
+					double h1 = ((double)co2/(double)b3)*100;	//1팀 수료율
+					double h2 = ((double)co3/(double)b4)*100;	//2팀 수료율
+					double h3 = ((double)co4/(double)b5)*100;	//3팀 수료율
+					double h4 = ((double)co5/(double)b6)*100;	//total 수료율
+					double i1 = ((double)re1_1/(double)a2)*100;	//1팀 중탈률
+					double i2 = ((double)re1_2/(double)a3)*100;	//2팀 중탈률
+					double i3 = ((double)re1_3/(double)a4)*100;	//3팀 중탈률
+					double i4 = ((double)re1_4/(double)a5)*100;	//totla 중탈률
+					double j1 = ((double)re4_1/(double)re7_1)*100;	//1팀 일반취업률
+					double j2 = ((double)re4_2/(double)re7_2)*100;	//2팀 일반취업률
+					double j3 = ((double)re4_3/(double)re7_3)*100;	//3팀 일반취업률
+					double j4 = ((double)re4_4/(double)re7_4)*100;	//total 일반취업률
+					double k1 = ((double)re7_1/(double)re7_4)*100;	//1팀 수료자비중
+					double k2 = ((double)re7_2/(double)re7_4)*100;	//2팀 수료자비중
+					double k3 = ((double)re7_3/(double)re7_4)*100;	//3팀 수료자비중
+					double k4 = (k1+k2+k3);							//total 수료자비중
+					double l1 = (doubleAsse2_1/(double)re7_1)*100;	//1팀 가중치취업
+					double l2 = (doubleAsse2_2/(double)re7_2)*100;	//2팀 가중치취업
+					double l3 = (doubleAsse2_3/(double)re7_3)*100;	//3팀 가중치취업
+					double l4 = (doubleAsse2_4/(double)re7_4)*100;	//total 가중치취업
 					
+					
+					%>
 					<tr>
 						<th>교무1팀</th>
-						<th>420</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
+						<th><%=format.format(f1)%>%</th>
+						<th><%=format.format(g1)%>%</th>
+						<th><%=format.format(h1)%>%</th>
+						<th><%=format.format(i1)%>%</th>
+						<th><%=format.format(j1)%>%</th>
+						<th><%=format.format(k1)%>%</th>
+						<th><%=format.format(l1)%>%</th>
 					</tr>
 					
 					<tr>
 						<th>교무2팀</th>
-						<th>470</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
+						<th><%=format.format(f2)%>%</th>
+						<th><%=format.format(g2)%>%</th>
+						<th><%=format.format(h2)%>%</th>
+						<th><%=format.format(i2)%>%</th>
+						<th><%=format.format(j2)%>%</th>
+						<th><%=format.format(k2)%>%</th>
+						<th><%=format.format(l2)%>%</th>
 					</tr>
 					
 					<tr>
 						<th>교무3팀</th>
-						<th>470</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
+						<th><%=format.format(f3)%>%</th>
+						<th><%=format.format(g3)%>%</th>
+						<th><%=format.format(h3)%>%</th>
+						<th><%=format.format(i3)%>%</th>
+						<th><%=format.format(j3)%>%</th>
+						<th><%=format.format(k3)%>%</th>
+						<th><%=format.format(l3)%>%</th>
 					</tr>
 					
 					<tr>
 						<th>전체현황</th>
-						<th>1271</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
+						<th><%=format.format(f4)%>%</th>
+						<th><%=format.format(g4)%>%</th>
+						<th><%=format.format(h4)%>%</th>
+						<th><%=format.format(i4)%>%</th>
+						<th><%=format.format(j4)%>%</th>
+						<th><%=format.format(k4)%>%</th>
+						<th><%=format.format(l4)%>%</th>
 					</tr>
 				</thead>
 			</table>

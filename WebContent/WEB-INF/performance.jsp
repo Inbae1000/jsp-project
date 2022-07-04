@@ -129,7 +129,7 @@
 <!-- 정보계산 -->
 				
 			<%!
-				DecimalFormat format = new DecimalFormat(".0");
+				DecimalFormat format = new DecimalFormat("0.0");
 				double aLb = 0;		//모집인원 -> 인원
 				double aLbDiv = 0;	//모집인원 -> 모집률
 				double co = 0;		//수료인원

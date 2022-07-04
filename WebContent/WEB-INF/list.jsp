@@ -27,7 +27,7 @@
 <body>
 
 <%!
-	DecimalFormat format = new DecimalFormat(".0");
+	DecimalFormat format = new DecimalFormat("0.0");
 	double a = 0;			//모집인원
 	double c = 0;			//수료인원
 	double re1 = 0;			//중도탈락
@@ -197,7 +197,7 @@
 									re12 = re12+1;
 								}
 								re8 = re7+re6;								
-								re9 = c+re3-re6-re7;
+								re9 = c+re3-re13-re14;
 							}
 							aDiv = (a/att)*100;
 							cDiv = (c/a)*100;
