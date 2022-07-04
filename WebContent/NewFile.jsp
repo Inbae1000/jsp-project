@@ -89,14 +89,14 @@
 					b2 = 0;		//모집인원 계산값
 					re4 = 0;	//일반취업
 					re7 = 0;	//최종수료
-					doubleAsse2 = 0;
+					doubleAsse2 = 0;	//가중치 취업
+					doubleAsse2_1 = 0; 	//1팀 가중치 취업
 					a2 = 0;		//1팀 모집정원
 					b3 = 0;		//1팀 모집인원
 					co2 = 0;	//1팀 수료인원
 					re1_1 = 0;	//1팀 중도탈락 
 					re4_1 = 0;	//1팀 일반취업
 					re7_1 = 0;	//1팀 최종수료
-					doubleAsse2_1 = 0; //1팀 가중치 취업
 					co = 0;		//수료인원
 					re1 = 0;	//중도탈락
 					re2 = 0;	//이수취업
@@ -133,10 +133,10 @@
 								re1 = re1+1;	//중도탈락
 							}
 							if(mj.getCo_result().equals("이수취업")){
-								re2 = re2+1;
+								re2 = re2+1;	//이수취업
 							}
 							if(mj.getCo_result().equals("수료취업")){
-								re3 = re3+1;
+								re3 = re3+1;	//수료취업
 							}
 							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
 									mj.getM_option1().equals("실업자일반")){
@@ -156,20 +156,20 @@
 							}
 							
 						}
-						b2 = b2+b;
-						re4=re2+re3;
-						re7 = co+re2-re5-re6;
+						b2 = b2+b;				//모집인원 계산값
+						re4=re2+re3;			//이수취업+수료취업(일반취업)
+						re7 = co+re2-re5-re6;	//최종수료
 						
 					}
-					a2 = a2+a;
-					b3 = b3+b2;
-					co2 = co2+co;
-					re5 = re8+re9;
-					re1 = re1-re5;
-					re1_1 = re1_1+re1;
-					re4_1 = re4_1+re4;
-					re7_1 = re7_1+re7;
-					doubleAsse2_1 = doubleAsse2_1 + doubleAsse2;
+					a2 = a2+a;			//1팀 모집정원
+					b3 = b3+b2;			//1팀 모집인원
+					co2 = co2+co;		//1팀 수료인원
+					re5 = re8+re9;		//중탈인원
+					re1 = re1-re5;		//중도탈락
+					re1_1 = re1_1+re1;	//1팀 중도탈락
+					re4_1 = re4_1+re4;	//1팀 일반취업
+					re7_1 = re7_1+re7;	//1팀 최종수료
+					doubleAsse2_1 = doubleAsse2_1 + doubleAsse2;	//1팀 가중치 취업
 				%>
 				<tr>
 					<th>교무1팀</th>
@@ -189,14 +189,14 @@
 					b2 = 0;		//모집인원 계산값
 					re4 = 0;	//일반취업
 					re7 = 0;	//최종수료
-					doubleAsse2 = 0;
-					a3 = 0;
-					b4 = 0;
-					co3 = 0;
-					re1_2 = 0;
+					doubleAsse2 = 0;	//가중치 취업
+					doubleAsse2_2 = 0; 	//2팀 가중치 취업
+					a3 = 0;		//2팀 모집정원
+					b4 = 0;		//2팀 모집인원
+					co3 = 0;	//2팀 수료인원
+					re1_2 = 0;	//2팀 중도탈락
 					re4_2 = 0;	//2팀 일반취업
 					re7_2 = 0;	//2팀 최종수료
-					doubleAsse2_2 = 0; //2팀 가중치 취업
 					co = 0;		//수료인원
 					re1 = 0;	//중도탈락
 					re2 = 0;	//이수취업
@@ -231,10 +231,10 @@
 								re1 = re1+1;	//중도탈락
 							}
 							if(mj.getCo_result().equals("이수취업")){
-								re2 = re2+1;
+								re2 = re2+1;	//이수취업
 							}
 							if(mj.getCo_result().equals("수료취업")){
-								re3 = re3+1;
+								re3 = re3+1;	//수료취업
 							}
 							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
 									mj.getM_option1().equals("실업자일반")){
@@ -254,20 +254,20 @@
 							}
 							
 						}
-						b2 = b2+b;
-						re4= re2+re3;
-						re7 = co+re2-re5-re6;
+						b2 = b2+b;				//모집인원 계산값
+						re4= re2+re3;			//이수취업+수료취업(일반취업)
+						re7 = co+re2-re5-re6;	//최종수료
 						
 					}
-					a3 = a3+a;
-					b4 = b4+b2;
-					co3 = co3+co;
-					re5 = re8+re9;
-					re1 = re1-re5;
-					re1_2 = re1_2+re1;
-					re4_2 = re4_2+re4;
-					re7_2 = re7_2+re7;
-					doubleAsse2_2 = doubleAsse2_2+doubleAsse2;
+					a3 = a3+a;			//2팀 모집정원
+					b4 = b4+b2;			//2팀 모집인원
+					co3 = co3+co;		//2팀 수료인원
+					re5 = re8+re9;		//중탈인원
+					re1 = re1-re5;		//중도탈락
+					re1_2 = re1_2+re1;	//2팀 중도탈락
+					re4_2 = re4_2+re4;	//2팀 일반취업
+					re7_2 = re7_2+re7;	//2팀 최종수료
+					doubleAsse2_2 = doubleAsse2_2+doubleAsse2;	//2팀 가중치 취업
 				%>
 				
 				<tr>
@@ -287,14 +287,14 @@
 					b2 = 0;		//모집인원 계산값
 					re4 = 0;	//일반취업
 					re7 = 0;	//최종수료
-					a4 = 0;
-					doubleAsse2 = 0;
-					b5 = 0;
-					co4 = 0;
-					re1_3 = 0;
+					a4 = 0;		//3팀 모집정원
+					doubleAsse2 = 0;	//가중치 취업
+					doubleAsse2_3 = 0; //3팀 가중치 취업
+					b5 = 0;		//3팀 모집인원
+					co4 = 0;	//3팀 수료인원
+					re1_3 = 0;	//3팀 중도탈락
 					re4_3 = 0;	//3팀 일반취업
 					re7_3 = 0;	//3팀 최종수료
-					doubleAsse2_3 = 0; //3팀 가중치 취업
 					co = 0;		// 수료인원
 					re1 = 0;	//중도탈락
 					re2 = 0;	//이수취업
@@ -330,10 +330,10 @@
 								re1 = re1+1;	//중도탈락
 							}
 							if(mj.getCo_result().equals("이수취업")){
-								re2 = re2+1;
+								re2 = re2+1;	//이수취업
 							}
 							if(mj.getCo_result().equals("수료취업")){
-								re3 = re3+1;
+								re3 = re3+1;	//수료취업
 							}
 							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
 									mj.getM_option1().equals("실업자일반")){
@@ -353,28 +353,28 @@
 							}
 							
 						}
-						b2 = b2+b;
-						re4= re2+re3;
-						re7 = co+re2-re5-re6;
+						b2 = b2+b;				//모집인원 계산값
+						re4= re2+re3;			//이수취업+수료취업(일반취업)
+						re7 = co+re2-re5-re6;	//최종수료
 						
 						
 					}
-					a4 = a4+a;
-					a5 = a2+a3+a4;
-					b5 = b5+b2;
-					b6 = b3+b4+b5;
-					co4 = co4+co;
-					co5 = co2+co3+co4;
-					re5 = re8+re9;
-					re1 = re1-re5;
-					re1_3 = re1_3+re1;
-					re1_4 = re1_1+re1_2+re1_3;
-					re4_3 = re4_3+re4;
-					re4_4 = re4_1+re4_2+re4_3;
-					re7_3 = re7_3+re7;
-					re7_4 = re7_1+re7_2+re7_3;
-					doubleAsse2_3 = doubleAsse2_3+doubleAsse2;
-					doubleAsse2_4 = doubleAsse2_1+doubleAsse2_2+doubleAsse2_3;
+					a4 = a4+a;				//3팀 모집정원
+					a5 = a2+a3+a4;			//total 모집정원
+					b5 = b5+b2;				//3팀 모집인원
+					b6 = b3+b4+b5;			//total 모집인원
+					co4 = co4+co;			//3팀 수료인원
+					co5 = co2+co3+co4;		//total 수료인원
+					re5 = re8+re9;			//중탈인원
+					re1 = re1-re5;			//중도탈락
+					re1_3 = re1_3+re1;		//3팀 중도탈락
+					re1_4 = re1_1+re1_2+re1_3;	//total 중도탈락
+					re4_3 = re4_3+re4;		//3팀 일반취업
+					re4_4 = re4_1+re4_2+re4_3;	//total 일반취업
+					re7_3 = re7_3+re7;		//3팀 최종수료
+					re7_4 = re7_1+re7_2+re7_3;	//total 최종수료
+					doubleAsse2_3 = doubleAsse2_3+doubleAsse2;	//3팀 가중치 취업
+					doubleAsse2_4 = doubleAsse2_1+doubleAsse2_2+doubleAsse2_3;	//total 가중치 취업
 				%>
 				<tr>
 					<th>교무3팀</th>
