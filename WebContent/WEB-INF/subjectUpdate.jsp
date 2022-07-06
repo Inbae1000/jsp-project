@@ -131,7 +131,7 @@ function adddate(){
 	const today = new Date(month);
 	const nextDate = new Date( today.getFullYear(), 
 								today.getMonth()+6 , 
-								today.getDate() -1 );
+								today.getDate()-1 );
 	
 	const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
 			

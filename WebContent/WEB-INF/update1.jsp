@@ -56,7 +56,13 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">성별</label>
-								<input type = "text" class="form-control" name="m_sex" maxlength="20" value ="${selectOne.m_sex}">
+								<select name ="m_sex">
+									<option value = ""> </option>
+									<option value = "남">남</option>
+									<option value = "여">여</option>
+									<option hidden value ="${selectOne.m_sex}" selected>${selectOne.m_sex}</option>
+								</select>
+								
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">유형</label>
@@ -206,11 +212,11 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">업체명</label>
-								<input type = "text" class="form-control" name="c_name" maxlength="20" value = "${cSelectOne.c_name}">
+								<input type = "text" class="form-control" name="c_name" value = "${cSelectOne.c_name}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">주소</label>
-								<input type = "text" class="form-control" name="c_address" maxlength="20" value = "${cSelectOne.c_address}">
+								<input type = "text" class="form-control" name="c_address" value = "${cSelectOne.c_address}">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">전화번호</label>
@@ -298,8 +304,9 @@ function addAge(){  // 나이계산
 }
 
 function addDate(){  // 날짜계산
-	month = document.getElementById("dateId").value;
-	item3 = document.getElementById("item3Id").value;
+	month = document.getElementById("dateId").value; //입사일
+	item3 = document.getElementById("item3Id").value; //고용보험
+	comple = document.getElementById("co_compleId").value;	//수료
 	const today = new Date(month);
 	const nextDate = new Date( today.getFullYear(), 
 								today.getMonth()+6 , 
@@ -307,8 +314,10 @@ function addDate(){  // 날짜계산
 	
 	const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
 	
-	if(item3 != "X"){
-		insert.c_maintain.value=formatted_date;	
+	if(item3 == "O"){
+		if(comple =="O" || comple =="이수"){
+			insert.c_maintain.value=formatted_date;	
+		}	
 	}else{
 		insert.c_maintain.value="";
 	}
@@ -413,7 +422,7 @@ function Attendance5(){  // 평가기준 직종기준 계산
 	var a2 = co_option2*co_option4*co_option6;
 	
 	if(item1 == "O"){
-		insert.co_asse.value = a1;
+		insert.co_asse.value = a1.toFixed(1);
 		insert.co_porf.value = a2;
 	} else {
 		insert.co_asse.value = "";

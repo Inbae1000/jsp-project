@@ -180,7 +180,7 @@
 										b.getM_option1().equals("실업자일반")){
 									re13 = re13+1;
 								}
-								if(b.getC_except().equals("산정제외") && b.getCo_comple().equals("O") && 
+								if(/* b.getC_except().equals("산정제외") && */ b.getCo_comple().equals("O") && 
 										b.getM_option1().equals("근로자개인")){
 									re14 = re14+1;
 								}
@@ -230,7 +230,7 @@
 							<td style="background-color:#eeeeee; text-align:center;">목표취업률</td>
 							<td style="background-color:#eeeeee; text-align:center;">가중치취업률</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=asse %>명</td>
-							<td style="background-color:#FFFFFF; text-align:center;"><%=format.format(reDiv9)%>%</td>
+							<td style="background-color:#FFFFFF; text-align:center;"><%=String.format("%.1f",reDiv9)%>%</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re10 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=re11 %>명</td>
 							<td style="background-color:#FFFFFF; text-align:center;"><%=(int)cer %>명</td>					

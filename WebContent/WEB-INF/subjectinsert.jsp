@@ -121,8 +121,7 @@
 							</tr>
 					</tbody>
 				</table>
-				
-				<input type="submit" class="btn btn-primary pull-right" value="등록"/>
+				<input type="button" class="btn btn-primary pull-right" value="등록" onclick = "check()">
 			</form>
 		</div>
 	</div>
@@ -134,7 +133,7 @@
 		const today = new Date(month);
 		const nextDate = new Date( today.getFullYear(), 
 									today.getMonth()+6 , 
-									today.getDate() -1 );
+									today.getDate()-1 );
 		
 		const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
 				
@@ -147,7 +146,24 @@
 			return false;
 	}
 	
+	function check(){  // 유효성 검사
+		var form = document.insert;
 	
+		if(form.s_name.value == ""){
+			alert("과정이름을 입력해 주세요");
+			return false;
+		} else if(form.s_manage.value == ""){
+			alert("과정종료일을 입력해 주세요");
+			return false;
+		} else if (form.s_member.value == ""){
+			alert("정원을 입력해 주세요");
+			return false;
+		} else if(form.s_empoyee.value == ""){
+			alert("목표취업률을 입력해 주세요");
+			return false;
+		}
+		form.submit();
+	}
 	</script>
 </body>
 </html>

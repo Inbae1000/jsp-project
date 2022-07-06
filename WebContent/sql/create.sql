@@ -1,5 +1,5 @@
 create table company(
-	c_start date,
+	c_start text,
 	c_maintain text,
 	c_end text,
 	c_name varchar(100),
@@ -83,3 +83,5 @@ ALTER TABLE company MODIFY COLUMN c_maintain text;
 ALTER TABLE member drop column m_note;
 alter table note drop column n_date;
 alter table note add n_date date not null default(current_date);
+alter table company MODIFY c_start text;
+alter table consequence MODIFY co_asse varchar(10);

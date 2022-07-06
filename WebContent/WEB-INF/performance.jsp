@@ -254,7 +254,7 @@
 									Lb.getM_option1().equals("실업자일반")){
 								re9 = re9+1;
 							}
-							if(Lb.getC_except().equals("산정제외") && Lb.getCo_comple().equals("O") && 
+							if(/* Lb.getC_except().equals("산정제외") && */ Lb.getCo_comple().equals("O") && 
 									Lb.getM_option1().equals("근로자개인")){
 								re10 = re10+1;
 							}
@@ -277,15 +277,15 @@
 						
 						aLbDiv = (aLb/member2)*100;
 						coDiv = (co/aLb)*100;
-						reDiv1 = (re1/aLb)*100;
 						re8 = re7+re6;
 						re1 = re1-re8;
+						reDiv1 = (re1/aLb)*100;
 						re11 = (int)co+re3-re9-re10;
 						re12 = re3+re4;
 						reDiv2 = (re4/re11)*100;
 						reDiv3 = (re5/re11)*100;
 						reDiv4 = (re12/re11)*100;
-						cerDiv = (cer/a)*100;
+						cerDiv = (cer/aLb)*100;
 						reDiv5 = (re13/(re2+re3+re4+re5))*100;
 						reDiv6 = (re14/re11)*100;
 						reDiv8 = (re16/re11)*100;
@@ -338,7 +338,7 @@
 						<th style="text-align:center;"><%=format.format(reDiv4) %>%</th>						<!-- 일반취업률 -->
 						<!-- 취업률 -->
 						<th style="text-align:center;"><%=asse %></th>												<!-- 평가기준 -->
-						<th style="text-align:center;"><%=format.format(reDiv9) %>%</th>											<!-- 평가기준취업률 -->
+						<th style="text-align:center;"><%=String.format("%.1f",reDiv9)%>%</th>											<!-- 평가기준취업률 -->
 						<!-- 직종취업률 -->
 						<th style="text-align:center;">직종기준</th>												<!-- 직종기준 -->
 						<th style="text-align:center;">직종기준취업률</th>											<!-- 직종기준취업률 -->

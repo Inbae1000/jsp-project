@@ -59,7 +59,11 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">성별</label>
-								<input type = "text" class="form-control"placeholder="성별" name="m_sex" maxlength="20">
+								<select name ="m_sex">
+									<option value = ""> </option>
+									<option value = "남">남</option>
+									<option value = "여">여</option>
+								</select>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">유형</label>
@@ -102,12 +106,12 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">수료</label>
-								<input type = "text" class="form-control"placeholder="수료" id = "co_compleId" name="co_comple" maxlength="20" oninput= Attendance3(); readonly>
+								<input type = "text" class="form-control"placeholder="수료" id = "co_compleId" name="co_comple" maxlength="20" onchange= Attendance3(),addDate(); readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">취업</label>
 								<select name ="co_employ" id = "item1Id" oninput= Attendance1(),Attendance3(),Attendance5()>
-									<option value = ""> </option>
+									<option value = ""></option>
 									<option value = "O">O</option>
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
@@ -117,7 +121,7 @@
 							<th style = "text-align:center">
 								<label for="cars">동일</label>
 								<select name ="co_same" id = "item2Id">
-									<option value = ""> </option>
+									<option value = ""></option>
 									<option value = "O">O</option>
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
@@ -169,7 +173,7 @@
 							<th style = "text-align:center">
 								<label for="cars">자격증</label>
 								<select name ="co_certificate">
-									<option value = ""> </option>
+									<option value = ""></option>
 									<option value = "O">O</option>
 									<option value = "X">X</option>
 									<option value = "예정">예정</option>
@@ -190,7 +194,7 @@
 						<tr>
 							<th style = "text-align:center">
 								<label for="cars">입사일</label>
-								<input type = "date" class="form-control"placeholder="입사일" id= "dateId" name="c_start" maxlength="10" value = "1900-01-01" min="0000-00-00" max="3000-12-31" onchange = addDate()>
+								<input type = "date" class="form-control"placeholder="입사일" id= "dateId" name="c_start" maxlength="10" min="0000-00-00" max="3000-12-31" onchange = addDate()>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">고용유지</label>
@@ -202,11 +206,11 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">업체명</label>
-								<input type = "text" class="form-control"placeholder="업체명" name="c_name" maxlength="20">
+								<input type = "text" class="form-control"placeholder="업체명" name="c_name">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">주소</label>
-								<input type = "text" class="form-control"placeholder="주소" name="c_address" maxlength="20">
+								<input type = "text" class="form-control"placeholder="주소" name="c_address">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">전화번호</label>
@@ -264,6 +268,7 @@
 	function addDate(){  // 날짜계산
 		month = document.getElementById("dateId").value; //입사일
 		item3 = document.getElementById("item3Id").value; //고용보험
+		comple = document.getElementById("co_compleId").value; //수료
 		const today = new Date(month);
 		const nextDate = new Date( today.getFullYear(), 
 									today.getMonth()+6 , 
@@ -271,8 +276,10 @@
 		
 		const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
 		
-		if(item3 != "X"){
-			insert.c_maintain.value=formatted_date;	
+		if(item3 == "O"){
+			if(comple =="O" || comple =="이수"){
+				insert.c_maintain.value=formatted_date;	
+			}	
 		}else{
 			insert.c_maintain.value="";
 		}
@@ -308,7 +315,7 @@
 			insert.co_comple.value = "O";
 		} else if(result == "중도탈락"){
 			insert.co_comple.value = "";
-		} else if(att >= 70 && att <= 79){
+		} else if(att >= 70 && att <= 79.9){
 			insert.co_comple.value = "이수";
 		} else {
 			insert.co_comple.value = "";
@@ -377,7 +384,7 @@
 		var a2 = co_option2*co_option4*co_option6;
 		
 		if(item1 == "O"){
-			insert.co_asse.value = a1;
+			insert.co_asse.value = a1.toFixed(1);
 			insert.co_porf.value = a2;
 		} else {
 			insert.co_asse.value = "";
