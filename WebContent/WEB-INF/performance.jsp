@@ -197,6 +197,7 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
+							
 						}
 						
 						aLb = 0;	//모집인원 -> 인원
@@ -337,8 +338,8 @@
 						<th style="text-align:center;"><%=(int)re12 %></th>										<!-- 취업인원 -->
 						<th style="text-align:center;"><%=format.format(reDiv4) %>%</th>						<!-- 일반취업률 -->
 						<!-- 취업률 -->
-						<th style="text-align:center;"><%=asse %></th>												<!-- 평가기준 -->
-						<th style="text-align:center;"><%=String.format("%.1f",reDiv9)%>%</th>											<!-- 평가기준취업률 -->
+						<th style="text-align:center;"><%=asse %></th>											<!-- 평가기준 -->
+						<th style="text-align:center;"><%=String.format("%.1f",reDiv9)%>%</th>					<!-- 평가기준취업률 -->
 						<!-- 직종취업률 -->
 						<th style="text-align:center;">직종기준</th>												<!-- 직종기준 -->
 						<th style="text-align:center;">직종기준취업률</th>											<!-- 직종기준취업률 -->
@@ -352,8 +353,8 @@
 						<th style="text-align:center;"><%=(int)cer %></th>										<!-- 자격증 -->
 						<th style="text-align:center;"><%=format.format(cerDiv) %>%</th>						<!-- 자격증취득률 -->
 						<!-- 취업전담제 -->
-						<th style="text-align:center;"><%=(int)re16 %></th>												<!-- 전담인원 -->
-						<th style="text-align:center;"><%=format.format(reDiv8) %>%</th>												<!-- 전담률 -->
+						<th style="text-align:center;"><%=(int)re16 %></th>										<!-- 전담인원 -->
+						<th style="text-align:center;"><%=format.format(reDiv8) %>%</th>						<!-- 전담률 -->
 						<!-- 취성패 -->
 						<th style="text-align:center;"><%=b.getS_option() %></th>								<!-- 취성패조회 -->
 						<!-- 과정명 -->

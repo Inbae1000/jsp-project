@@ -422,7 +422,7 @@ function Attendance5(){  // 평가기준 직종기준 계산
 	var a2 = co_option2*co_option4*co_option6;
 	
 	if(item1 == "O"){
-		insert.co_asse.value = a1.toFixed(1);
+		insert.co_asse.value = a1;
 		insert.co_porf.value = a2;
 	} else {
 		insert.co_asse.value = "";

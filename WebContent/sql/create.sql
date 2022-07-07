@@ -85,5 +85,5 @@ alter table note drop column n_date;
 alter table note add n_date date not null default(current_date);
 alter table company MODIFY c_start text;
 alter table consequence MODIFY co_asse varchar(3);
-alter table consequence add test text;
-alter table consequence MODIFY co_asse decimal(2,1);
+
+alter table consequence MODIFY co_asse decimal(4,2);

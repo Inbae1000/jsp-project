@@ -61,7 +61,7 @@
 %>
 
 <%@ include file = "menu2.jsp" %>
-<div style = "width : 3000px; margin-top : 70px;">
+<div style = "width : 3500px; margin-top : 70px;">
 	<div style = "position : sticky; left : 0px; width : 1920px;">
 	
 		<!-- 과목정보 -->
@@ -262,7 +262,7 @@
 </div>
 	
 <!-- 인원리스트  -->
-	<div style= "width : 2950px;white-space: nowrap; margin-left : 15px;">
+	<div style= "width : 3480px;white-space: nowrap; margin-left : 15px;">
 		<div class = "row" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead style ="position : sticky; top : 50px;">
@@ -314,11 +314,18 @@
 							a =a+1;
 							int on = b.getM_id();
 							String one = null;
+							String coAsse = null;
 							if(noteDao.selectNewList(on) == null){	// 비고
 								one = "";
 							}else{
 								one = noteDao.selectNewList(on).getN_note();
 							}
+							if(b.getCo_asse() == null){
+								coAsse = "";
+							}else{
+								coAsse = b.getCo_asse();
+							}
+
 
 					%>
 					
@@ -347,7 +354,7 @@
 						<td><%=b.getCo_option4()%></td>
 						<td><%=b.getCo_option5()%></td>
 						<td><%=b.getCo_option6()%></td>			 --%>			
-						<td><%=b.getCo_asse()%></td>
+						<td><%=coAsse%></td>
 						<td><%=b.getCo_porf()%></td>
 						<td><%=b.getCo_certificate()%></td>
 						<!-- 업체현황  -->

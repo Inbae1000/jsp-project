@@ -117,6 +117,7 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
+							doubleAsse = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
 						
@@ -179,7 +180,7 @@
 					<th><%=re1 %></th>
 					<th><%=re4 %></th>
 					<th><%=re7 %></th>
-					<th><%=doubleAsse2 %></th>
+					<th><%=(int)doubleAsse2 %></th>
 				</tr>
 				
 				<%
@@ -217,6 +218,7 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
+							doubleAsse = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
 						
@@ -278,7 +280,7 @@
 					<th><%=re1 %></th>
 					<th><%=re4 %></th>
 					<th><%=re7 %></th>
-					<th><%=doubleAsse2 %></th>
+					<th><%=(int)doubleAsse2 %></th>
 				</tr>
 				<%
 					List<SubjectDTO> list5 = subjectDao.subjectList5();
@@ -315,8 +317,10 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
+							doubleAsse = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
+						
 						
 						b=0;
 	
@@ -384,7 +388,7 @@
 					<th><%=re1 %></th>
 					<th><%=re4 %></th>
 					<th><%=re7 %></th>
-					<th><%=doubleAsse2 %></th>
+					<th><%=(int)doubleAsse2 %></th>
 				</tr>
 				
 				<tr>
@@ -395,7 +399,7 @@
 					<th><%=re1_4 %></th>
 					<th><%=re4_4 %></th>
 					<th><%=re7_4 %></th>
-					<th><%=doubleAsse2_4 %></th>
+					<th><%=(int)doubleAsse2_4 %></th>
 				</tr>
 			</thead>
 		</table>

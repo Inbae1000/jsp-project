@@ -217,6 +217,7 @@ public class MemberController extends HttpServlet {
 		if(coAsse.equals("")) {
 			coAsse=null;
 		}
+		
 		ConsequenceDAO coDao = ConsequenceDAO.getInstance();
 		ConsequenceDTO coDto = new ConsequenceDTO();
 		
