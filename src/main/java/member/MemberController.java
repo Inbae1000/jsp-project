@@ -121,6 +121,10 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/performance.jsp");
 			rd.forward(req, resp);
 		}
+		else if(command.equals("/team.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/team.jsp");
+			rd.forward(req, resp);
+		}
     }
     
 	public void requestInsert1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -210,7 +214,9 @@ public class MemberController extends HttpServlet {
 		String coAsse = req.getParameter("co_asse");
 		String coPorf = req.getParameter("co_porf");
 		String coCer = req.getParameter("co_certificate");
-		
+		if(coAsse.equals("")) {
+			coAsse=null;
+		}
 		ConsequenceDAO coDao = ConsequenceDAO.getInstance();
 		ConsequenceDTO coDto = new ConsequenceDTO();
 		

@@ -15,7 +15,7 @@
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>팀별실적</title>
- <%@ include file = "WEB-INF/menu2.jsp"%>
+<%@ include file = "menu2.jsp" %>
 </head>
 <body>
 
@@ -142,7 +142,7 @@
 									mj.getM_option1().equals("실업자일반")){
 								re5 = re5+1;
 							}
-							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+							if(/* mj.getC_except().equals("산정제외") && */ mj.getCo_comple().equals("O") && 
 									mj.getM_option1().equals("근로자개인")){
 								re6 = re6+1;
 							}
@@ -240,7 +240,7 @@
 									mj.getM_option1().equals("실업자일반")){
 								re5 = re5+1;
 							}
-							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+							if(/* mj.getC_except().equals("산정제외") && */ mj.getCo_comple().equals("O") && 
 									mj.getM_option1().equals("근로자개인")){
 								re6 = re6+1;
 							}
@@ -339,7 +339,7 @@
 									mj.getM_option1().equals("실업자일반")){
 								re5 = re5+1;
 							}
-							if(mj.getC_except().equals("산정제외") && mj.getCo_comple().equals("O") && 
+							if(/* mj.getC_except().equals("산정제외") && */ mj.getCo_comple().equals("O") && 
 									mj.getM_option1().equals("근로자개인")){
 								re6 = re6+1;
 							}
@@ -430,10 +430,10 @@
 					double h2 = ((double)co3/(double)b4)*100;	//2팀 수료율
 					double h3 = ((double)co4/(double)b5)*100;	//3팀 수료율
 					double h4 = ((double)co5/(double)b6)*100;	//total 수료율
-					double i1 = ((double)re1_1/(double)a2)*100;	//1팀 중탈률
-					double i2 = ((double)re1_2/(double)a3)*100;	//2팀 중탈률
-					double i3 = ((double)re1_3/(double)a4)*100;	//3팀 중탈률
-					double i4 = ((double)re1_4/(double)a5)*100;	//totla 중탈률
+					double i1 = ((double)re1_1/(double)b3)*100;	//1팀 중탈률
+					double i2 = ((double)re1_2/(double)b4)*100;	//2팀 중탈률
+					double i3 = ((double)re1_3/(double)b5)*100;	//3팀 중탈률
+					double i4 = ((double)re1_4/(double)b6)*100;	//totla 중탈률
 					double j1 = ((double)re4_1/(double)re7_1)*100;	//1팀 일반취업률
 					double j2 = ((double)re4_2/(double)re7_2)*100;	//2팀 일반취업률
 					double j3 = ((double)re4_3/(double)re7_3)*100;	//3팀 일반취업률
