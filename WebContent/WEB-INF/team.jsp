@@ -124,7 +124,7 @@
 							doubleAsse3 = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
-						doubleAsse4 = doubleAsse4+doubleAsse3;
+						doubleAsse4 = doubleAsse4+doubleAsse3;		//
 						
 						b = 0;
 
@@ -408,7 +408,7 @@
 					<th><%=re1_4 %></th>
 					<th><%=re4_4 %></th>
 					<th><%=re7_4 %></th>
-					<th><%=(int)doubleAsse2_4 %></th>
+					<th><%=Math.round(doubleAsse2_4) %></th>
 				</tr>
 			</thead>
 		</table>
