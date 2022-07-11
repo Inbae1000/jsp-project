@@ -59,10 +59,13 @@
 	int re9	= 0;	//산정제외 ->수료전
 	double doubleAsse = 0;	//sum(asse) 가중치 취업
 	double doubleAsse2 = 0;	//sum(asse) 가중치 취업
+	double doubleAsse3 = 0;	//가중치 취업
+	double doubleAsse4 = 0;	//가중치 취업
 	double doubleAsse2_1 = 0; //1팀 가중치 취업
 	double doubleAsse2_2 = 0; //2팀 가중치 취업
 	double doubleAsse2_3 = 0; //3팀 가중치 취업
 	double doubleAsse2_4 = 0; //total 가중치 취업
+
 
 %>
 
@@ -91,6 +94,7 @@
 					re7 = 0;	//최종수료
 					doubleAsse2 = 0;	//가중치 취업
 					doubleAsse2_1 = 0; 	//1팀 가중치 취업
+					doubleAsse4 = 0;	//1팀 가중치 취업 합계
 					a2 = 0;		//1팀 모집정원
 					b3 = 0;		//1팀 모집인원
 					co2 = 0;	//1팀 수료인원
@@ -117,9 +121,10 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
-							doubleAsse = Math.round(doubleAsse);
+							doubleAsse3 = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
+						doubleAsse4 = doubleAsse4+doubleAsse3;
 						
 						b = 0;
 
@@ -180,7 +185,7 @@
 					<th><%=re1 %></th>
 					<th><%=re4 %></th>
 					<th><%=re7 %></th>
-					<th><%=(int)doubleAsse2 %></th>
+					<th><%=(int)doubleAsse4 %></th>
 				</tr>
 				
 				<%
@@ -192,6 +197,7 @@
 					re7 = 0;	//최종수료
 					doubleAsse2 = 0;	//가중치 취업
 					doubleAsse2_2 = 0; 	//2팀 가중치 취업
+					doubleAsse4 = 0;	//1팀 가중치 취업 합계
 					a3 = 0;		//2팀 모집정원
 					b4 = 0;		//2팀 모집인원
 					co3 = 0;	//2팀 수료인원
@@ -218,9 +224,10 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
-							doubleAsse = Math.round(doubleAsse);
+							doubleAsse3 = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
+						doubleAsse4 = doubleAsse4+doubleAsse3;
 						
 						b=0;		//모집인원
 
@@ -280,7 +287,7 @@
 					<th><%=re1 %></th>
 					<th><%=re4 %></th>
 					<th><%=re7 %></th>
-					<th><%=(int)doubleAsse2 %></th>
+					<th><%=(int)doubleAsse4 %></th>
 				</tr>
 				<%
 					List<SubjectDTO> list5 = subjectDao.subjectList5();
@@ -292,6 +299,7 @@
 					a4 = 0;		//3팀 모집정원
 					doubleAsse2 = 0;	//가중치 취업
 					doubleAsse2_3 = 0; //3팀 가중치 취업
+					doubleAsse4 = 0;	//1팀 가중치 취업 합계
 					b5 = 0;		//3팀 모집인원
 					co4 = 0;	//3팀 수료인원
 					re1_3 = 0;	//3팀 중도탈락
@@ -317,9 +325,10 @@
 						}
 						if(asse != null){	// 이거 없으면 값 없을때 오류남
 							doubleAsse = Double.parseDouble(asse);
-							doubleAsse = Math.round(doubleAsse);
+							doubleAsse3 = Math.round(doubleAsse);
 						}
 						doubleAsse2 = doubleAsse2+doubleAsse;
+						doubleAsse4 = doubleAsse4+doubleAsse3;
 						
 						
 						b=0;
@@ -388,7 +397,7 @@
 					<th><%=re1 %></th>
 					<th><%=re4 %></th>
 					<th><%=re7 %></th>
-					<th><%=(int)doubleAsse2 %></th>
+					<th><%=(int)doubleAsse4 %></th>
 				</tr>
 				
 				<tr>
