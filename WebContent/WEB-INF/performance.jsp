@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -44,10 +45,50 @@
 </head>
 <body>
 
-<!-- 테이블 시작  -->
+<%
+	LocalDate now = LocalDate.now();
+	SubjectDAO subjectDao = SubjectDAO.getInstance();
+	List<SubjectDTO> end = subjectDao.endDate();
+	
+	int year = now.getYear();
+	List<String> aList = new ArrayList<String>();
+	LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
+	for(SubjectDTO en : end){
+		String end_1 = en.getS_end();
+		end_1 =end_1.substring(0, 4);
+		aList.add(end_1);
+	}
+	for(String aaList : aList){
+		linkedHashSet.add(aaList);
+	}
+	
+	String endsp = request.getParameter("s_end");
+	if(endsp == null){
+		endsp = Integer.toString(year);
+	}
 
-	<div style ="border-top : 1px solid; font-size : 11px; margin-top : 70px;" name="insert" >
-				<table id="tablesort" class="table table-striped" style="text-align:center; white-space: nowrap; ">
+%>
+
+<!-- 테이블 시작  -->
+	<div style ="border-top : 1px solid; font-size : 11px; margin-top : 70px;" >
+	<form method = "post" name = "insert" action = "performance.so" >		
+		<div>
+			<select id = "endId" onchange=endYear();Inputbtn();>
+			<option hidden selected><%=endsp %></option>
+			<%
+				for(String i : linkedHashSet){
+			%>
+				<option value =<%=i %> ><%=i %></option>
+			<%
+				}
+			%>
+			</select>
+			년도 국가기간산업전략직종 훈련실적현황(종료과정)
+		</div>
+		<input type = "hidden" class="form-control" name ="s_end"  >
+	</form>
+
+			<table id="tablesort" class="table table-striped" style="text-align:center; white-space: nowrap; ">
 				<thead>
 					<tr>
 						<th colspan='8' style="background-color:#DCE6F1; text-align:center;">구분</th>
@@ -162,6 +203,8 @@
 				double cerDiv = 0;	//자격증취득률
 				double doubleAsse = 0;	//sum(asse) 
 				double reDiv9 = 0;		//가중치취업률 %값
+				int re17 = 0;		//종료과정
+				int re18 = 0;		//수료과정
 				List<SubjectDTO> list = new ArrayList<>();
 				//전체 합계
 				int sum_pro = 0 ;	//담임
@@ -206,8 +249,7 @@
 			
 				Calendar cal = Calendar.getInstance();
 				
-				SubjectDAO subjectDao = SubjectDAO.getInstance();
-				List<SubjectDTO> list = subjectDao.subjectList2();
+				List<SubjectDTO> list = subjectDao.subjectList2Test(endsp);
 				int a = 0;
 				sum_pro = 0;
 				sum_member = 0;
@@ -228,6 +270,7 @@
 				sum_re14 = 0;
 				sum_cer = 0;
 				sum_re16 = 0;
+
 					for(SubjectDTO b : list){
 						a=a+1;
 						SimpleDateFormat simpleDate2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -236,6 +279,21 @@
 						long dm = (long)date.getTime();  //현재시간
 						long dm2 = (long)date2.getTime(); // 관리종료
 						long dm3 = (dm2-dm)/(1000*60*60*24)+1; // 계산
+						re17 = 0;
+						re18 = 0;
+						
+						if(dm3 < 0){
+							re17 = 1;
+						}
+						
+						String pss_2 = b.getS_end();
+						Date date3 = simpleDate2.parse(pss_2);
+						long dm2_2 = (long)date3.getTime();
+						long dm3_2 = (dm2_2-dm)/(1000*60*60*24);
+						
+						if(dm3_2 < 0){
+							re18 = 1;
+						}
 						
 						String member = b.getS_member();
 						int member2 = Integer.parseInt(member);
@@ -447,8 +505,8 @@
 						<!-- 과정명 -->
 						<th style="text-align:center;"><%=b.getS_name2() %></th>								<!-- 과정명2 -->
 						<!-- 과정구분 -->
-						<th style="text-align:center;">수료과정</th>												<!-- 수료과정 -->
-						<th style="text-align:center;">종료과정</th>												<!-- 종료과정 -->
+						<th style="text-align:center;"><%=re18 %></th>												<!-- 수료과정 -->
+						<th style="text-align:center;"><%=re17 %></th>												<!-- 종료과정 -->
 					</tr>
 				<%
 					}
@@ -547,10 +605,17 @@
 				<td style="text-align:center;"><%=format.format(re16_di_re11) %>%</td>	<!-- 전담률 -->
 			
 			</tr>
-		
 		</table>
-	
 	</div>
-
+	<script>
+		function endYear(){
+			endSelect = document.getElementById("endId").value;
+			
+			insert.s_end.value = endSelect;
+		}
+		function Inputbtn(){
+			document.insert.submit();
+		}
+	</script>
 </body>
 </html>

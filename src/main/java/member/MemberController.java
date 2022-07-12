@@ -117,14 +117,7 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/admin.jsp");
 			rd.forward(req, resp);
 		}
-		else if(command.equals("/performance.do")) {
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/performance.jsp");
-			rd.forward(req, resp);
-		}
-		else if(command.equals("/team.do")) {
-			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/team.jsp");
-			rd.forward(req, resp);
-		}
+
     }
     
 	public void requestInsert1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

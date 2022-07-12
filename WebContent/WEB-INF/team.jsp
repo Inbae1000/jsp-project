@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -69,8 +70,48 @@
 
 %>
 
+<%
+	LocalDate now = LocalDate.now();
+	SubjectDAO subjectDao = SubjectDAO.getInstance();
+	List<SubjectDTO> end = subjectDao.endDate();
+	
+	int year = now.getYear();
+	List<String> aList = new ArrayList<String>();
+	LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
+	for(SubjectDTO en : end){
+		String end_1 = en.getS_end();
+		end_1 =end_1.substring(0, 4);
+		aList.add(end_1);
+	}
+	for(String aaList : aList){
+		linkedHashSet.add(aaList);
+	}
+
+	String endsp = request.getParameter("s_end");
+	if(endsp == null){
+		endsp = Integer.toString(year);
+	}
+%>
+
 <!-- 첫번째 테이블  -->
-	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" >
+	<form method = "post" name = "insert" action = "team.so" >		
+		<div>
+			<select id = "endId" onchange=endYear();Inputbtn();>
+			<option hidden selected><%=endsp %></option>
+			<%
+				for(String i : linkedHashSet){
+			%>
+				<option value =<%=i %> ><%=i %></option>
+			<%
+				}
+			%>
+			</select>
+			년도 국가기간산업전략직종 훈련실적현황(종료과정)
+		</div>
+		<input type = "hidden" class="form-control" name ="s_end" >
+	</form>
+	
 		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
@@ -85,8 +126,7 @@
 				</tr>
 				
 				<%
-					SubjectDAO subjectDao = SubjectDAO.getInstance();
-					List<SubjectDTO> list = subjectDao.subjectList3();
+					List<SubjectDTO> list = subjectDao.subjectList3(endsp);
 					
 					a = 0;		//모집정원
 					b2 = 0;		//모집인원 계산값
@@ -188,8 +228,8 @@
 					<th><%=(int)doubleAsse4 %></th>
 				</tr>
 				
-				<%
-					List<SubjectDTO> list3 = subjectDao.subjectList4();
+			<%
+					List<SubjectDTO> list3 = subjectDao.subjectList4(endsp);
 					
 					a = 0;		//모집정원
 					b2 = 0;		//모집인원 계산값
@@ -290,7 +330,7 @@
 					<th><%=(int)doubleAsse4 %></th>
 				</tr>
 				<%
-					List<SubjectDTO> list5 = subjectDao.subjectList5();
+					List<SubjectDTO> list5 = subjectDao.subjectList5(endsp);
 					
 					a = 0;		//모집정원
 					b2 = 0;		//모집인원 계산값
@@ -416,7 +456,7 @@
 	
 <!-- 2번쨰 테이블  -->
 
-	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -513,7 +553,7 @@
 		
 <!-- 3번째 테이블  -->
 
-	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -582,5 +622,15 @@
 				</thead>
 			</table>
 		</div>
+	<script>
+	function endYear(){
+		endSelect = document.getElementById("endId").value;
+		
+		insert.s_end.value = endSelect;
+	}
+	function Inputbtn(){
+		document.insert.submit();
+	}
+	</script>
 </body>
 </html>

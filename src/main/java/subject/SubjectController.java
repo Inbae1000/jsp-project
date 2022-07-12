@@ -78,6 +78,15 @@ public class SubjectController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/search.jsp");
 			rd.forward(req, resp);	
 		}
+		else if(command.equals("/performance.so")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/performance.jsp");
+			rd.forward(req, resp);
+		}
+		else if(command.equals("/team.so")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/team.jsp");
+			rd.forward(req, resp);
+		}
+
 	 }
 	
 	

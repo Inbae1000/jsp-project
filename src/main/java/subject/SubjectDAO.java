@@ -140,13 +140,53 @@ public class SubjectDAO {
 		return list2; 
 	}
 	
-	public List<SubjectDTO> subjectList3(){
+	public List<SubjectDTO> subjectList2Test(String s_end){
+		  
+		 List<SubjectDTO> list2 = new ArrayList<>();
+		 try {
+			 conn = ConnectionDB.getConnection();
+			 String sql = "select * from subject where s_end like ? ";
+			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, "%"+s_end+"%");
+			 rs = pstmt.executeQuery();
+			 
+		while(rs.next()) {
+			SubjectDTO tmp = new SubjectDTO();
+			tmp.setS_id(rs.getInt(1)); 
+			tmp.setS_name(rs.getString(2));
+			tmp.setS_code(rs.getString(3)); 
+			tmp.setS_start(rs.getString(4));
+			tmp.setS_end(rs.getString(5)); 
+			tmp.setS_manage(rs.getString(6));
+			tmp.setS_professor(rs.getString(7));
+			tmp.setS_member(rs.getString(8));
+			tmp.setS_session(rs.getString(10));
+			tmp.setS_profession(rs.getString(11));
+			tmp.setS_subject(rs.getString(12));
+			tmp.setS_affiliation(rs.getString(13));
+			tmp.setS_name2(rs.getString(14));
+			tmp.setS_option(rs.getString(15));
+			tmp.setS_code2(rs.getString(16));
+			tmp.setS_condition(rs.getString(17));
+			
+			list2.add(tmp);
+		}
+		}catch(SQLException e){ 
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		return list2; 
+	}
+	
+	public List<SubjectDTO> subjectList3(String s_end){
 		  
 		 List<SubjectDTO> list3 = new ArrayList<>();
 		 try {
 			 conn = ConnectionDB.getConnection();
-			 String sql = "select * from subject where s_affiliation = '±³¹«1ÆÀ'";
+			 String sql = "select * from subject where s_affiliation = '±³¹«1ÆÀ' and s_end like ?";
 			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, "%"+s_end+"%");
 			 rs = pstmt.executeQuery();
 			 
 		while(rs.next()) {
@@ -177,13 +217,14 @@ public class SubjectDAO {
 		} 
 		return list3; 
 	}
-	public List<SubjectDTO> subjectList4(){
+	public List<SubjectDTO> subjectList4(String s_end){
 		  
 		 List<SubjectDTO> list3 = new ArrayList<>();
 		 try {
 			 conn = ConnectionDB.getConnection();
-			 String sql = "select * from subject where s_affiliation = '±³¹«2ÆÀ'";
+			 String sql = "select * from subject where s_affiliation = '±³¹«2ÆÀ' and s_end like ?";
 			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, "%"+s_end+"%");
 			 rs = pstmt.executeQuery();
 			 
 		while(rs.next()) {
@@ -214,13 +255,14 @@ public class SubjectDAO {
 		} 
 		return list3; 
 	}
-	public List<SubjectDTO> subjectList5(){
+	public List<SubjectDTO> subjectList5(String s_end){
 		  
 		 List<SubjectDTO> list3 = new ArrayList<>();
 		 try {
 			 conn = ConnectionDB.getConnection();
-			 String sql = "select * from subject where s_affiliation = '±³¹«3ÆÀ'";
+			 String sql = "select * from subject where s_affiliation = '±³¹«3ÆÀ' and s_end like ?";
 			 pstmt = conn.prepareStatement(sql);
+			 pstmt.setString(1, "%"+s_end+"%");
 			 rs = pstmt.executeQuery();
 			 
 		while(rs.next()) {
@@ -252,6 +294,28 @@ public class SubjectDAO {
 		return list3; 
 	}
 	
+	public List<SubjectDTO> endDate(){
+		  
+		 List<SubjectDTO> list2 = new ArrayList<>();
+		 try {
+			 conn = ConnectionDB.getConnection();
+			 String sql = "select s_end from subject order by s_end asc";
+			 pstmt = conn.prepareStatement(sql);
+			 rs = pstmt.executeQuery();
+			 
+		while(rs.next()) {
+			SubjectDTO tmp = new SubjectDTO();
+			tmp.setS_end(rs.getString(1)); 
+
+			list2.add(tmp);
+		}
+		}catch(SQLException e){ 
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		return list2; 
+	}
 	
 	public int insert(SubjectDTO dto) {
 
