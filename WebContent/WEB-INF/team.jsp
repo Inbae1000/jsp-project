@@ -553,7 +553,7 @@
 		
 <!-- 3번째 테이블  -->
 
-	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" >
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -572,53 +572,194 @@
 						<th>평균대비</th>
 					</tr>
 					
+						<%	
+							String ra = "";				//직종이름	
+							String a = "전기공사";			//직종 190107
+							String b = "용접";			//직종 160105
+							String c = "조경";			//직종 140501
+							String d = "디자인";			//직종 080201
+							String e = "기계설계";         //직종 150102
+							String f = "냉동공조";         //직종150502
+							String g = "음식조리";         //직종 130101
+							String h = "구매조달";         //직종 020401
+							String iii = "정보기술개발";   //직종 200102
+							String j ="공예";            //직종 220201
+							String k = "패션제품기획";      //직종 180201
+							
+							double rb = 0;            //전국 취업률
+							double a_a =71.9;         //취업률 190107    전기공사
+							double a_b =75.3;         //취업률 160105   용접
+							double a_c =61.2;         //취업률 140501   조경
+							double a_d =67.4;         //취업률 080201   디자인
+							double a_e = 75.8;         //취업률 150102   기계설계
+							double a_f = 72.8;         //취업률 150502   냉동공조
+							double a_g = 50.7;         //취업률 130101   음식조리
+							double a_h = 69.4;         //취업률 020401   구매조달
+							double a_i = 72.8;         //취업률 200102   정보기술개발
+							double a_j = 71.6;         //취업률 220201   공예
+							double a_k = 62.4;         //취업률 180201   패션제품기획
+							double re12 = 0;							
+							int re10=0;						
+							int re11=0;					//수료인원
+							int re88=0;					//취업인원
+							String re88_di_re11 = null;	//취업률
+							double re99 = 0;			//평균대비
+							
+							String name = null;
+							String code = null;
+							
+							
+							Date date = new Date();
+							int re17 = 0;
+							int re18 = 0;
+							
+						
+							
+							String [] a1 = {"150102","150502","160105","190107","140501","130101","020401","080201","200102","220201","180201"};
+							for(int i = 0; i<a1.length; i++){
+								ra = "";
+								rb = 0;
+								name = null;
+								code = null;
+								MemberDAO memberDao = MemberDAO.getInstance();
+								List<SubjectDTO> list7 = subjectDao.subjectList7(a1[i]);
+								
+								if(a1[i] == a1[0]){
+									name = "1팀";
+									ra = ra + e;
+									rb = rb + a_e;
+								}
+								if(a1[i] == a1[1]){
+									name = "1팀";
+									ra = ra + f;
+									rb = rb + a_f;
+								}
+								if(a1[i] == a1[2]){
+									name = "1팀";
+									ra = ra + b;
+									rb = rb + a_b;
+								}
+								if(a1[i] == a1[3]){
+									name = "1팀";
+									ra = ra + a;
+									rb = rb + a_a;
+								}
+								if(a1[i] == a1[4]){
+									name = "2팀";
+									ra = ra + c;
+									rb = rb + a_c;
+								}
+								if(a1[i] == a1[5]){
+									name = "2팀";
+									ra = ra + g;
+									rb = rb + a_g;
+								}
+								if(a1[i] == a1[6]){
+									name = "2팀";
+									ra = ra + h;
+									rb = rb + a_h;
+								}
+								if(a1[i] == a1[7]){
+									name = "2팀/3팀";
+									ra = ra + d;
+									rb = rb + a_d;
+								}
+								if(a1[i] == a1[8]){
+									name = "3팀";
+									ra = ra + iii;
+									rb = rb + a_i;
+								}
+								if(a1[i] == a1[9]){
+									name = "3팀";
+									ra = ra + j;
+									rb = rb + a_j;
+								}
+								if(a1[i] == a1[10]){
+									name = "3팀";
+									ra = ra + k;
+									rb = rb + a_k;
+								}
+								
+								
+								
+								
+								
+									
+									re12 =0;
+									re3 =0;
+									re4 =0;
+									re9=0;
+									re10=0;
+									co=0;
+									re11 =0;
+									re88 = 0;
+									re17 = 0;
+									re18 = 0;
+									List<SubjectDTO> list2 = subjectDao.subjectTeamSelect(a1[i],endsp);
+									for(SubjectDTO aaa : list2){							
+										List<MemberJoin> list11 = memberDao.selectList(aaa.getS_id());
+										
+										SimpleDateFormat simpleDate2 = new SimpleDateFormat("yyyy-MM-dd");
+										String pss = aaa.getS_manage();
+										Date date2 = simpleDate2.parse(pss);
+										long dm = (long)date.getTime();  //현재시간
+										long dm2 = (long)date2.getTime(); // 관리종료
+										long dm3 = (dm2-dm)/(1000*60*60*24)+1; // 계산
+
+										
+										if(dm3 < 0){
+											re17 = re17 + 1;
+										}
+										if(dm3 >= 0){
+											re18 = re18 + 1;
+										}
+										
+										for (MemberJoin bbb : list11){
+											if(bbb.getCo_comple().equals("O")){
+												co = co+1;	//수료인원
+											}
+											if(bbb.getCo_result().equals("이수취업")){
+												re3 = re3+1;
+											}
+											if(bbb.getC_except().equals("산정제외") && bbb.getCo_comple().equals("O") && 
+													bbb.getM_option1().equals("실업자일반")){
+												re9 = re9+1;
+											}
+											if(/* bbb.getC_except().equals("산정제외") && */ bbb.getCo_comple().equals("O") && 
+													bbb.getM_option1().equals("근로자개인")){
+												re10 = re10+1;
+											}
+											if(bbb.getCo_result().equals("수료취업")){
+												re4 = re4+1;
+											}
+										
+									}
+								}
+								re11 = (int)co+re3-re9-re10;
+								re88 = re4+re3;
+								re88_di_re11 = format.format(((double)re88/(double)re11)*100);
+								double doubleRe88 = Double.parseDouble(re88_di_re11);
+								re99 = (doubleRe88-rb);
+								
+						%>	 				
 					<tr>
-						<th >1팀</th>
-						<th>150102</th>
-						<th>기계설계</th>
-						<th>75.8</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
+						<th><%=name %></th>					
+						<th><%=a1[i] %></th>
+						<th><%=ra %></th>
+						<th><%=rb %>%</th>										
+						<th><%=re17 %>/<%=re18 %></th>
+						<th><%=re11 %></th>
+						<th><%=re88 %></th>
+						<th><%=re88_di_re11 %>%</th>
+						<th><%=format.format(re99) %>%</th>
+									
 					</tr>
+							
 					
-					<tr>
-						<th>1팀</th>
-						<th>150502</th>
-						<th>냉동건조</th>
-						<th>72.8</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-					</tr>
-					
-					<tr>
-						<th>1팀</th>
-						<th>160105</th>
-						<th>용접</th>
-						<th>75.3</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-					</tr>
-					
-					<tr>
-						<th>1팀</th>
-						<th>160105</th>
-						<th>전기공사</th>
-						<th>71.9</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-						<th>#</th>
-					</tr>
+					<%						
+								
+							}
+					%>
 				</thead>
 			</table>
 		</div>
