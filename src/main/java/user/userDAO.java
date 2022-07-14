@@ -47,7 +47,7 @@ public class UserDAO {
 		}
 	}
 
-	public int login(String u_email,String u_pass) {
+	public int login(String u_email,String u_pass) {		//·Î±×ÀÎ
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append( "SELECT u_pass FROM USER WHERE u_email = ?");
@@ -183,29 +183,6 @@ public class UserDAO {
 		} 
 		return list2; 
 	}
-	
-	public UserDTO countEmail(){
-		String sql = "select count(u_email) from user";
-		
-		try {
-			conn = ConnectionDB.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			
-			while (rs.next()) {
-				UserDTO tmp = new UserDTO();
-				tmp.setCountEmail(rs.getInt(1));
-				
-				return tmp;
-			}
 
-		} catch(SQLException e){
-			e.printStackTrace();
-		} finally {
-			close(conn, pstmt, rs);
-		}
-		return null;
-	}
 
 }

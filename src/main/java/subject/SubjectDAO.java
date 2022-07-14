@@ -49,7 +49,7 @@ public class SubjectDAO {
 		}
 	}
 	
-	public int nextval() {
+	public int nextval() {		// s_id Áõ°¡¿ë
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT MAX(s_id) ").append("FROM subject");

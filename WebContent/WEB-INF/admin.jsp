@@ -31,12 +31,8 @@
 				<%
 					UserDAO userDao = new UserDAO();
 					List<UserDTO> list = userDao.userList();
-					int count = userDao.countEmail().getCountEmail();
-					String[] aa = new String[count];
-					String bb = null;
 					int i = 0;
 					for(UserDTO a : list){
-						aa[i] = a.getU_email();
 						i = i+1;
 				%>
 				<form method = "post" name = "user<%=i %>" action = "adminAction.do">
