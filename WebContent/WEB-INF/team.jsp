@@ -17,6 +17,17 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <title>팀별실적</title>
 <%@ include file = "menu2.jsp" %>
+<style>
+
+	th {border-right : 1px solid #dddddd;
+		text-align:center;
+	 }
+	td {border-right : 1px solid #dddddd;
+		text-align:center;
+	}
+
+</style>
+
 </head>
 <body>
 
@@ -94,9 +105,9 @@
 %>
 
 <!-- 첫번째 테이블  -->
-	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" >
-	<form method = "post" name = "insert" action = "team.so" >		
-		<div>
+	<div style ="font-size: 11px; margin-top: 60px; width:1000px;" >
+	<form method = "get" name = "insert" action = "team.so" >		
+		<div style = "font-size: 15px;">
 			<select id = "endId" onchange=endYear();Inputbtn();>
 			<option hidden selected><%=endsp %></option>
 			<%
@@ -559,8 +570,8 @@
 					<tr>
 						<th rowspan = "2" style=" text-align: center;">구분</th>
 						<th rowspan = "2" colspan = "2" style="text-align: center;">직종</th>
-						<th rowspan = "2" style="text-align: center;">2022년 적용<br>전국평균 취업률</th>
-						<th colspan = "5">2021년 종료과정 中 관리기간 종료과정 (25개/51개 과정)</th>
+						<th rowspan = "2" style="text-align: center;"><%=endsp %>년 적용<br>전국평균 취업률</th>
+						<th colspan = "5"><%=endsp %>년 종료과정 中 관리기간 종료과정 (25개/51개 과정)</th>
 						
 					</tr>
 					

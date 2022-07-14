@@ -41,6 +41,12 @@
     });
 </script>
 
+<style>
+
+th {border-right : 1px solid #dddddd; }
+td {border-right : 1px solid #dddddd;}
+
+</style>
 
 </head>
 <body>
@@ -70,9 +76,9 @@
 %>
 
 <!-- 테이블 시작  -->
-	<div style ="border-top : 1px solid; font-size : 11px; margin-top : 70px;" >
-	<form method = "post" name = "insert" action = "performance.so" >		
-		<div>
+	<div style ="font-size : 11px; margin-top : 60px;" >
+	<form method = "get" name = "insert" action = "performance.so" >		
+		<div style = "font-size: 15px;">
 			<select id = "endId" onchange=endYear();Inputbtn();>
 			<option hidden selected><%=endsp %></option>
 			<%
@@ -515,13 +521,11 @@
 			</table>
 	</div>
 	<div>
-		<table id="tablesort" class="table table-striped" style="text-align:center; width:100%;">
+		<table id="tablesort" class="table table-striped" style="text-align:center; width:100%; border : 1px solid #dddddd;">
 		
 		<tr>
 		<th  colspan='16' style="text-align:center;">전체합계</th>
 		</tr>
-		
-		
 		
 			<tr>
 				<th style="text-align:center;">담임</th>

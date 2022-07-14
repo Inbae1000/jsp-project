@@ -27,7 +27,19 @@
 								<td><input type="text" class="form-control"
 									placeholder="검색" name="searchText" maxlength="100"></td>
 								<td><input type="submit" class="btn btn-info" value = "검색"></td>
-								<a href ="insert.so" class="btn btn-info pull-left">과정등록</a>
+								
+								<%
+								
+									if(userID != null && admin != 0){
+										PrintWriter script = response.getWriter();
+								
+								%>
+								
+									<a href ="insert.so" class="btn btn-info pull-left">과정등록</a>
+								
+								<%
+								}
+								%>
 							</tr>
 						</table>
 					</form>

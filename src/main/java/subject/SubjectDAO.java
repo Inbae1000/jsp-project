@@ -312,12 +312,12 @@ public class SubjectDAO {
 			list2.add(tmp);
 		}
 		}catch(SQLException e){ 
-			  e.printStackTrace(); 
-			  } finally { 
-				  close(conn,pstmt,rs); 
-				 } 
-		  return list2; 
-		  }
+			e.printStackTrace(); 
+		} finally { 
+			close(conn,pstmt,rs); 
+		} 
+		 return list2; 
+	}
 	
 	
 	public List<SubjectDTO> endDate(){

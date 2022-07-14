@@ -87,3 +87,4 @@ alter table company MODIFY c_start text;
 alter table consequence MODIFY co_asse varchar(3);
 
 alter table consequence MODIFY co_asse decimal(4,2);
+alter table user add u_admin int DEFAULT 0;

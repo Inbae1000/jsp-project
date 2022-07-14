@@ -12,15 +12,7 @@
 <body>
 	<%@ include file = "menu2.jsp" %>
 
-	<%
-		if(userID == null){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 하세요')");
-			script.println("location.href='login.do'");
-			script.println("</script>");
-		}
-	%>
+
 	<div style = " margin-top : 70px;"class = "container">
 		<div class = "row" style="width : 1500px; margin-left : -200px;">
 			<form method = "post" name ="insert" action="insert2.do" onkeydown="return enterkeydown(event)">

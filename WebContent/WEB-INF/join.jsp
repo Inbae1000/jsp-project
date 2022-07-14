@@ -17,7 +17,7 @@
 		<div class="col-lg-4"></div>
 			<div class="jumborron" style="padding-top:20px">
 				<form method="post" action="joinAction.do">
-					<h3 style="text-align:cneter;">회원가입 화면</h3>
+					<h3 style="text-align:cneter;">회원가입</h3>
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="아이디" name="u_email" maxlength="20">
 					</div>

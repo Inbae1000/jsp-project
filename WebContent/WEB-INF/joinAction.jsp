@@ -34,6 +34,7 @@
 			}
 			else {
 				session.setAttribute("u_email", user.getU_email());
+				session.setAttribute("u_admin", user.getU_admin());
 				PrintWriter script = response.getWriter();
 				script.println("<script>");				
 				script.println("location.href='home.do'");

@@ -113,10 +113,15 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/logoutAction.jsp");
 			rd.forward(req, resp);
 		}
-		else if(command.equals("/loginAction2.do")) {
+		else if(command.equals("/admin.do")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/admin.jsp");
 			rd.forward(req, resp);
 		}
+		else if(command.equals("/adminAction.do")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/adminAction.jsp");
+			rd.forward(req, resp);
+		}
+
 
     }
     

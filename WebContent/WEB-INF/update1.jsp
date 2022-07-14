@@ -14,7 +14,18 @@
 <body>
 
 	<%@ include file = "menu2.jsp" %>
-
+	
+	<%
+				
+		if(userID == null || admin != 1){
+			PrintWriter outter = response.getWriter();
+			outter.println("<script>");
+			outter.println("alert('관리자만 변경할수 있습니다.');");
+			outter.println("history.back()");
+			outter.println("</script>");	
+		}
+				
+	%>
 
 	<div style = " margin-top : 70px;" class = "container">
 		<div class = "row" style="width : 1500px; margin-left : -200px;">

@@ -6,7 +6,7 @@
 <jsp:useBean id="user" class="user.UserDTO" scope="page"/>
 <jsp:setProperty name="user" property="u_email" />
 <jsp:setProperty name="user" property="u_pass" />
-
+<jsp:setProperty name="user" property="u_admin" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +28,11 @@
 			}
 			UserDAO userDAO = new UserDAO();
 			int result = userDAO.login(user.getU_email(), user.getU_pass());
+			int admin = userDAO.adminType(user.getU_email()).getU_admin() ;
 			if(result == 1){
 		session.setAttribute("u_email", user.getU_email());
+		session.setAttribute("u_admin", admin);
+		
 		PrintWriter outter = response.getWriter();
 		outter.println("<script>");
 		outter.println("location.href = 'home.do'");

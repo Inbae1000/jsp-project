@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,10 +10,22 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
+
+
+
 	<%
 		String userID = null;
+		int admin = -1;
+
 		if(session.getAttribute("u_email") != null){
 			userID = (String) session.getAttribute("u_email");
+			admin = (int)session.getAttribute("u_admin");
+		}
+		if(userID == null){
+			PrintWriter outter = response.getWriter();
+			outter.println("<script>");
+			outter.println("location.href = 'login.do'");
+			outter.println("</script>");	
 		}
 	%>
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -28,9 +41,19 @@
 		</div>
 		<div class = "collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="home.do">메인</a></li>
+				<li><a href="home.do">검색 및 과정등록</a></li>
 				<li><a href="performance.so">훈련실적현황</a></li>
 				<li><a href="team.so">팀별실적</a></li>
+				<%
+						
+					if(userID != null && admin != 0){
+						PrintWriter script = response.getWriter();
+						
+				%>
+					<li><a href="admin.do">관리자페이지</a>
+				<%
+					}
+				%>
 			</ul>
 			<%
 				if(userID ==null){
