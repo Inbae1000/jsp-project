@@ -2,11 +2,11 @@ package user;
 
 public class UserDTO {
 	
-	private String u_email;
-	private String u_pass;
-	private String u_name;
-	private int u_admin;
-	private int countEmail;
+	private String u_email;		//user id
+	private String u_pass;		//user pass
+	private String u_name;		//user 이름
+	private int u_admin;		//관리자 권한
+	private int countEmail;		//
 	
 	public String getU_email() {
 		return u_email;

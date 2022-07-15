@@ -59,11 +59,11 @@
 								</th>
 								<th style = "text-align:center">
 									<label for="cars" >수강정원</label>
-									<input type = "text" class="form-control"placeholder="수강정원" name="s_member" maxlength="10">
+									<input type = "text" class="form-control"placeholder="숫자만 입력 ex)30" name="s_member" maxlength="10">
 								</th>
 								<th style = "text-align:center">
 									<label for="cars" >목표취업률</label>
-									<input type = "text" class="form-control"placeholder="목표취업률" name="s_empoyee" maxlength="10">
+									<input type = "text" class="form-control"placeholder="숫자만 입력 ex)70.5" name="s_empoyee" maxlength="10">
 								</th>
 							<tr>						
 						</tbody>

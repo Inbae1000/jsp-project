@@ -78,7 +78,7 @@ td {border-right : 1px solid #dddddd;}
 <!-- 테이블 시작  -->
 	<div style ="font-size : 11px; margin-top : 60px;" >
 	<form method = "get" name = "insert" action = "performance.so" >		
-		<div style = "font-size: 15px;">
+		<div style = "font-size: 15px; text-align:center;">
 			<select id = "endId" onchange=endYear();Inputbtn();>
 			<option hidden selected><%=endsp %></option>
 			<%

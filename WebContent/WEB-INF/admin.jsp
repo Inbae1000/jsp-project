@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>Insert title here</title>
+<title>관리자 페이지</title>
 </head>
 
 <%@ include file = "menu2.jsp" %>
@@ -32,20 +32,28 @@
 					UserDAO userDao = new UserDAO();
 					List<UserDTO> list = userDao.userList();
 					int i = 0;
+					
 					for(UserDTO a : list){
 						i = i+1;
+						String add = null;
+						if(a.getU_admin() == 1){
+							add = "관리자";
+						}
+						if(a.getU_admin() == 0){
+							add = "";
+						}
 				%>
 				<form method = "post" name = "user<%=i %>" action = "adminAction.do">
 				<tbody>
 					<tr>
 						<td style="text-align:center;"><%=a.getU_email() %></td>
 						<td style="text-align:center;"><%=a.getU_pass() %></td>
-						<td style="text-align:center;"><%=a.getU_admin() %></td>
+						<td style="text-align:center;"><%=add %></td>
 						<td>
 						<input type = "hidden" name = "userId" value = <%=a.getU_email() %>>
-						<input type = "submit" name = "1" value = "권한부여"/>
-						<input type = "submit" name = "1" value = "권한삭제"/>
-						<input type = "submit" name = "1" value = "회원탈퇴"/>
+						<input type = "submit" name = "1" value = "권한부여" onclick =" return confirm('확인을 누르면 관리자 권한이 부여됩니다.')"/>
+						<input type = "submit" name = "1" value = "권한삭제" onclick =" return confirm('확인을 누르면 관리자 권한이 삭제됩니다.')"/>
+						<input type = "submit" name = "1" value = "회원탈퇴" onclick =" return confirm('삭제하시겠습니까?')"/>
 						</td>
 					</tr>
 					</tbody>

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import employment.EmploymentDAO;
+import employment.EmploymentDTO;
+
 /**
  * Servlet implementation class SubjectController
  */
@@ -85,6 +88,16 @@ public class SubjectController extends HttpServlet {
 		else if(command.equals("/team.so")) {
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/team.jsp");
 			rd.forward(req, resp);
+		}
+		else if(command.equals("/insertTeam.so")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/team2.jsp");
+			rd.forward(req, resp);
+		}
+		else if(command.equals("/teamAction.so")) {
+			employmentInsert(req,resp);
+		}
+		else if(command.equals("/emDelete.so")) {
+			emDelete(req,resp);
 		}
 
 	 }
@@ -199,5 +212,44 @@ public class SubjectController extends HttpServlet {
 		sDao.delete(sid);
 		sDao.delete2(sid);
 		resp.sendRedirect("home.do");
+	}
+	
+	public void emDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		String ee = req.getParameter("year");
+		EmploymentDAO eDao = EmploymentDAO.getInstance();
+		eDao.employmentDelete(ee);
+		resp.sendRedirect("team.so");
+	}
+	
+public void employmentInsert(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		
+	String [] a = req.getParameterValues("code");
+	String [] b = req.getParameterValues("employment_rate");
+	String [][] c = new String[11][3];
+	String year = req.getParameter("year");
+	
+	for(int i = 0; i<a.length; i++){
+		c[i][0] = year;
+		c[i][1] = a[i];
+		c[i][2] = b[i];
+
+		
+	}
+
+		
+		EmploymentDAO EmploymentDao = EmploymentDAO.getInstance();
+		for(int j = 0; j<a.length; j++) {
+		EmploymentDTO dto = new EmploymentDTO();
+		
+		dto.setYear(year);
+		dto.setCode(c[j][1]);
+		dto.setEmployment_rate(Double.parseDouble(c[j][2]));
+		
+
+		
+		int sResult = EmploymentDao.insert(dto);
+		}
+		resp.sendRedirect("home.do");
+	
 	}
 }

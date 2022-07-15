@@ -51,6 +51,7 @@ create table user(
 	u_email varchar(50),
 	u_pass varchar(50),
 	u_name varchar(50),
+	u_admin int DEFAULT 0,
 	
 	primary key(u_email)
 );
@@ -76,6 +77,14 @@ create table note(
 	primary key(m_id, n_id)
 );
 
+create table employment(
+	year varchar(5),
+	code varchar(10),
+	employment_rate decimal(3,1),
+	
+	primary key(year, code)
+);
+
 
 alter table subject add s_member varchar(20);
 alter table subject add s_empoyee varchar(20);
@@ -88,3 +97,5 @@ alter table consequence MODIFY co_asse varchar(3);
 
 alter table consequence MODIFY co_asse decimal(4,2);
 alter table user add u_admin int DEFAULT 0;
+alter table employment modify column code varchar(10);
+alter table employment drop column name;

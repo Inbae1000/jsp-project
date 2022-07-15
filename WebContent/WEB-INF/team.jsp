@@ -1,3 +1,5 @@
+<%@page import="employment.EmploymentDTO"%>
+<%@page import="employment.EmploymentDAO"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -563,7 +565,41 @@
 		
 		
 <!-- 3번째 테이블  -->
+<%!
+		double em_1 = 0;		//취업률 150102   기계설계
+		double em_2 = 0;		//취업률 150502   냉동공조
+		double em_3 = 0;		//취업률 160105   용접
+		double em_4 = 0;		//취업률 190107    전기공사
+		double em_5 = 0;		//취업률 140501   조경
+		double em_6 = 0;		//취업률 130101   음식조리
+		double em_7 = 0;		//취업률 020401   구매조달
+		double em_8 = 0;		//취업률 080201   디자인
+		double em_9 = 0;		//취업률 200102   정보기술개발
+		double em_10 = 0;		//취업률 220201   공예
+		double em_11 = 0;		//취업률 180201   패션제품기획
+		int ss = 0;
+		Date date = new Date();
+%>
+<%
 
+int emre1 = 0;
+int emre2 = 0;
+List<SubjectDTO> endList = subjectDao.subjectEndSelect(endsp);
+for(SubjectDTO aaa : endList){	
+	ss = ss+1;
+	SimpleDateFormat simpleDate2 = new SimpleDateFormat("yyyy-MM-dd");
+	String pss = aaa.getS_manage();
+	Date date2 = simpleDate2.parse(pss);
+	long emdm = (long)date.getTime();  //현재시간
+	long emdm2 = (long)date2.getTime(); // 관리종료
+	long emdm3 = (emdm2-emdm)/(1000*60*60*24)+1; // 계산
+	
+	if(emdm3 < 0){
+		emre1 = emre1 + 1;
+	}
+
+}
+%>
 	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 				<thead>
@@ -571,7 +607,7 @@
 						<th rowspan = "2" style=" text-align: center;">구분</th>
 						<th rowspan = "2" colspan = "2" style="text-align: center;">직종</th>
 						<th rowspan = "2" style="text-align: center;"><%=endsp %>년 적용<br>전국평균 취업률</th>
-						<th colspan = "5"><%=endsp %>년 종료과정 中 관리기간 종료과정 (25개/51개 과정)</th>
+						<th colspan = "5"><%=endsp %>년 종료과정 中 관리기간 종료과정 (<%=emre1 %>개/<%=ss %>개 과정)</th>
 						
 					</tr>
 					
@@ -598,17 +634,6 @@
 							String k = "패션제품기획";      //직종 180201
 							
 							double rb = 0;            //전국 취업률
-							double a_a =71.9;         //취업률 190107    전기공사
-							double a_b =75.3;         //취업률 160105   용접
-							double a_c =61.2;         //취업률 140501   조경
-							double a_d =67.4;         //취업률 080201   디자인
-							double a_e = 75.8;         //취업률 150102   기계설계
-							double a_f = 72.8;         //취업률 150502   냉동공조
-							double a_g = 50.7;         //취업률 130101   음식조리
-							double a_h = 69.4;         //취업률 020401   구매조달
-							double a_i = 72.8;         //취업률 200102   정보기술개발
-							double a_j = 71.6;         //취업률 220201   공예
-							double a_k = 62.4;         //취업률 180201   패션제품기획
 							double re12 = 0;							
 							int re10=0;						
 							int re11=0;					//수료인원
@@ -620,75 +645,124 @@
 							String code = null;
 							
 							
-							Date date = new Date();
+							
 							int re17 = 0;
 							int re18 = 0;
 							
-						
+							em_1 = 0;		//취업률 150102   기계설계
+							em_2 = 0;		//취업률 150502   냉동공조
+							em_3 = 0;		//취업률 160105   용접
+							em_4 = 0;		//취업률 190107    전기공사
+							em_5 = 0;		//취업률 140501   조경
+							em_6 = 0;		//취업률 130101   음식조리
+							em_7 = 0;		//취업률 020401   구매조달
+							em_8 = 0;		//취업률 080201   디자인
+							em_9 = 0;		//취업률 200102   정보기술개발
+							em_10 = 0;		//취업률 220201   공예
+							em_11 = 0;		//취업률 180201   패션제품기획
+							ss = 0;
+							String [] a1 = {"150102","150502","160105","190107","140501","130101","020401","080201","200102","220201","180201"};		//직종코드 바꾸고 싶으면 배열 수정 해 줘야함
+							EmploymentDAO employmentDAO = EmploymentDAO.getInstance();
+							List<EmploymentDTO> emList = employmentDAO.employmentList(endsp);
+							for(EmploymentDTO em : emList){
+								if(em.getCode().equals(a1[0]) ){
+									em_1 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[1])){
+									em_2 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[2])){
+									em_3 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[3])){
+									em_4 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[4])){
+									em_5 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[5])){
+									em_6 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[6])){
+									em_7 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[7])){
+									em_8 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[8])){
+									em_9 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[9])){
+									em_10 = em.getEmployment_rate();
+								}
+								if(em.getCode().equals(a1[10])){
+									em_11 = em.getEmployment_rate();
+								}
+
+
+							}
 							
-							String [] a1 = {"150102","150502","160105","190107","140501","130101","020401","080201","200102","220201","180201"};
 							for(int i = 0; i<a1.length; i++){
 								ra = "";
 								rb = 0;
 								name = null;
-								code = null;
 								MemberDAO memberDao = MemberDAO.getInstance();
 								List<SubjectDTO> list7 = subjectDao.subjectList7(a1[i]);
 								
 								if(a1[i] == a1[0]){
 									name = "1팀";
 									ra = ra + e;
-									rb = rb + a_e;
+									rb = rb + em_1;
 								}
 								if(a1[i] == a1[1]){
 									name = "1팀";
 									ra = ra + f;
-									rb = rb + a_f;
+									rb = rb + em_2;
 								}
 								if(a1[i] == a1[2]){
 									name = "1팀";
 									ra = ra + b;
-									rb = rb + a_b;
+									rb = rb + em_3;
 								}
 								if(a1[i] == a1[3]){
 									name = "1팀";
 									ra = ra + a;
-									rb = rb + a_a;
+									rb = rb + em_4;
 								}
 								if(a1[i] == a1[4]){
 									name = "2팀";
 									ra = ra + c;
-									rb = rb + a_c;
+									rb = rb + em_5;
 								}
 								if(a1[i] == a1[5]){
 									name = "2팀";
 									ra = ra + g;
-									rb = rb + a_g;
+									rb = rb + em_6;
 								}
 								if(a1[i] == a1[6]){
 									name = "2팀";
 									ra = ra + h;
-									rb = rb + a_h;
+									rb = rb + em_7;
 								}
 								if(a1[i] == a1[7]){
 									name = "2팀/3팀";
 									ra = ra + d;
-									rb = rb + a_d;
+									rb = rb + em_8;
 								}
 								if(a1[i] == a1[8]){
 									name = "3팀";
 									ra = ra + iii;
-									rb = rb + a_i;
+									rb = rb + em_9;
 								}
 								if(a1[i] == a1[9]){
 									name = "3팀";
 									ra = ra + j;
-									rb = rb + a_j;
+									rb = rb + em_10;
 								}
 								if(a1[i] == a1[10]){
 									name = "3팀";
 									ra = ra + k;
-									rb = rb + a_k;
+									rb = rb + em_11;
 								}
 								
 								
@@ -706,8 +780,9 @@
 									re88 = 0;
 									re17 = 0;
 									re18 = 0;
+									
 									List<SubjectDTO> list2 = subjectDao.subjectTeamSelect(a1[i],endsp);
-									for(SubjectDTO aaa : list2){							
+									for(SubjectDTO aaa : list2){							// 과정
 										List<MemberJoin> list11 = memberDao.selectList(aaa.getS_id());
 										
 										SimpleDateFormat simpleDate2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -716,7 +791,7 @@
 										long dm = (long)date.getTime();  //현재시간
 										long dm2 = (long)date2.getTime(); // 관리종료
 										long dm3 = (dm2-dm)/(1000*60*60*24)+1; // 계산
-
+										
 										
 										if(dm3 < 0){
 											re17 = re17 + 1;
@@ -725,7 +800,7 @@
 											re18 = re18 + 1;
 										}
 										
-										for (MemberJoin bbb : list11){
+										for (MemberJoin bbb : list11){		//학생
 											if(bbb.getCo_comple().equals("O")){
 												co = co+1;	//수료인원
 											}
@@ -763,7 +838,6 @@
 						<th><%=re88 %></th>
 						<th><%=re88_di_re11 %>%</th>
 						<th><%=format.format(re99) %>%</th>
-									
 					</tr>
 							
 					
@@ -771,8 +845,13 @@
 								
 							}
 					%>
+
+			
+
+							
 				</thead>
 			</table>
+			<input type="button" class="btn btn-primary pull-right" value="취업률 등록 및 삭제" onclick = "em()"> 
 		</div>
 	<script>
 	function endYear(){
@@ -783,6 +862,10 @@
 	function Inputbtn(){
 		document.insert.submit();
 	}
+	function em(){
+		location.href='insertTeam.so'
+	}
+	
 	</script>
 </body>
 </html>

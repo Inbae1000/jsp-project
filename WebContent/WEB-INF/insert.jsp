@@ -26,7 +26,7 @@
 							<th colspan="18" style="backgroud-color:#eeeeee; text-align:center;">수강인원 등록</th>			<!-- colspan에는 밑에 input 수 만큼(셀 합병) -->			
 						</tr>
 					</thead>
-					</tbody>
+					<tbody>
 						<tr>
 						<input type = "hidden" class="form-control" name ="s_id" value = ${suSelectOne.s_id}>
 							<th style = "text-align:center">
@@ -76,8 +76,7 @@
 							</th>
 						</tr>
 					</tbody>					
-				</table
-				>
+				</table>
 <!-- 수강인원 결과 관리 테이블  -->
 
 				<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
