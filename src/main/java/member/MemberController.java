@@ -125,7 +125,7 @@ public class MemberController extends HttpServlet {
 
     }
     
-	public void requestInsert1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void requestInsert1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		//학생 입력
 	
 	
 		String name = req.getParameter("m_name");
@@ -165,7 +165,7 @@ public class MemberController extends HttpServlet {
 		
 	}
 	
-	public void requestInsert2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void requestInsert2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		//해당 학생id 회사정보 입력
 		
 		String cStart = req.getParameter("c_start");
 		String cMaintain = req.getParameter("c_maintain");
@@ -194,7 +194,7 @@ public class MemberController extends HttpServlet {
 	}
 	
 	
-	public void requestInsert3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void requestInsert3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		//해당 학생id 출석정보 입력
 		
 		
 		String coResult = req.getParameter("co_result");
@@ -241,7 +241,7 @@ public class MemberController extends HttpServlet {
 		System.out.println(conResult);
 	}
 	
-	public void requestInsert4(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	public void requestInsert4(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		//해당 학생id 비고 입력
 		
 		String note = req.getParameter("n_note");
 		
@@ -259,7 +259,7 @@ public class MemberController extends HttpServlet {
 		
 	}
 	
-	public void selectOne(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	public void selectOne(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		//학생 id로 해당 학생만 불러옴
 		int id =Integer.parseInt(req.getParameter("m_id"));
 		MemberDAO mDao = MemberDAO.getInstance();
 		MemberDTO mDto = new MemberDTO();
@@ -292,7 +292,7 @@ public class MemberController extends HttpServlet {
 	
 	
 	
-	public void requestUpdate1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	public void requestUpdate1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		//학생정보 수정
 		int id = Integer.parseInt(req.getParameter("m_id"));
 		String name = req.getParameter("m_name");
 		String birth = req.getParameter("m_birth");
@@ -329,7 +329,7 @@ public class MemberController extends HttpServlet {
 		
 	}
 	
-	public void requestUpdate2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	public void requestUpdate2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		//해당 학생id 회사 정보 수정
 		
 		String cStart = req.getParameter("c_start");
 		String cMaintain = req.getParameter("c_maintain");
@@ -357,7 +357,7 @@ public class MemberController extends HttpServlet {
 		int cResult = cDao.cUpdate(cDto);
 	}
 	
-	public void requestUpdate3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	public void requestUpdate3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		//해당 학생id 출석정보 수정
 		
 		String coResult = req.getParameter("co_result");
 		String attend = req.getParameter("co_attend");
@@ -400,7 +400,7 @@ public class MemberController extends HttpServlet {
 
 	}
 	
-	public void requestUpdate4(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void requestUpdate4(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		//해당 학생id 비고 추가 입력
 		
 		int mId = Integer.parseInt(req.getParameter("m_id"));
 		String note = req.getParameter("n_note");
@@ -416,7 +416,7 @@ public class MemberController extends HttpServlet {
 		}
 	}
 	
-	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{		//해당 id 학생 정보 삭제
 		int id = Integer.parseInt(req.getParameter("m_id"));
 		int sId = Integer.parseInt(req.getParameter("s_id"));
 		MemberDAO mdao = MemberDAO.getInstance();

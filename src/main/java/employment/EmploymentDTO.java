@@ -1,9 +1,9 @@
 package employment;
 
 public class EmploymentDTO {
-	private String year;
-	private String code;
-	private double employment_rate;
+	private String year;		//년도
+	private String code;		//직종코드
+	private double employment_rate;		//목표취업률
 	
 	
 	public String getYear() {

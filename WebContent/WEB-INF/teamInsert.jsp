@@ -107,25 +107,10 @@
 
 <!-- 첫번째 테이블  -->
 	<div style ="font-size: 11px; margin-top: 60px; width:1000px;" >
-	<form method = "get" name = "insert" action = "team.so" >		
-		<div style = "font-size: 15px;">
-			<select id = "endId" onchange=endYear();Inputbtn();>
-			<option hidden selected><%=endsp %></option>
-			<%
-				for(String i : linkedHashSet){
-			%>
-				<option value =<%=i %> ><%=i %></option>
-			<%
-				}
-			%>
-			</select>
-			년도 국가기간산업전략직종 훈련실적현황(종료과정)
-		</div>
-		<input type = "hidden" class="form-control" name ="s_end" >
-	</form>
+
 	
 
-	<div style ="font-size: 11px; margin-top: 50px; width:1000px;" name="insert" >
+	<div style ="font-size: 11px; margin-top: 50px; width:1000px;">
 			<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
 			<form method="post" name = "emp" action = "teamAction.so">
 				<thead>
@@ -317,32 +302,26 @@
 						%>
 						
 							<tr>
-							<th><%=name %></th>					
-							<th><%=a1[i] %>
-							<input type = "hidden" name = "code" value = <%=a1[i] %>>
-							</th>
-							<th><%=ra %></th>
-							<th><input type ="text" name = "employment_rate"  placeholder="숫자만 입력 ex)50.7"></th>										
-							<th><%=re17 %>/<%=re18 %></th>
-							<th><%=re11 %></th>
-							<th><%=re88 %></th>
-							<th><%=re88_di_re11 %>%</th>
-							<th><%=format.format(re99) %>%</th>		
-							
+								<th><%=name %></th>					
+								<th><%=a1[i] %>
+									<input type = "hidden" name = "code" value = <%=a1[i] %>>
+								</th>
+								<th><%=ra %></th>
+								<th><input type ="text" name = "employment_rate" id=emId<%=i %>  placeholder="숫자만 입력 ex)50.7"></th>										
+								<th><%=re17 %>/<%=re18 %></th>
+								<th><%=re11 %></th>
+								<th><%=re88 %></th>
+								<th><%=re88_di_re11 %>%</th>
+								<th><%=format.format(re99) %>%</th>		
 							</tr>
-						
-							
-						
+
 					
-							
-					
-					<%						
-								
+						<%						
 							}
-					%>
+						%>
 				</thead>
-				<input type = "submit" name = "1"class="btn btn-primary pull-right" value = "등록"/>	
-				</form>
+				<input type = "button" name = "1"class="btn btn-primary pull-right" value = "등록" onclick = "check()"/>	
+			</form>
 				
 			</table>
 			<form method = "post" action = "emDelete.so" >
@@ -364,7 +343,71 @@
 	function test(){
 		document.emp.submit();
 	}
+	function check(){  // 유효성 검사
+		emId0 = document.getElementById("emId0").value;
+		emId1 = document.getElementById("emId1").value;
+		emId2 = document.getElementById("emId2").value;
+		emId3 = document.getElementById("emId3").value;
+		emId4 = document.getElementById("emId4").value;
+		emId5 = document.getElementById("emId5").value;
+		emId6 = document.getElementById("emId6").value;
+		emId7 = document.getElementById("emId7").value;
+		emId8 = document.getElementById("emId8").value;
+		emId9 = document.getElementById("emId9").value;
+		emId10 = document.getElementById("emId10").value;
 
+		var form = document.emp;
+		if	(form.year.value == ""){
+			alert("년도를 입력해 주세요");
+			form.year.focus();
+			return false;
+		} else if(emId0 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId0.focus();
+			return false;
+		}else if(emId1 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId1.focus();
+			return false;
+		}else if(emId2 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId2.focus();
+			return false;
+		}else if(emId3 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId3.focus();
+			return false;
+		}else if(emId4 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId4.focus();
+			return false;
+		}else if(emId5 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId5.focus();
+			return false;
+		}else if(emId6 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId6.focus();
+			return false;
+		}else if(emId7 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId7.focus();
+			return false;
+		}else if(emId8 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId8.focus();
+			return false;
+		}else if(emId9 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId9.focus();
+			return false;
+		}else if(emId10 == ""){
+			alert("출석률을 입력해 주세요")
+			form.emId10.focus();
+			return false;
+		}
+		form.submit();
+	}
 
 	</script>
 </body>

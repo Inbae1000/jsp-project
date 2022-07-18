@@ -52,7 +52,7 @@ public class EmploymentDAO {
 	}
 	
 	
-	public List<EmploymentDTO> employmentList(String ee){
+	public List<EmploymentDTO> employmentList(String ee){		//해당 년도의 직종코드 및 목표취업률 불러옴
 
 		List<EmploymentDTO> list = new ArrayList<>();
 		
@@ -83,7 +83,7 @@ public class EmploymentDAO {
 		
 	}
 	
-	public int insert(EmploymentDTO dto) {
+	public int insert(EmploymentDTO dto) {		//목표취업률 입력
 
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
@@ -106,7 +106,7 @@ public class EmploymentDAO {
 		return -1;
 	}
 	
-	public int employmentDelete(String ee) {
+	public int employmentDelete(String ee) {		//목표취업률 삭제 개별삭제 없음 삭제할땐 해당년도 다 삭제됨
 		String sql = "delete from employment where year = ?";
 		
 		try {

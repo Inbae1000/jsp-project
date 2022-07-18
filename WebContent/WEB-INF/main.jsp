@@ -30,7 +30,7 @@
 								
 								<%
 								
-									if(userID != null && admin != 0){
+									if(userID != null && admin != 0){		//user의 admin이 1이면 보임
 										PrintWriter script = response.getWriter();
 								
 								%>

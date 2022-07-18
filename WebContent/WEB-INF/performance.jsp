@@ -51,7 +51,7 @@ td {border-right : 1px solid #dddddd;}
 </head>
 <body>
 
-<%
+<%	//db에 입력되어 있는 end년도 뽑아옴
 	LocalDate now = LocalDate.now();
 	SubjectDAO subjectDao = SubjectDAO.getInstance();
 	List<SubjectDTO> end = subjectDao.endDate();
@@ -78,7 +78,7 @@ td {border-right : 1px solid #dddddd;}
 <!-- 테이블 시작  -->
 	<div style ="font-size : 11px; margin-top : 60px;" >
 	<form method = "get" name = "insert" action = "performance.so" >		
-		<div style = "font-size: 15px; text-align:center;">
+		<div style = "font-size: 15px; text-align:center;">		<!-- db에 입력되어있는 end년도 자동으로 뽑아와서 보여줌 -->
 			<select id = "endId" onchange=endYear();Inputbtn();>
 			<option hidden selected><%=endsp %></option>
 			<%
@@ -391,21 +391,21 @@ td {border-right : 1px solid #dddddd;}
 							}
 						}
 						
-						aLbDiv = (aLb/member2)*100;
-						coDiv = (co/aLb)*100;
-						re8 = re7+re6;
-						re1 = re1-re8;
-						reDiv1 = (re1/aLb)*100;
-						re11 = (int)co+re3-re9-re10;
-						re12 = re3+re4;
-						reDiv2 = (re4/re11)*100;
-						reDiv3 = (re5/re11)*100;
-						reDiv4 = (re12/re11)*100;
-						cerDiv = (cer/aLb)*100;
-						reDiv5 = (re13/(re2+re3+re4+re5))*100;
-						reDiv6 = (re14/re11)*100;
-						reDiv8 = (re16/re11)*100;
-						reDiv9=(doubleAsse/re11)*100;
+						aLbDiv = (aLb/member2)*100;		//모집인원 -> 모집률
+						coDiv = (co/aLb)*100;			//수료인원 -> 수료률
+						re8 = re7+re6;					//산정제외 -> 수료전 re6+re7
+						re1 = re1-re8;					//중도탈락
+						reDiv1 = (re1/aLb)*100;			//중도탈락 -> 중탈률
+						re11 = (int)co+re3-re9-re10;	//산정인원
+						re12 = re3+re4;					//취업인원
+						reDiv2 = (re4/re11)*100;		//수료취업 -> 수료취업률
+						reDiv3 = (re5/re11)*100;		//수료미취업 -> 수료미취업률
+						reDiv4 = (re12/re11)*100;		//일반취업률
+						cerDiv = (cer/aLb)*100;			//자격증취득률
+						reDiv5 = (re13/(re2+re3+re4+re5))*100;		//고보가입률
+						reDiv6 = (re14/re11)*100;		//수료고보가입률
+						reDiv8 = (re16/re11)*100;		//전담률
+						reDiv9=(doubleAsse/re11)*100;	//가중치취업률 %값
 						
 						
 						if(!b.getS_professor().equals("")){		//담임

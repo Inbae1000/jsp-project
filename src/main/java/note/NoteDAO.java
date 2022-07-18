@@ -47,7 +47,7 @@ public class NoteDAO {
 		}
 	}
 	
-	public int nextval1() {
+	public int nextval1() {		// 처음입력시 학생 id에 맞게 자동으로 입력해줌
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT MAX(m_id) ").append("FROM member");
@@ -67,7 +67,7 @@ public class NoteDAO {
 	}
 	
 	
-	public int nextval2(int m_id) {
+	public int nextval2(int m_id) {		// 학생 수정 페이지에서 입력시 작동
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT MAX(n_id) ").append("FROM note WHERE m_id = ?");
@@ -87,7 +87,7 @@ public class NoteDAO {
 		return result;
 	}
 	
-	public int insert(NoteDTO dto) {
+	public int insert(NoteDTO dto) {	//비고 입력
 		 
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
@@ -110,7 +110,7 @@ public class NoteDAO {
 		 return -1;
 	}
 	
-	public int delete1(int n_id, int m_id) {
+	public int delete1(int n_id, int m_id) {		// 비고 삭제 개별 삭제
 		String sql = "delete from note where n_id = ? and m_id = ? ";
 		
 		try {
@@ -127,7 +127,7 @@ public class NoteDAO {
 		return result;
 	}
 	
-	public int delete2(int m_id) {
+	public int delete2(int m_id) {		// 학생 삭제시 해당 학생의 비고 삭제
 		String sql = "delete from note where m_id = ? ";
 		
 		try {
@@ -144,7 +144,7 @@ public class NoteDAO {
 	}
 	
 	
-	public List<NoteDTO> selectList(int m_id){
+	public List<NoteDTO> selectList(int m_id){		//해당 학생 비고 리스트
 
 		List<NoteDTO> list = new ArrayList<>();
 		
@@ -176,7 +176,7 @@ public class NoteDAO {
 	}
 	
 	
-	public NoteDTO selectNewList(int m_id){
+	public NoteDTO selectNewList(int m_id){		// 과목 세부페이지 최신 비고 보여줌
 
 		
 		try {

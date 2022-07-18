@@ -1,10 +1,10 @@
 package note;
 
 public class NoteDTO {
-	private int m_id;
-	private int n_id;
-	private String n_note;
-	private String n_date;
+	private int m_id;		// 학생 id
+	private int n_id;		// 비고 id
+	private String n_note;	// 비고 내용
+	private String n_date;	// 비고 입력 날짜
 	
 	
 	public int getM_id() {

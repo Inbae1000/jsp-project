@@ -1,15 +1,15 @@
 package company;
 
 public class CompanyDTO {
-	private String c_start;
-	private String c_maintain;
-	private String c_end;
-	private String c_name;
-	private String c_address ;
-	private String c_number;
-	private String c_manager;
-	private String c_except;
-	private int m_id;
+	private String c_start;			//입사일
+	private String c_maintain;		//고용유지
+	private String c_end;			//퇴사여부
+	private String c_name;			//업체면
+	private String c_address;		//주소
+	private String c_number;		//전화번호
+	private String c_manager;		//취업전담제
+	private String c_except;		//산정제외
+	private int m_id;				//학생id
 	
 	
 	public String getC_start() {

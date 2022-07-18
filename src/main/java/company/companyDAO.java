@@ -50,7 +50,7 @@ public class CompanyDAO {
 		}
 	}
 	
-	public int nextval() {
+	public int nextval() {		// 학생 id 입력
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT MAX(m_id) ").append("FROM member");
@@ -69,7 +69,7 @@ public class CompanyDAO {
 		return result;
 	}
 	
-	public int cInsert(CompanyDTO dto) {
+	public int cInsert(CompanyDTO dto) {		//회사정보 입력
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("insert into Company ");
@@ -97,7 +97,7 @@ public class CompanyDAO {
 		return -1;
 	}
 	
-	public List<CompanyDTO> selectList(){
+	public List<CompanyDTO> selectList(){		//회사정보 리스트 불러옴
 
 		List<CompanyDTO> list3 = new ArrayList<>();
 		
@@ -136,7 +136,7 @@ public class CompanyDAO {
 	
 	
 	
-	public CompanyDTO cSelectOne(int m_id) {
+	public CompanyDTO cSelectOne(int m_id) {		// 해당 학생id에 맞는 회사정보 리스트 불러옴
 		String sql = "select * from company where m_id = ?";
 		
 		try {
@@ -167,7 +167,7 @@ public class CompanyDAO {
 		return null;
 	}
 	
-	public int cUpdate (CompanyDTO dto) {
+	public int cUpdate (CompanyDTO dto) {		// 회사 수정
 		
 		
 		conn =ConnectionDB.getConnection();
@@ -198,7 +198,7 @@ public class CompanyDAO {
 		return -1;
 	}
 	
-	public int delete(int m_id) {
+	public int delete(int m_id) {		//삭제
 		String sql = "delete from company where m_id = ?";
 		
 		try {

@@ -1,22 +1,22 @@
 package consequence;
 
 public class ConsequenceDTO {
-	private String co_result;
-	private String co_attend;
-	private String co_comple;
-	private String co_employ;
-	private String co_same;
-	private String co_insurance;
-	private String co_option1;
-	private String co_option2;
-	private String co_option3;
-	private String co_option4;
-	private String co_option5;
-	private String co_option6;
-	private String co_asse;
-	private String co_porf;
-	private String co_certificate;
-	private int m_id;
+	private String co_result;		//결과
+	private String co_attend;		//출석률
+	private String co_comple;		//수료
+	private String co_employ;		//취업
+	private String co_same;			//동일직종
+	private String co_insurance;	//고용보험
+	private String co_option1;		//취업가중치
+	private String co_option2;		//일반취업률
+	private String co_option3;		//취업가중치
+	private String co_option4;		//일반취업률
+	private String co_option5;		//취업가중치
+	private String co_option6;		//일반취업률
+	private String co_asse;			//평가기준
+	private String co_porf;			//일반취업률
+	private String co_certificate;	//자격증
+	private int m_id;				//학생 id
 	
 	
 	public String getCo_result() {

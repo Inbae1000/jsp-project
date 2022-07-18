@@ -39,7 +39,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">전화번호</label>
-								<input type = "text" class="form-control"placeholder="전화번호" name="m_number" maxlength="20">
+								<input type = "text" class="form-control"placeholder="010-0000-0000" name="m_number" maxlength="20">
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">지역</label>
@@ -159,7 +159,7 @@
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">일반취업률</label>
-								<input type = "text" class="form-control"placeholder="직종기준" name= "co_porf" maxlength="20" readonly>
+								<input type = "text" class="form-control"placeholder="일반취업률" name= "co_porf" maxlength="20" readonly>
 							</th>
 							<th style = "text-align:center">
 								<label for="cars">자격증</label>
@@ -267,12 +267,12 @@
 		
 		const formatted_date = nextDate.getFullYear() + "-" + (nextDate.getMonth() + 1) + "-" + nextDate.getDate()
 		
-		if(item3 == "O"){
-			if(comple =="O" || comple =="이수"){
-				insert.c_maintain.value=formatted_date;	
+		if(item3 == "O"){		//고용보험
+			if(comple =="O" || comple =="이수"){		//수료
+				insert.c_maintain.value=formatted_date;		//고용유지에 값 넣기
 			}	
 		}else{
-			insert.c_maintain.value="";
+			insert.c_maintain.value="";		// 고용유지 빈칸
 		}
 		
 	}
@@ -286,100 +286,100 @@
 		
 		if(birth != ""){
 			if(att == "" && item1 == ""){
-				insert.co_resultId.value = "훈련중";
+				insert.co_resultId.value = "훈련중";		//결과
 			} else if(att < 80 && item1 == "" ){
-				insert.co_resultId.value = "중도탈락";
+				insert.co_resultId.value = "중도탈락";		//결과
 			} else if(att < 70 && item1 == "O"){
-				insert.co_resultId.value = "조기취업";
+				insert.co_resultId.value = "조기취업";		//결과
 			} else if(att >= 80 && item1 == "O"){
-				insert.co_resultId.value = "수료취업";
+				insert.co_resultId.value = "수료취업";		//결과
 			} else if(att >= 70 && att < 80 && item1 == "O"){
-				insert.co_resultId.value = "이수취업";
+				insert.co_resultId.value = "이수취업";		//결과
 			} else if(att >=80 && item1 == ""){
-				insert.co_resultId.value = "수료미취업";
+				insert.co_resultId.value = "수료미취업";	//결과
 			}
 		};
 		
-		result = document.getElementById("co_resultId").value;
+		result = document.getElementById("co_resultId").value;		//결과
 		
 		if(att >= 80){
 			insert.co_comple.value = "O";
 		} else if(result == "중도탈락"){
-			insert.co_comple.value = "";
+			insert.co_comple.value = "";		//수료여부
 		} else if(att >= 70 && att <= 79.9){
-			insert.co_comple.value = "이수";
+			insert.co_comple.value = "이수";		//수료여부
 		} else {
-			insert.co_comple.value = "";
+			insert.co_comple.value = "";		//수료여부
 		}
 		
 	}
-	function Attendance2(){  // 고용보험으로 직종 가중치, 취업률 가중치 계산
-		item3 = document.getElementById("item3Id").value;
+	function Attendance2(){  // 고용보험으로 직종 가중치, 일반 취업률 계산
+		item3 = document.getElementById("item3Id").value;		//고용보험
 		
 		if(item3 == ""){
-			insert.co_option1.value = "";
-			insert.co_option2.value = "";
+			insert.co_option1.value = "";		//직종 가중치
+			insert.co_option2.value = "";		//일반 취업률
 		} else if (item3 == "O" || item3 == "창업" || item3 == "예정"){
-			insert.co_option1.value = 1;
-			insert.co_option2.value = 1;
+			insert.co_option1.value = 1;		//직종 가중치
+			insert.co_option2.value = 1;		//일반 취업률
 		} else if (item3 == "X"){
-			insert.co_option1.value = 0.5;
-			insert.co_option2.value = 1;
+			insert.co_option1.value = 0.5;		//직종 가중치
+			insert.co_option2.value = 1;		//일반 취업률
 		} else {
-			insert.co_option1.value = 0;
-			insert.co_option2.value = 0;
+			insert.co_option1.value = 0;		//직종 가중치
+			insert.co_option2.value = 0;		//일반 취업률
 		}
 	}
 	
-	function Attendance3(){  //수료 및 취업으로 직종 가중치, 취업률 가중치 계산
-		completion = document.getElementById("co_compleId").value;
-		item1 = document.getElementById("item1Id").value;
+	function Attendance3(){  //수료 및 취업으로 직종 가중치, 일반 취업률 계산
+		completion = document.getElementById("co_compleId").value;		//수료
+		item1 = document.getElementById("item1Id").value;				//취업
 		
 		if(item1 == ""){
-			insert.co_option3.value = "";
-			insert.co_option4.value = "";
+			insert.co_option3.value = "";		//직종 가중치
+			insert.co_option4.value = "";		//일반 취업률
 		} else if(completion == "O" || completion == "이수"){
-			insert.co_option3.value = 1;
-			insert.co_option4.value = 1;
+			insert.co_option3.value = 1;		//직종 가중치
+			insert.co_option4.value = 1;		//일반 취업률
 		} else {
-			insert.co_option3.value = 0;
-			insert.co_option4.value = 0;
+			insert.co_option3.value = 0;		//직종 가중치
+			insert.co_option4.value = 0;		//일반 취업률
 		}
 	}
 	
-	function Attendance4(){  //구분으로 직종 가중치, 취업률 가중치 계산
-		type2 = document.getElementById("m_option2Id").value;
+	function Attendance4(){  //구분으로 직종 가중치, 일반 취업률 계산
+		type2 = document.getElementById("m_option2Id").value;		//구분
 		
 		if(type2 == "국취지1"){
-			insert.co_option5.value = 1.5;
-			insert.co_option6.value = 1;
+			insert.co_option5.value = 1.5;		//직종 가중치
+			insert.co_option6.value = 1;		//일반 취업률
 		} else if (type2 == "40세이상"){
-			insert.co_option5.value = 1.3;
-			insert.co_option6.value = 1;
+			insert.co_option5.value = 1.3;		//직종 가중치
+			insert.co_option6.value = 1;		//일반 취업률
 		} else {
-			insert.co_option5.value = 1;
-			insert.co_option6.value = 1;
+			insert.co_option5.value = 1;		//직종 가중치
+			insert.co_option6.value = 1;		//일반 취업률
 		}
 	}
 	
 	function Attendance5(){  // 평가기준 직종기준 계산
-		item1 = document.getElementById("item1Id").value;
-		co_option1 = document.getElementById("co_option1Id").value;
-		co_option2 = document.getElementById("co_option2Id").value;
-		co_option3 = document.getElementById("co_option3Id").value;
-		co_option4 = document.getElementById("co_option4Id").value;
-		co_option5 = document.getElementById("co_option5Id").value;
-		co_option6 = document.getElementById("co_option6Id").value;
+		item1 = document.getElementById("item1Id").value;				//취업
+		co_option1 = document.getElementById("co_option1Id").value;		//직종 가중치
+		co_option2 = document.getElementById("co_option2Id").value;		//일반 취업률
+		co_option3 = document.getElementById("co_option3Id").value;		//직종 가중치
+		co_option4 = document.getElementById("co_option4Id").value;		//일반 취업률
+		co_option5 = document.getElementById("co_option5Id").value;		//직종 가중치
+		co_option6 = document.getElementById("co_option6Id").value;		//일반 취업률
 		
-		var a1 = co_option1*co_option3*co_option5;
-		var a2 = co_option2*co_option4*co_option6;
+		var a1 = co_option1*co_option3*co_option5;		//직종 가중치*직종 가중치*직종 가중치
+		var a2 = co_option2*co_option4*co_option6;		//일반 취업률*일반 취업률*일반 취업률
 		
-		if(item1 == "O"){
-			insert.co_asse.value = a1;
-			insert.co_porf.value = a2;
+		if(item1 == "O"){					//취업
+			insert.co_asse.value = a1;		//a1 직종 가중치 결과
+			insert.co_porf.value = a2;		//a2 일반 취업률 결과
 		} else {
-			insert.co_asse.value = "";
-			insert.co_porf.value = "";
+			insert.co_asse.value = "";		//직종 가중치
+			insert.co_porf.value = "";		//일반 취업률
 		}
 		
 	}

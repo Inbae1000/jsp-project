@@ -6,7 +6,7 @@ public class UserDTO {
 	private String u_pass;		//user pass
 	private String u_name;		//user 이름
 	private int u_admin;		//관리자 권한
-	private int countEmail;		//
+
 	
 	public String getU_email() {
 		return u_email;
@@ -32,11 +32,6 @@ public class UserDTO {
 	public void setU_admin(int u_admin) {
 		this.u_admin = u_admin;
 	}
-	public int getCountEmail() {
-		return countEmail;
-	}
-	public void setCountEmail(int countEmail) {
-		this.countEmail = countEmail;
-	}
+
 
 }

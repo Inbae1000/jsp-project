@@ -13,7 +13,7 @@
 
 
 
-	<%
+	<%		//첫화면 로그인화면으로 이동시켜 주는거 지우면 로그인 안하고 정보 볼수있음
 		String userID = null;
 		int admin = -1;
 
@@ -46,7 +46,7 @@
 				<li><a href="team.so">팀별실적</a></li>
 				<%
 						
-					if(userID != null && admin != 0){
+					if(userID != null && admin != 0){		//user의 admin값이 1이면 보임
 						PrintWriter script = response.getWriter();
 						
 				%>

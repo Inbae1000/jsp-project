@@ -53,7 +53,7 @@ public class MemberDAO {
 		}
 	}
 	
-	public int nextval() {
+	public int nextval() {		// 학생 id자동 증가 및 입력
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT MAX(m_id) ").append("FROM member");
@@ -72,7 +72,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public List<MemberJoin> selectList(int s_id){
+	public List<MemberJoin> selectList(int s_id){		//선택한 과목에 해당하는 학생들 리스트 불러옴
 
 		List<MemberJoin> list = new ArrayList<>();
 		
@@ -134,7 +134,7 @@ public class MemberDAO {
 		return list;
 	}
 
-	public MemberDTO selectAsse(int s_id){
+	public MemberDTO selectAsse(int s_id){		//asse값(가중치 합계) 값을 db에서 불러옴
 		String sql = "select sum(co_asse) from member join company on member.m_id = company.m_id join consequence on member.m_id = consequence.m_id where s_id = ?";
 		
 		try {
@@ -161,7 +161,7 @@ public class MemberDAO {
 	
 	
 	
-	public int insert(MemberDTO dto) {
+	public int insert(MemberDTO dto) {		//학생 입력
 		 
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
@@ -196,7 +196,7 @@ public class MemberDAO {
 		 return -1;
 	}
 	 
-	public MemberDTO selectOne(int m_id) {
+	public MemberDTO selectOne(int m_id) {		// 해당 학생 한명 불러옴
 		String sql = "Select * from member where m_id = ?";
 		
 		try {
@@ -230,7 +230,7 @@ public class MemberDAO {
 		 
 		return null;
 	}
-	public int update (MemberDTO dto) {
+	public int update (MemberDTO dto) {		//학생 정보 수정
 		
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
@@ -262,7 +262,7 @@ public class MemberDAO {
 		return -1;
 	}
 	
-	public int delete(int m_id) {
+	public int delete(int m_id) {		// 학생 삭제
 		String sql = "delete from member where m_id = ?";
 		
 		try {

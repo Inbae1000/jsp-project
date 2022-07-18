@@ -68,7 +68,7 @@ public class SubjectDAO {
 		return result;
 	}
 	
-	public List<SubjectDTO> subjectList(){
+	public List<SubjectDTO> subjectList(){		//과목 검색페이지 불러오기 용
 
 		List<SubjectDTO> list = new ArrayList<>();
 		
@@ -101,8 +101,7 @@ public class SubjectDAO {
 		return list;
 	}
 	
-	
-	public List<SubjectDTO> subjectList2(){
+	public List<SubjectDTO> subjectList2(){		//전체페이지 불러오기용
 		  
 		 List<SubjectDTO> list2 = new ArrayList<>();
 		 try {
@@ -140,7 +139,7 @@ public class SubjectDAO {
 		return list2; 
 	}
 	
-	public List<SubjectDTO> subjectList2Test(String s_end){
+	public List<SubjectDTO> subjectList2Test(String s_end){		//end기준으로 불러오기
 		  
 		 List<SubjectDTO> list2 = new ArrayList<>();
 		 try {
@@ -179,7 +178,7 @@ public class SubjectDAO {
 		return list2; 
 	}
 	
-	public List<SubjectDTO> subjectList3(String s_end){
+	public List<SubjectDTO> subjectList3(String s_end){		//교무1팀 end기준으로 불러오기
 		  
 		 List<SubjectDTO> list3 = new ArrayList<>();
 		 try {
@@ -217,7 +216,7 @@ public class SubjectDAO {
 		} 
 		return list3; 
 	}
-	public List<SubjectDTO> subjectList4(String s_end){
+	public List<SubjectDTO> subjectList4(String s_end){		//교무2팀 end기준으로 불러오기
 		  
 		 List<SubjectDTO> list3 = new ArrayList<>();
 		 try {
@@ -255,7 +254,7 @@ public class SubjectDAO {
 		} 
 		return list3; 
 	}
-	public List<SubjectDTO> subjectList5(String s_end){
+	public List<SubjectDTO> subjectList5(String s_end){		//교무3팀 end기준으로 불러오기
 		  
 		 List<SubjectDTO> list3 = new ArrayList<>();
 		 try {
@@ -294,7 +293,7 @@ public class SubjectDAO {
 		return list3; 
 	}
 	
-	public List<SubjectDTO> subjectList7(String a1){
+	public List<SubjectDTO> subjectList7(String a1){		//직종,소속 중복제거
 		  
 		 List<SubjectDTO> list2 = new ArrayList<>();
 		 try {
@@ -320,7 +319,7 @@ public class SubjectDAO {
 	}
 	
 	
-	public List<SubjectDTO> endDate(){
+	public List<SubjectDTO> endDate(){		//종료일 기준 정렬
 		  
 		 List<SubjectDTO> list2 = new ArrayList<>();
 		 try {
@@ -343,7 +342,7 @@ public class SubjectDAO {
 		return list2; 
 	}
 	
-	public List<SubjectDTO> subjectTeamSelect(String aa, String end){
+	public List<SubjectDTO> subjectTeamSelect(String aa, String end){		//해당 종료일 기준 직종별 리스트
 		  
 		 List<SubjectDTO> list2 = new ArrayList<>();
 		 try {
@@ -383,7 +382,7 @@ public class SubjectDAO {
 		return list2;
 	}
 	
-	public List<SubjectDTO> subjectEndSelect(String end){
+	public List<SubjectDTO> subjectEndSelect(String end){		// 종료일 기준 리스트
 		  
 		 List<SubjectDTO> list2 = new ArrayList<>();
 		 try {
@@ -422,7 +421,7 @@ public class SubjectDAO {
 		return list2;
 	}
 	
-	public int insert(SubjectDTO dto) {
+	public int insert(SubjectDTO dto) {		// 정보 입력
 
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
@@ -459,7 +458,7 @@ public class SubjectDAO {
 		return -1;
 	}
 	
-	public int update(SubjectDTO dto) {
+	public int update(SubjectDTO dto) {		// 정보수정
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("update subject set ");
@@ -497,7 +496,7 @@ public class SubjectDAO {
 		return -1;
 	}
 
-	public SubjectDTO selectOne(int s_id) {
+	public SubjectDTO selectOne(int s_id) {		//해당 과목 id 리스트
 		String sql = "select * from subject where s_id = ?";
 
 		try {
@@ -536,7 +535,7 @@ public class SubjectDAO {
 		return null;
 	}
 	
-	public int delete(int s_id) {
+	public int delete(int s_id) {		// 과목 삭제
 		String sql = "delete from subject where s_id = ?";
 		
 		try {
@@ -552,7 +551,7 @@ public class SubjectDAO {
 		return result;
 	}
 	
-	public int delete2(int s_id) {
+	public int delete2(int s_id) {		// 과목 삭제 후 해당 과목의 모든 정보 삭제
 		String sql = "delete from a,b,c,d using member as a left join company as b on a.m_id=b.m_id left join consequence as c on a.m_id = c.m_id left join note as d on a.m_id = d.m_id where a.s_id = ?";
 		
 		try {

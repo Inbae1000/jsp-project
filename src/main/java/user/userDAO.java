@@ -157,7 +157,7 @@ public class UserDAO {
 	return result;
 	}
 	
-	public List<UserDTO> userList(){
+	public List<UserDTO> userList(){	//user ¸®½ºÆ®
 		  
 		 List<UserDTO> list2 = new ArrayList<>();
 		 try {

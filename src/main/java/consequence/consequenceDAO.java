@@ -46,7 +46,7 @@ public class ConsequenceDAO {
 			}
 		}
 	}
-	public int nextval() {
+	public int nextval() {		// 학생 id 입력
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("SELECT MAX(m_id) ").append("FROM member");
@@ -65,7 +65,7 @@ public class ConsequenceDAO {
 		return result;
 	}
 	
-	public int coInsert(ConsequenceDTO dto) {
+	public int coInsert(ConsequenceDTO dto) {		//출석정보 입력
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
 		query.append("insert into consequence ");
@@ -100,7 +100,7 @@ public class ConsequenceDAO {
 		return -1;
 	}
 	
-	public List<ConsequenceDTO> selectList(){
+	public List<ConsequenceDTO> selectList(){		// 출석정보 리스트 불러옴
 
 		List<ConsequenceDTO> list2 = new ArrayList<>();
 		
@@ -146,7 +146,7 @@ public class ConsequenceDAO {
 	
 	
 	
-	public ConsequenceDTO coSelectOne(int m_id) {
+	public ConsequenceDTO coSelectOne(int m_id) {		// 해당 학생id에 맞는 출석정보 리스트 불러옴
 		String sql = "select * from consequence where m_id = ?";
 		
 		try {
@@ -186,7 +186,7 @@ public class ConsequenceDAO {
 		return null;
 	}
 	
-	public int update (ConsequenceDTO dto) {
+	public int update (ConsequenceDTO dto) {		// 출석정보 수정
 		
 		conn = ConnectionDB.getConnection();
 		StringBuffer query = new StringBuffer();
@@ -226,7 +226,7 @@ public class ConsequenceDAO {
 		
 		return -1;
 	}
-	public int delete(int m_id) {
+	public int delete(int m_id) {		// 출석정보 삭제
 		String sql = "delete from consequence where m_id = ?";
 		
 		try {
