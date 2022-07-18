@@ -14,7 +14,7 @@
 <%@page import="consequence.*" %>
 <%@page import="java.util.*" %>
 
-<title>전체(진행)</title>
+<title>전체</title>
 <!-- 메뉴 -->
 	<%@ include file = "menu2.jsp" %>
 	

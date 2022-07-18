@@ -146,7 +146,7 @@ public class SubjectController extends HttpServlet {
 		
 		int sResult = subjectDao.insert(dto);
 		System.out.println(sResult);	
-		resp.sendRedirect("home.do");
+		resp.sendRedirect("select.so?s_id="+subjectDao.nextval());
 	
 	}
 	
@@ -250,7 +250,7 @@ public void employmentInsert(HttpServletRequest req, HttpServletResponse resp)th
 		int sResult = EmploymentDao.insert(dto);
 	}
 
-	resp.sendRedirect("home.do");
+	resp.sendRedirect("team.so");
 	
 	}
 }

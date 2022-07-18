@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="note.NoteDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -331,6 +332,8 @@
  				
 
  					<%
+ 						LocalDate now = LocalDate.now();
+ 						int year = now.getYear();
  						a = 0;
 						for(MemberJoin b : list){	//과목별 학생 리스트
 							a =a+1;
@@ -347,7 +350,8 @@
 							}else{
 								coAsse = b.getCo_asse();
 							}
-
+							int year2 =Integer.parseInt(b.getM_birth().substring(0,4));
+							int age1 = (year-year2)+1;
 
 					%>
 					
@@ -359,7 +363,7 @@
 						<td><%=b.getM_birth()%></td>
 						<td><%=b.getM_number()%></td>
 						<td><%=b.getM_area()%></td>
-						<td><%=b.getM_age1()%></td>
+						<td><%=age1%></td>
 						<td><%=b.getM_sex()%></td>
 						<td><%=b.getM_option1()%></td>
 						<td><%=b.getM_option2()%></td>				

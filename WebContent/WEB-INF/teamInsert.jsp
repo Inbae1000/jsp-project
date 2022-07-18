@@ -15,7 +15,7 @@
 <%@page import="java.util.*" %>
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>팀별실적</title>
+<title>팀별실적 정보입력</title>
 <%@ include file = "menu2.jsp" %>
 <style>
 

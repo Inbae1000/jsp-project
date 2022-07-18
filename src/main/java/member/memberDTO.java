@@ -6,7 +6,7 @@ public class MemberDTO {
 	private String m_birth;		//생년월일
 	private String m_number;	//전화번호
 	private String m_area;		//지역
-	private int m_age1;			//나이
+	private int m_age1;			//나이 안씀 저장은 되어 있는데 list에서 보여줄땐 따로 수식으로 계산함 
 	private int m_age2;			//만나이 지금 안씀 나이-1한 값만 들어가게 해놨음
 	private String m_sex;		//성별
 	private String m_option1;	//유형

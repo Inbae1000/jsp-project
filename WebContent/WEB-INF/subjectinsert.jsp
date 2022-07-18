@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name='viewport' content="width=device-width",initial-scale="1">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>과정 등록 페이지</title>
+<title>과정 등록</title>
 </head>
 <body>
 	<%@ include file = "menu2.jsp" %>
