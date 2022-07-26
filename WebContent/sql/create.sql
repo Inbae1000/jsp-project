@@ -64,6 +64,16 @@ create table subject(
 	s_end date,
 	s_manage date,
 	s_professor varchar(20),
+	s_member varchar(20),
+	s_empoyee varchar(20),
+	s_session varchar(20),
+	s_professtion varchar(20),
+	s_subject varchar(20),
+	s_affiliation varchar(20),
+	s_name2 varchar(20),
+	s_option varchar(20),
+	s_code2 varchar(20),
+	s_condition varchar(20),
 	
 	primary key(s_id)
 );
@@ -85,17 +95,4 @@ create table employment(
 	primary key(year, code)
 );
 
-
-alter table subject add s_member varchar(20);
-alter table subject add s_empoyee varchar(20);
-ALTER TABLE company MODIFY COLUMN c_maintain text;
-ALTER TABLE member drop column m_note;
-alter table note drop column n_date;
-alter table note add n_date date not null default(current_date);
-alter table company MODIFY c_start text;
-alter table consequence MODIFY co_asse varchar(3);
-
-alter table consequence MODIFY co_asse decimal(4,2);
-alter table user add u_admin int DEFAULT 0;
-alter table employment modify column code varchar(10);
-alter table employment drop column name;
+INSERT INTO USER VALUES ("admin","admin","admin",1);
